@@ -25,6 +25,10 @@ public class Curso {
         this.activo = activo;
     }
 
+    public boolean isEmpty(){
+        return this.costo == 0f && this.descripcion == null && this.duracion == 0 && this.nombre == null && this.activo != 0 || this.activo != 1;
+    }
+
     public int getId_curso() {
         return id_curso;
     }
