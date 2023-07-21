@@ -1,4 +1,4 @@
-package com.longdrink.rest_api;
+package com.longdrink;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

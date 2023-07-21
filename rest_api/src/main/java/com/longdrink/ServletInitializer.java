@@ -1,4 +1,4 @@
-package com.longdrink.rest_api;
+package com.longdrink;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
