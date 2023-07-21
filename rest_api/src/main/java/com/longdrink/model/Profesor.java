@@ -29,6 +29,10 @@ public class Profesor {
         this.activo = activo;
     }
 
+    public boolean isEmpty(){
+        return this.ap_materno != null && this.ap_paterno != null && this.email != null && this.dni != null && this.nombre != null && this.foto != null && this.activo == 0 || this.activo == 1;
+    }
+
     public int getId_profesor() {
         return id_profesor;
     }

@@ -55,7 +55,7 @@ public class CursoController {
     public Curso obtenerPorID(@RequestParam int id){ return servCurs.obtenerCurso(id); }
 
     //FRONT: Eliminar curso.
-    @DeleteMapping
+    @DeleteMapping("eliminar/id")
     public boolean eliminarCursoID(@RequestParam int id){ return servCurs.eliminarCursoID(id);}
 
 
