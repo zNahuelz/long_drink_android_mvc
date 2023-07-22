@@ -64,7 +64,12 @@ public class CursoService {
     }
 
     public Curso obtenerCurso(int id){
-        return cursoDAO.findById(id).get();
+        try{
+            return cursoDAO.findById(id).get();
+        }
+        catch(Exception ex){
+            return null;
+        }
     }
 
 }

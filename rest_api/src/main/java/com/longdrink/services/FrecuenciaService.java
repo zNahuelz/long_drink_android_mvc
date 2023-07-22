@@ -28,7 +28,7 @@ public class FrecuenciaService {
         }
         return retorno;
     }
-
+    //TODO : BUG; Al ingresar valor distinto a 0 o 1 el servidor peta.
     public Frecuencia guardarFrecuencia(Frecuencia f){
         f.setId_frecuencia(0);
         boolean vacio = f.isEmpty();
@@ -63,6 +63,12 @@ public class FrecuenciaService {
     }
 
     public Frecuencia obtenerFrecuencia(int id){
-        return frecuenciaDAO.findById(id).get();
+        try{
+            return frecuenciaDAO.findById(id).get();
+        }
+        catch(Exception ex){
+            return null;
+        }
+
     }
 }

@@ -20,7 +20,7 @@ public class Frecuencia {
     }
 
     public boolean isEmpty(){
-        return this.nombre != null && this.activo == 1 || this.activo == 0;
+        return this.nombre == null && this.getActivo() >=2 || this.getActivo() <0;
     }
 
     public int getId_frecuencia() {

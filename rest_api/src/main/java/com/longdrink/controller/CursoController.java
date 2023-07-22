@@ -40,8 +40,8 @@ public class CursoController {
             Curso curs = servCurs.obtenerCurso(c.getId_curso());
             if(c.getNombre() == null) c.setNombre(curs.getNombre());
             if(c.getDescripcion() == null) c.setDescripcion(curs.getDescripcion());
-            if(c.getCosto() >= 0) c.setCosto(curs.getCosto());
-            if(c.getDuracion() >= 0) c.setDuracion(curs.getDuracion());
+            if(c.getCosto() <= 0) c.setCosto(curs.getCosto());
+            if(c.getDuracion() <= 0) c.setDuracion(curs.getDuracion());
             c.setActivo(curs.getActivo());
             servCurs.actualizarCurso(c);
             return "Success";
