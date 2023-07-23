@@ -20,6 +20,10 @@ public class Tema {
         this.guia = guia;
         this.activo = activo;
     }
+    public boolean isEmpty() {
+        return this.getNombre() == null && this.getGuia() == null
+                && this.getActivo() != 0  || this.getActivo() != 1;
+    }
 
     public int getId_tema() {
         return id_tema;
