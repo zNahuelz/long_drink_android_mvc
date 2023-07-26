@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">Long Drink Bar</string>
+    <string name="login_title">Iniciar Sesión</string>
+    <string name="login_user">Usuario</string>
+    <string name="login_password">Contraseña</string>
+    <string name="login_forgot_question">¿Ha olvidado su contraseña?</string>
+    <string name="login_forgot_click">Recuperar</string>
+    <string name="login_button">Ingresar</string>
+    <string name="login_register_button">Registrarse</string>
+    <string name="register_title">Registro de Usuario</string>
+    <string name="register_indications">Ingrese los datos solicitados para su registro</string>
+    <string name="register_names">Nombres</string>
+    <string name="register_last_father">Apellido Paterno</string>
+    <string name="register_last_mother">Apellido Materno</string>
+    <string name="register_dni">DNI</string>
+    <string name="register_email">Email</string>
+    <string name="register_password">Contraseña</string>
+    <string name="register_password_repeat">Repita Contraseña</string>
+    <string name="register_button">Registrar Datos</string>
+    <string name="register_back">Regresar al Inicio de sesión</string>
 </resources>
