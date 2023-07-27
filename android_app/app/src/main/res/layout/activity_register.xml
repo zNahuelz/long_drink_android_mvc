@@ -8,6 +8,16 @@
     android:background="@drawable/bg">
     
     <ImageView
+        android:id="@+id/register_back"
+        android:layout_width="35sp"
+        android:layout_height="35sp"
+        android:background="@drawable/baseline_exit_to_app_24"
+        android:layout_marginTop="40sp"
+        android:layout_marginLeft="25sp"
+        android:rotation="180"
+        android:backgroundTint="@color/light_red"/>
+
+    <ImageView
         android:id="@+id/register_logo"
         android:layout_width="230sp"
         android:layout_height="100sp"
@@ -150,16 +160,4 @@
         android:layout_marginTop="20sp"
         android:layout_centerHorizontal="true"/>
 
-    <TextView
-        android:id="@+id/register_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20sp"
-        android:layout_below="@+id/register_button"
-        android:text="@string/register_back"
-        android:textColor="@color/light_red"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        android:layout_centerHorizontal="true"
-        />
 </RelativeLayout>

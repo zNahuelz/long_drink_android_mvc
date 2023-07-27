@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,13 +24,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
     public final String URL_BASE = "http://10.0.2.2:8080/sq/";
-    TextView login,nom,apepa,apema,dni,email,pass1,pass2;
+    TextView nom,apepa,apema,dni,email,pass1,pass2;
+
+    ImageView login;
     Button registrarse;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        login = (TextView) findViewById(R.id.register_back);
+        login = (ImageView) findViewById(R.id.register_back);
         registrarse = (Button) findViewById(R.id.register_button);
         nom = (TextView) findViewById(R.id.register_name);
         apepa = (TextView) findViewById(R.id.register_last_father);
