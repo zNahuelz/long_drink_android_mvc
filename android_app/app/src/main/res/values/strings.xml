@@ -18,4 +18,5 @@
     <string name="register_password_repeat">Repita Contraseña</string>
     <string name="register_button">Registrar Datos</string>
     <string name="register_back">Regresar al Inicio de sesión</string>
+    <string name="wip">Trabajo en Progreso!</string>
 </resources>

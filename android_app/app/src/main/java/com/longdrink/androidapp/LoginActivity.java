@@ -5,22 +5,81 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class LoginActivity extends AppCompatActivity {
+import com.google.android.material.snackbar.Snackbar;
+import com.longdrink.androidapp.api.RetrofitAPI;
+import com.longdrink.androidapp.api_model.SQUsuario;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+    public final String URL_LOGIN = "http://10.0.2.2:8080/sq/";
+    Button registro;
+    Button iniciar_sesion;
+    EditText usuario;
+    EditText password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        TextView registro = findViewById(R.id.login_forgot_click);
+        registro = (Button)findViewById(R.id.login_register_button);
+        iniciar_sesion = (Button)findViewById(R.id.login_button);
+        usuario = (EditText)findViewById(R.id.username);
+        password = (EditText) findViewById(R.id.password);
+        registro.setOnClickListener(this::onClick);
+        iniciar_sesion.setOnClickListener(this::onClick);
 
-        registro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.login_button:
+                String usr = usuario.getText().toString();
+                String pass = password.getText().toString();
+                if(usr.length() == 0 || pass.length() == 0){
+                    Toast.makeText(LoginActivity.this, "ADVERTENCIA: Debe llenar ambos campos!", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    Retrofit retrofit = new Retrofit.Builder().baseUrl(URL_LOGIN).addConverterFactory(GsonConverterFactory.create()).build();
+                    RetrofitAPI retroAPI = retrofit.create(RetrofitAPI.class);
+                    SQUsuario load = new SQUsuario(usr,pass); //Ups...
+                    Call<SQUsuario> call = retroAPI.iniciarSesion(load);
+                    call.enqueue(new Callback<SQUsuario>() {
+                        @Override
+                        public void onResponse(Call<SQUsuario> call, Response<SQUsuario> response) {
+                            if(response.body().getContrasena().equals(pass) && response.body().getNombre_usuario().equals(usr)){
+                                Toast.makeText(LoginActivity.this, "Sesión iniciada con exito!", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                            }
+                            else{
+                                Toast.makeText(LoginActivity.this, "Usuario o contraseña incorrectos!", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<SQUsuario> call, Throwable t) {
+                            Toast.makeText(LoginActivity.this, "Error! Falló la comunicación con el servidor.", Toast.LENGTH_SHORT).show();
+                            t.printStackTrace();
+                        }
+                    });
+                }
+                //Enviar al "main" que tendra unos ricos fragments...
+                //startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                break;
+            case R.id.login_register_button:
+                //Toast.makeText(this, "boton registro!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
-            }
-        });
+                break;
+        }
     }
 }

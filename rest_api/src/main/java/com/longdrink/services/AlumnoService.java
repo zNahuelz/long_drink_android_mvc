@@ -72,4 +72,9 @@ public class AlumnoService {
     public Alumno obtenerAlumDNI(String dni){
         return alumnoDAO.findBydni(dni).get();
     }
+
+    public Alumno obtenerAlumEmail(String email){return alumnoDAO.findByemail(email).get();}
+
+    public boolean buscarPorDNI(String dni){ return alumnoDAO.findBydni(dni).isPresent(); }
+    public boolean buscarPorEmail(String email){return alumnoDAO.findByemail(email).isPresent();}
 }

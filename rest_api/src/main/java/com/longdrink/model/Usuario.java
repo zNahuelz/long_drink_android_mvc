@@ -5,30 +5,39 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "usuario")
 public class Usuario {
+    //TODO : EL TODO MAS ENORME... ASEGURARSE QUE DAO, SERVICIO Y CONTROLADOR USUARIO
+    //FUNCIONEN CORRECTAMENTE, DEBIDO A NOMBRES DE CAMPOS ID.
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_usuario;
+    @Column(name="id_usuario")
+    private int idusuario;
     private String contrasena;
-    private String nombre_usuario;
+    @Column(name="nombre_usuario")
+    private String nombreusuario;
     private int permisos;
     private int activo;
 
     public Usuario(){}
 
     public Usuario(int id_usuario, String contrasena, String nombre_usuario, int permisos, int activo) {
-        this.id_usuario = id_usuario;
+        this.idusuario = id_usuario;
         this.contrasena = contrasena;
-        this.nombre_usuario = nombre_usuario;
+        this.nombreusuario = nombre_usuario;
         this.permisos = permisos;
         this.activo = activo;
     }
 
+    public boolean isEmpty() {
+        return this.getContrasena() == null && this.getNombre_usuario() == null && this.getPermisos() == 1
+                && this.getActivo() != 0 || this.getActivo() != 1;
+    }
+
     public int getId_usuario() {
-        return id_usuario;
+        return idusuario;
     }
 
     public void setId_usuario(int id_usuario) {
-        this.id_usuario = id_usuario;
+        this.idusuario = id_usuario;
     }
 
     public String getContrasena() {
@@ -40,11 +49,11 @@ public class Usuario {
     }
 
     public String getNombre_usuario() {
-        return nombre_usuario;
+        return nombreusuario;
     }
 
     public void setNombre_usuario(String nombre_usuario) {
-        this.nombre_usuario = nombre_usuario;
+        this.nombreusuario = nombre_usuario;
     }
 
     public int getPermisos() {
