@@ -37,8 +37,8 @@ public class SeguridadController {
                 retorno.setContrasena(cli.getContrasena());
             }
             else{
-                retorno.setContrasena(null);
-                retorno.setNombre_usuario(null);
+                retorno.setContrasena("blank");
+                retorno.setNombre_usuario("blank");
             }
         }
         return retorno;

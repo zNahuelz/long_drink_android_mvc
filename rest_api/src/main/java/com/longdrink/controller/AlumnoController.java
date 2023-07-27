@@ -60,7 +60,12 @@ public class AlumnoController {
     //FRONT: Obtener alumno por DNI.
     @GetMapping("dni")
     public Alumno obtenerPorDNI(@RequestParam String dni){
-        return servAlum.obtenerAlumDNI(dni);
+        try{
+            return servAlum.obtenerAlumDNI(dni);
+        }
+        catch(Exception ex){
+            return new Alumno();
+        }
     }
 
     //FRONT: Eliminar alumno por ID.
