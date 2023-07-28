@@ -68,7 +68,7 @@ public class CursoService {
             return cursoDAO.findById(id).get();
         }
         catch(Exception ex){
-            return null;
+            return new Curso();
         }
     }
 

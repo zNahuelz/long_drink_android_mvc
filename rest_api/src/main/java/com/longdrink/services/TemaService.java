@@ -69,7 +69,7 @@ public class TemaService {
 			return temaDAO.findById(id).get();
 		}
 		catch(Exception ex){
-			return null;
+			return new Tema();
 		}
 
 	}

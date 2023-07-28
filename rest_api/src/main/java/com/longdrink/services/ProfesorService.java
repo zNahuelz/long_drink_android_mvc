@@ -56,6 +56,11 @@ public class ProfesorService {
     }
 
     public Profesor obtenerPorID(int id){
-        return profesorDAO.findById(id).get();
+        try{
+            return profesorDAO.findById(id).get();
+        }
+        catch(Exception ex){
+            return new Profesor();
+        }
     }
 }
