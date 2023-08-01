@@ -26,7 +26,7 @@ public class ProfesorService {
         Optional<Profesor> profeDNI = profesorDAO.findBydni(p.getDni());
         Optional<Profesor> profeEmail = profesorDAO.findByemail(p.getEmail());
         boolean vacio = p.isEmpty();
-        if(!vacio && !profeEmail.isPresent() && !profeDNI.isPresent()){
+        if(!vacio || !profeEmail.isPresent() || !profeDNI.isPresent()){
             return profesorDAO.save(p);
         }
         return null;
