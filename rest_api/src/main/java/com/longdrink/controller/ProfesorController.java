@@ -60,7 +60,13 @@ public class ProfesorController {
     //FRONT: Obtener profesor por ID.
     @GetMapping("id")
     public Profesor obtenerPorID(@RequestParam int id){
-        return servPro.obtenerPorID(id);
+        try{
+            return servPro.obtenerPorID(id);
+        }
+        catch(Exception ex){
+            return new Profesor();
+        }
+
     }
     //FRONT: Eliminar profesor por ID.
     @DeleteMapping("eliminar/id")

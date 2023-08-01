@@ -67,7 +67,7 @@ public class FrecuenciaService {
             return frecuenciaDAO.findById(id).get();
         }
         catch(Exception ex){
-            return null;
+            return new Frecuencia();
         }
 
     }
