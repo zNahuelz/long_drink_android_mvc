@@ -27,12 +27,13 @@ public class SeguridadController {
     //FRONT: Login.
     @PostMapping("login")
     public SQUsuario iniciarSesion(@RequestBody SQUsuario cli){
-        SQUsuario retorno = new SQUsuario("blank","blank");
+        SQUsuario retorno = new SQUsuario("blank","blank",0);
         Usuario busqueda = usrServ.obtenerNombreUsuario(cli.getNombre_usuario());
         if(busqueda != null){
             if(busqueda.getNombre_usuario().equals(cli.getNombre_usuario()) && busqueda.getContrasena().equals(cli.getContrasena())){
                 retorno.setNombre_usuario(cli.getNombre_usuario());
                 retorno.setContrasena(cli.getContrasena());
+                retorno.setId_usuario(busqueda.getId_usuario());
             }
             else{
                 retorno.setContrasena("blank");

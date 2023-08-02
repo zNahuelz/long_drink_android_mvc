@@ -49,19 +49,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if(usr.length() == 0 || pass.length() == 0){
                     Toast.makeText(LoginActivity.this, "ADVERTENCIA: Debe llenar ambos campos!", Toast.LENGTH_LONG).show();
                 }
-                else{
+                else {
                     Retrofit retrofit = new Retrofit.Builder().baseUrl(URL_LOGIN).addConverterFactory(GsonConverterFactory.create()).build();
                     RetrofitAPI retroAPI = retrofit.create(RetrofitAPI.class);
-                    SQUsuario load = new SQUsuario(usr,pass); //Ups...
+                    SQUsuario load = new SQUsuario(usr, pass);
                     Call<SQUsuario> call = retroAPI.iniciarSesion(load);
                     call.enqueue(new Callback<SQUsuario>() {
                         @Override
                         public void onResponse(Call<SQUsuario> call, Response<SQUsuario> response) {
-                            if(response.body().getContrasena().equals(pass) && response.body().getNombre_usuario().equals(usr)){
+                            if (response.body().getContrasena().equals(pass) && response.body().getNombre_usuario().equals(usr)) {
                                 Toast.makeText(LoginActivity.this, "Sesión iniciada con exito!", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(LoginActivity.this,MainActivity.class));
-                            }
-                            else{
+                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                //TODO : Pasar ID de usuario (body) al MainActivity, para uso posterior.
+                            } else {
                                 Toast.makeText(LoginActivity.this, "Usuario o contraseña incorrectos!", Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -73,11 +73,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         }
                     });
                 }
-                //Enviar al "main" que tendra unos ricos fragments...
-                //startActivity(new Intent(LoginActivity.this,MainActivity.class));
                 break;
             case R.id.login_register_button:
-                //Toast.makeText(this, "boton registro!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
                 break;
         }

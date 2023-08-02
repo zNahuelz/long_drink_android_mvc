@@ -4,11 +4,19 @@ public class SQUsuario {
     private String contrasena;
     private String nombre_usuario;
 
+    private int id_usuario;
+
     public SQUsuario(){}
 
     public SQUsuario( String nombre_usuario, String contrasena) {
         this.contrasena = contrasena;
         this.nombre_usuario = nombre_usuario;
+    }
+
+    public SQUsuario(String nombre_usuario, String contrasena, int id_usuario) {
+        this.contrasena = contrasena;
+        this.nombre_usuario = nombre_usuario;
+        this.id_usuario = id_usuario;
     }
 
     public String getContrasena() {
@@ -25,5 +33,13 @@ public class SQUsuario {
 
     public void setNombre_usuario(String nombre_usuario) {
         this.nombre_usuario = nombre_usuario;
+    }
+
+    public int getId_usuario() {
+        return id_usuario;
+    }
+
+    public void setId_usuario(int id_usuario) {
+        this.id_usuario = id_usuario;
     }
 }
