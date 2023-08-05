@@ -10,9 +10,9 @@ import com.longdrink.androidapp.fragments.CoursesFragment;
 import com.longdrink.androidapp.fragments.MyAccountFragment;
 import com.longdrink.androidapp.fragments.MyCoursesFragment;
 
-public class FragmentAdapter extends FragmentPagerAdapter {
+public class StudentFragmentAdapter extends FragmentPagerAdapter {
 
-    public FragmentAdapter(@NonNull FragmentManager fm) {
+    public StudentFragmentAdapter(@NonNull FragmentManager fm) {
         super(fm);
     }
 

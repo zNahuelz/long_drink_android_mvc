@@ -2,13 +2,30 @@ package com.longdrink.androidapp.fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.longdrink.androidapp.R;
+import com.longdrink.androidapp.adapter.CoursesRecyclerViewAdapter;
+import com.longdrink.androidapp.api.RetrofitAPI;
+import com.longdrink.androidapp.api_model.SQCurso;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +46,15 @@ public class CoursesFragment extends Fragment {
     public CoursesFragment() {
         // Required empty public constructor
     }
+
+    //Variables a utilizar
+    final String BASE_URL = "http://10.0.2.2:8080";
+
+    RecyclerView recyclerView;
+
+    CoursesRecyclerViewAdapter recyclerViewAdapter;
+
+
 
     /**
      * Use this factory method to create a new instance of
@@ -62,5 +88,41 @@ public class CoursesFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_courses, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        recyclerView = view.findViewById(R.id.recycler_courses);
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        getCursos(retrofit);
+    }
+
+    public void getCursos(Retrofit retrofit){
+        RetrofitAPI retrofitAPI = retrofit.create(RetrofitAPI.class);
+        Call<List<SQCurso>> listadoCursos = retrofitAPI.listarCursos();
+        listadoCursos.enqueue(new Callback<List<SQCurso>>() {
+            @Override
+            public void onResponse(Call<List<SQCurso>> call, Response<List<SQCurso>> response) {
+                if(response.isSuccessful()){
+                    recyclerViewAdapter = new CoursesRecyclerViewAdapter(response.body(), getContext());
+                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+                    recyclerView.setAdapter(recyclerViewAdapter);
+                    recyclerView.setLayoutManager(layoutManager);
+                    recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
+                }
+                else{
+                    Log.e("CourseFragment", "onResponse: Llamada fallida");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<SQCurso>> call, Throwable t) {
+                Log.e("CourseFragment", "onFailure: Conexión fallida");
+                Log.e("CourseFragment", t.getLocalizedMessage());
+            }
+        });
     }
 }
