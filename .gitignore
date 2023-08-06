@@ -59,3 +59,4 @@ build/
 
 ### VS Code ###
 .vscode/
+rest_api/src/main/resources/application.properties
