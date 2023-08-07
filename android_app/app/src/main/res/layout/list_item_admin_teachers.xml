@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10sp"
+    android:padding="8sp">
+
+    <ImageView
+        android:id="@+id/admin_teacher_image"
+        android:layout_width="70sp"
+        android:layout_height="70sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars[11]" />
+
+    <TextView
+        android:id="@+id/admin_teacher_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/admin_teacher_image"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8sp"
+        android:layout_marginLeft="10sp"
+        android:text="@string/nombreDoc"/>
+
+    <TextView
+        android:id="@+id/admin_teacher_data"
+        android:layout_width="200sp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10sp"
+        android:layout_marginTop="10sp"
+        android:text="@string/datosDoc"
+        android:textSize="12sp"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@+id/admin_teacher_image"
+        app:layout_constraintTop_toBottomOf="@+id/admin_teacher_name"
+        app:layout_constraintEnd_toStartOf="@+id/admin_btn_tEditar"/>
+
+    <Button
+        android:id="@+id/admin_btn_tEditar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/editar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/light_red"
+        android:backgroundTint="@color/dark_blue"
+        android:textAllCaps="false"
+        android:textSize="12sp"/>
+
+    <Button
+        android:id="@+id/admin_btn_tEliminar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        android:backgroundTint="@color/dark_blue"
+        android:padding="0dp"
+        android:text="@string/eliminar"
+        android:textAllCaps="false"
+        android:textColor="@color/light_red"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/admin_teacher_data"
+        app:layout_constraintTop_toBottomOf="@+id/admin_btn_tEditar" />
+</androidx.constraintlayout.widget.ConstraintLayout>
