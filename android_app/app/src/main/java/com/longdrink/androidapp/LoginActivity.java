@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.google.android.material.snackbar.Snackbar;
 import com.longdrink.androidapp.api.RetrofitAPI;
 import com.longdrink.androidapp.api_model.SQUsuario;
+import com.longdrink.androidapp.databinding.ActivityLoginBinding;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,31 +22,36 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+
+    ActivityLoginBinding binding;
     public final String URL_LOGIN = "http://10.0.2.2:8080/sq/";
-    Button registro;
+    /*Button registro;
     Button iniciar_sesion;
     EditText usuario;
-    EditText password;
+    EditText password;*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
 
-        registro = (Button)findViewById(R.id.login_register_button);
+
+        /*registro = (Button)findViewById(R.id.login_register_button);
         iniciar_sesion = (Button)findViewById(R.id.login_button);
         usuario = (EditText)findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
         registro.setOnClickListener(this::onClick);
-        iniciar_sesion.setOnClickListener(this::onClick);
+        iniciar_sesion.setOnClickListener(this::onClick);*/
+        binding.loginButton.setOnClickListener(this::onClick);
+        binding.loginRegisterButton.setOnClickListener(this::onClick);
 
+        setContentView(binding.getRoot());
     }
 
     @Override
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.login_button:
-                String usr = usuario.getText().toString();
-                String pass = password.getText().toString();
+                String usr = binding.username.getText().toString();
+                String pass = binding.password.getText().toString();
                 if(usr.length() == 0 || pass.length() == 0){
                     Toast.makeText(LoginActivity.this, "ADVERTENCIA: Debe llenar ambos campos!", Toast.LENGTH_LONG).show();
                 }

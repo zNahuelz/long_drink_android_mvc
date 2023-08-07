@@ -1,6 +1,7 @@
 package com.longdrink.androidapp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,18 +11,22 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.fragment.app.FragmentManager;
 
 import com.bumptech.glide.Glide;
+import com.longdrink.androidapp.CourseDescriptionActivity;
 import com.longdrink.androidapp.R;
 import com.longdrink.androidapp.api_model.SQCurso;
-import com.longdrink.androidapp.fragments.CoursesFragment;
 
 import java.util.List;
 
 public class CoursesRecyclerViewAdapter extends RecyclerView.Adapter<CoursesRecyclerViewAdapter.CourseHolder> {
 
+    //El listado de cursos que se obtiene del reponse.body
     List<SQCurso> listadoCursos;
+    //Contexto en que se encuentra el adaptador
     Context context;
+
 
     public CoursesRecyclerViewAdapter(List<SQCurso> listadoCursos, Context context) {
         this.listadoCursos = listadoCursos;
@@ -39,6 +44,11 @@ public class CoursesRecyclerViewAdapter extends RecyclerView.Adapter<CoursesRecy
     public void onBindViewHolder(@NonNull CourseHolder holder, int position) {
         holder.courseName.setText(listadoCursos.get(position).getNombre());
         holder.courseDescription.setText(listadoCursos.get(position).getDescripcion());
+        //Agrega el método para que cada botón envíe la información del respectivo curso
+        holder.courseButtonDetails.setOnClickListener(a -> SendData(position));
+        Glide.with(holder.itemView)
+                .load(listadoCursos.get(position).getFoto())
+                .into(holder.courseImage);
     }
 
     @Override
@@ -51,7 +61,7 @@ public class CoursesRecyclerViewAdapter extends RecyclerView.Adapter<CoursesRecy
 
         TextView courseName, courseDescription;
 
-        Button courseButtonDetails, courseButtonInscription;
+        Button courseButtonDetails;
 
 
         public CourseHolder(@NonNull View view) {
@@ -60,7 +70,15 @@ public class CoursesRecyclerViewAdapter extends RecyclerView.Adapter<CoursesRecy
             courseName = view.findViewById(R.id.course_name);
             courseDescription = view.findViewById(R.id.course_description);
             courseButtonDetails = view.findViewById(R.id.course_button_details);
-            courseButtonInscription = view.findViewById(R.id.course_button_inscription);
         }
+    }
+
+    //Envia los datos a la nueva actividad y crea la nueva actividad
+    public void SendData(int position){
+        //Creando el intent para después iniciarlo como una actividad
+        Intent intent = new Intent(this.context, CourseDescriptionActivity.class);
+        //Envia el curso a la actividad por medio del putExtra
+        intent.putExtra("curso",this.listadoCursos.get(position));
+        this.context.startActivity(intent);
     }
 }

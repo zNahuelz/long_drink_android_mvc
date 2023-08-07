@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.google.android.material.snackbar.Snackbar;
 import com.longdrink.androidapp.api.RetrofitAPI;
 import com.longdrink.androidapp.api_model.SQRegistro;
+import com.longdrink.androidapp.databinding.ActivityRegisterBinding;
 
 import org.w3c.dom.Text;
 
@@ -23,16 +24,17 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
+
+    ActivityRegisterBinding binding;
     public final String URL_BASE = "http://10.0.2.2:8080/sq/";
-    TextView nom,apepa,apema,dni,email,pass1,pass2;
+    /*TextView nom,apepa,apema,dni,email,pass1,pass2;
 
     ImageView login;
-    Button registrarse;
+    Button registrarse;*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
-        login = (ImageView) findViewById(R.id.register_back);
+        /*login = (ImageView) findViewById(R.id.register_back);
         registrarse = (Button) findViewById(R.id.register_button);
         nom = (TextView) findViewById(R.id.register_name);
         apepa = (TextView) findViewById(R.id.register_last_father);
@@ -41,8 +43,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         email = (TextView) findViewById(R.id.register_email);
         pass1 = (TextView) findViewById(R.id.register_password);
         pass2 = (TextView) findViewById(R.id.register_password_repeat);
-        registrarse.setOnClickListener(this::onClick);
+        registrarse.setOnClickListener(this::onClick);*/
 
+        binding.registerButton.setOnClickListener(this::onClick);
+
+        setContentView(binding.getRoot());
     }
 
     @Override
@@ -53,16 +58,16 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 break;
             case R.id.register_button:
                 //Toast.makeText(this, "Clickaste registrar!", Toast.LENGTH_SHORT).show();
-                String nombre = nom.getText().toString();
-                String apePa = apepa.getText().toString();
-                String apeMa = apema.getText().toString();
-                String DNI = dni.getText().toString();
-                String e_mail = email.getText().toString();
-                String contra1 = pass1.getText().toString();
-                String contra2 = pass2.getText().toString();
+                String nombre = binding.registerName.getText().toString();
+                String apePa = binding.registerLastFather.getText().toString();
+                String apeMa = binding.registerLastMother.getText().toString();
+                String DNI = binding.registerDni.getText().toString();
+                String e_mail = binding.registerEmail.getText().toString();
+                String contra1 = binding.registerPassword.getText().toString();
+                String contra2 = binding.registerPasswordRepeat.getText().toString();
                 //String test = nombre + " "+apePa+" "+apeMa+" "+DNI+" "+e_mail+" "+contra1+" "+contra2;
                 //Toast.makeText(this, test, Toast.LENGTH_LONG).show();
-                //Validaciones......!!!
+                /** ***** Validaciones ***** */
                 if(nombre.length() == 0 || apePa.length() == 0 || apeMa.length() == 0 || DNI.length() == 0 || e_mail.length() == 0
                 || contra1.length() == 0 || contra2.length() == 0){
                     Toast.makeText(this, "ADVERTENCIA: Debes llenar todos los campos para completar tu registro!", Toast.LENGTH_LONG).show();

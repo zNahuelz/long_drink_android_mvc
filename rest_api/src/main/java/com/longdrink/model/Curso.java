@@ -13,16 +13,18 @@ public class Curso {
     private int duracion;
     private String nombre;
     private int activo;
+    private String foto;
 
     public Curso(){}
 
-    public Curso(int id_curso, float costo, String descripcion, int duracion, String nombre, int activo) {
+    public Curso(int id_curso, float costo, String descripcion, int duracion, String nombre, int activo, String foto) {
         this.id_curso = id_curso;
         this.costo = costo;
         this.descripcion = descripcion;
         this.duracion = duracion;
         this.nombre = nombre;
         this.activo = activo;
+        this.foto = foto;
     }
 
     public boolean isEmpty(){
@@ -75,5 +77,13 @@ public class Curso {
 
     public void setActivo(int activo) {
         this.activo = activo;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 }

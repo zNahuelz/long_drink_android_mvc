@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -16,26 +16,26 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:subtitleTextColor="@color/white"
-        app:titleTextColor="@color/white"/>
+        app:titleTextColor="@color/white" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/menu_tabs"
         android:layout_width="match_parent"
-        android:layout_height="58dp"
-        android:background="@color/dark_blue"
-        android:elevation="12dp"
-        app:tabGravity="fill"
-        app:tabIndicator="@color/white"
-        app:tabMaxWidth="0dp"
-        app:tabMode="fixed"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/main_toolbar"
+        android:backgroundTint="@color/dark_blue"
+        app:tabTextColor="@color/white"
         app:tabSelectedTextColor="@color/light_red"
-        app:tabTextColor="@color/white" />
+        app:tabIndicatorColor="@color/light_red"
+        app:tabIndicatorHeight="4sp"/>
 
     <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewPager"
+        android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/menu_tabs"
         >
     </androidx.viewpager.widget.ViewPager>
 
-</LinearLayout>
+
+</RelativeLayout>

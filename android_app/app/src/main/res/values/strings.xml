@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Long Drink Bar</string>
+    <!-- Strings del Inicio de Sesion -->
     <string name="login_title">Iniciar Sesión</string>
     <string name="login_user">Usuario</string>
     <string name="login_password">Contraseña</string>
@@ -7,6 +8,9 @@
     <string name="login_forgot_click">Recuperar</string>
     <string name="login_button">Ingresar</string>
     <string name="login_register_button">Registrarse</string>
+    <!-- Fin de Inicio de Sesión -->
+
+    <!-- Strings del Registro de Usuario -->
     <string name="register_title">Registro de Usuario</string>
     <string name="register_indications">Ingrese los datos solicitados para su registro</string>
     <string name="register_names">Nombres</string>
@@ -18,6 +22,13 @@
     <string name="register_password_repeat">Repita Contraseña</string>
     <string name="register_button">Registrar Datos</string>
     <string name="register_back">Regresar al Inicio de sesión</string>
+    <!-- Fin del Registro de Usuario -->
+
+    <!-- Strings del listado de Cursos -->
+    <string name="courses_detail_button">Detalles</string>
+    <string name="courses_inscription_button">Inscripción</string>
+    <!-- Fin del listado de Cursos -->
+
     <string name="wip">Trabajo en Progreso!</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

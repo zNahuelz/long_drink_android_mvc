@@ -1,12 +1,15 @@
 package com.longdrink.androidapp.api_model;
 
-public class SQCurso {
+import java.io.Serializable;
+
+public class SQCurso implements Serializable {
     private int id_curso;
     private float costo;
     private String descripcion;
     private int duracion;
     private String nombre;
     private int activo;
+    private String foto;
 
     public SQCurso(){}
 
@@ -65,5 +68,13 @@ public class SQCurso {
 
     public void setActivo(int activo) {
         this.activo = activo;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 }

@@ -3,15 +3,16 @@ package com.longdrink.androidapp.adapter;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.longdrink.androidapp.fragments.CoursesFragment;
 import com.longdrink.androidapp.fragments.MyAccountFragment;
 import com.longdrink.androidapp.fragments.MyCoursesFragment;
 
 public class StudentFragmentAdapter extends FragmentPagerAdapter {
-
     public StudentFragmentAdapter(@NonNull FragmentManager fm) {
         super(fm);
     }
@@ -21,6 +22,7 @@ public class StudentFragmentAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position)
         {
+            case 0: return new CoursesFragment();
             case 1: return new MyCoursesFragment();
             case 2: return new MyAccountFragment();
             default: return new CoursesFragment();
@@ -43,7 +45,7 @@ public class StudentFragmentAdapter extends FragmentPagerAdapter {
         }
         if (position == 1)
         {
-            title = "Mis Cursos";
+            title = "Mi Curso";
         }
         if (position == 2)
         {
@@ -52,4 +54,6 @@ public class StudentFragmentAdapter extends FragmentPagerAdapter {
 
         return title;
     }
+
+
 }

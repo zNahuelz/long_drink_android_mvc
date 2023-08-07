@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.longdrink.androidapp.R;
+import com.longdrink.androidapp.databinding.FragmentMyCoursesBinding;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +30,9 @@ public class MyCoursesFragment extends Fragment {
     public MyCoursesFragment() {
         // Required empty public constructor
     }
+
+    /** ***** Variables a utilizar ****** */
+    FragmentMyCoursesBinding binding;
 
     /**
      * Use this factory method to create a new instance of
@@ -61,6 +65,9 @@ public class MyCoursesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_courses, container, false);
+        //return inflater.inflate(R.layout.fragment_my_courses, container, false);
+
+        binding = FragmentMyCoursesBinding.inflate(inflater, container, false);
+        return binding.getRoot();
     }
 }
