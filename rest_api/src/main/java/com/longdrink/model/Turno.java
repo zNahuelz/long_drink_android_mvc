@@ -1,5 +1,6 @@
 package com.longdrink.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -11,8 +12,11 @@ public class Turno {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_turno;
     private String nombre;
+    @JsonFormat(pattern="HH:mm:ss" ,timezone ="America/Lima")
     private Date hora_inicio;
+    @JsonFormat(pattern="HH:mm:ss",timezone ="America/Lima")
     private Date hora_final;
+
     private int activo;
 
     public Turno(){}
