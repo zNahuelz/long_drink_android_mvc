@@ -48,7 +48,7 @@ public class AlumnoService {
     public boolean eliminarAlumnoID(int id){
         try{
             Alumno alum = alumnoDAO.findById(id).get();
-            if(alum.getId_alumno() != 0 ){
+            if(alum.getActivo() != 0 ){
                 alum.setActivo(0);
                 alumnoDAO.save(alum);
                 return true;

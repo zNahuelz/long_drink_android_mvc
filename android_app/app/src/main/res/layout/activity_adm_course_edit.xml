@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AdmCourseEditActivity"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:id="@+id/txt_EIDCurso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reemp. ID. Curso"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        />
+
+    <TextView
+        android:id="@+id/lblNombreCurso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lblNombreCurso"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        />
+
+    <EditText
+        android:id="@+id/txt_ENombreCurso"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Reemp. Nombre Curso"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        />
+
+    <TextView
+        android:id="@+id/lblDescCurso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lblDescCurso"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        />
+
+    <EditText
+        android:id="@+id/txt_EDescCurso"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:text="Reemp. Descripcion Curso"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        />
+
+    <TextView
+        android:id="@+id/lblDuracionCurso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lblDuracionCurso"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        />
+
+    <EditText
+        android:id="@+id/txt_EDuracionCurso"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        />
+
+    <TextView
+        android:id="@+id/lblCostoCurso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lblCostoCurso"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        />
+
+    <EditText
+        android:id="@+id/txt_ECostoCurso"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        tools:ignore="SpeakableTextPresentCheck"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        />
+
+    <TextView
+        android:id="@+id/lblTurnoCurso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lblTurnoCurso"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        />
+
+    <Spinner
+        android:id="@+id/sp_ETurnoCurso"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        />
+
+    <TextView
+        android:id="@+id/lblFrecCurso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lblFrecCurso"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        />
+    <Spinner
+        android:id="@+id/sp_EFrecuenciaCurso"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:backgroundTint="@color/black"
+
+        />
+
+    <Switch
+        android:id="@+id/sw_EActivoCurso"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/VisibleEstudiantes"
+        tools:ignore="UseSwitchCompatOrMaterialXml"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+        />
+
+    <Button
+        android:id="@+id/btn_EGuardar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/GuardarCambios"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/light_red"
+        />
+</LinearLayout>

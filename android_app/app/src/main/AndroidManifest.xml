@@ -17,11 +17,24 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".AdmTeacherDeleteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AdmStudentDeleteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AdmCourseDeleteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AdmCourseEditActivity"
+            android:exported="false" />
+        <activity
             android:name=".CourseDescriptionActivity"
             android:exported="false" />
         <activity
             android:name=".AdminActivity"
-            android:exported="false" />
+            android:exported="true">
+        </activity>
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
         <activity
