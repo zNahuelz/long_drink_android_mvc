@@ -2,7 +2,9 @@ package com.longdrink.androidapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -28,16 +30,21 @@ public class AdmStudentDeleteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityAdmStudentDeleteBinding.inflate(getLayoutInflater());
-        SQAlumno studentData = (SQAlumno) getIntent().getSerializableExtra("student_data");
-        binding.txtStudentData.setText("ID ALUMNO: "+studentData.getId_alumno()+"\n\nNOMBRE: "+studentData.getNombre()
-                +"\n\nAPELLIDOS: "+studentData.getAp_paterno()+" "+studentData.getAp_materno()+
-                "\n\nE-MAIL: "+studentData.getEmail()+"\n\nDNI: "+studentData.getDni());
         setContentView(binding.getRoot());
-        Glide.with(this).load(DEFAULT_STUDENT_IMAGE).into(binding.ivDeleteStudent);
+        SQAlumno studentData = (SQAlumno) getIntent().getSerializableExtra("student_data");
+        fillData(studentData);
+
         binding.btnDeleteStudent.setOnClickListener(e -> DeleteStudent(studentData));
         binding.btnGoBackStudent.setOnClickListener(e -> goBack());
     }
 
+    @SuppressLint("SetTextI18n")
+    public void fillData(SQAlumno studentData){
+        binding.txtStudentData.setText("ID ALUMNO: "+studentData.getId_alumno()+"\n\nNOMBRE: "+studentData.getNombre()
+                +"\n\nAPELLIDOS: "+studentData.getAp_paterno()+" "+studentData.getAp_materno()+
+                "\n\nE-MAIL: "+studentData.getEmail()+"\n\nDNI: "+studentData.getDni());
+        Glide.with(this).load(DEFAULT_STUDENT_IMAGE).into(binding.ivDeleteStudent);
+    }
     public void DeleteStudent(SQAlumno studentData){
         Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         RetrofitAPI retrofitAPI = retrofit.create(RetrofitAPI.class);
@@ -48,9 +55,11 @@ public class AdmStudentDeleteActivity extends AppCompatActivity {
                 if(response.isSuccessful()){
                     if(response.body() == true){
                         Snackbar.make(binding.getRoot(), "Alumno eliminado con exito!",Snackbar.LENGTH_LONG).show();
+                        goBackWaiting();
                     }
                     else{
                         Snackbar.make(binding.getRoot(), "El alumno seleccionado ya se encuentra deshabilitado!",Snackbar.LENGTH_SHORT).show();
+                        goBackWaiting();
                     }
                 }
                 else{
@@ -66,4 +75,14 @@ public class AdmStudentDeleteActivity extends AppCompatActivity {
         });
     }
     public void goBack(){ AdmStudentDeleteActivity.this.finish(); }
+
+    private void goBackWaiting(){
+        Handler handler = new Handler(); //Esperar 2 segundos y volver atras.
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                goBack();
+            }
+        },2000);
+    }
 }

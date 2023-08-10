@@ -38,7 +38,7 @@ public class AlumnoController {
     //FRONT: Actualizar alumno.
     //Nota: No debe actualizar campo activo, para eso esta el eliminar.
     @PutMapping("editar")
-    public String editarAlumno(@RequestBody Alumno a){
+    public boolean editarAlumno(@RequestBody Alumno a){
         boolean respuesta = servAlum.buscarPorID(a.getId_alumno());
         if(respuesta){
             Alumno alum = servAlum.obtenerAlumno(a.getId_alumno());
@@ -47,13 +47,13 @@ public class AlumnoController {
             if(a.getNombre() == null) a.setNombre(alum.getNombre());
             if(a.getDni() == null) a.setDni(alum.getDni());
             if(a.getEmail() == null) a.setEmail(alum.getEmail());
-            a.setActivo(alum.getActivo());
+            a.setActivo(1);
             servAlum.actualizarAlumno(a);
-            return "Success";
+            return true;
 
         }
         else{
-            return "Failed";
+            return false;
         }
     }
 

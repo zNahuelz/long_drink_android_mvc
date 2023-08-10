@@ -15,6 +15,7 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Query;
 
 public interface RetrofitAPI {
@@ -68,4 +69,10 @@ public interface RetrofitAPI {
 
     @DELETE("/profesor/eliminar/id")
     Call<Boolean> eliminarProfesorPorID(@Query("id") int id);
+
+    @PUT("/alumno/editar")
+    Call<Boolean> actualizarAlumno(@Body SQAlumno a);
+
+    @PUT("/profesor/editar")
+    Call<Boolean> actualizarProfesor(@Body SQProfesor p);
 }

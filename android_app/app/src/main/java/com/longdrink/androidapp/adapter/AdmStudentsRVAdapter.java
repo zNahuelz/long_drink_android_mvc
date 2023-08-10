@@ -15,7 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.longdrink.androidapp.AdmCourseDeleteActivity;
+import com.longdrink.androidapp.AdmCourseEditActivity;
 import com.longdrink.androidapp.AdmStudentDeleteActivity;
+import com.longdrink.androidapp.AdmStudentEditActivity;
 import com.longdrink.androidapp.R;
 import com.longdrink.androidapp.api_model.SQAlumno;
 
@@ -48,8 +50,14 @@ public class AdmStudentsRVAdapter extends RecyclerView.Adapter<AdmStudentsRVAdap
         holder.studentData.setText("ID: "+getS.getId_alumno()+"\n"+"DNI: "+getS.getDni()+"\n"+"E-MAIL: \n"+getS.getEmail()+"\nESTADO: "+active);
         Glide.with(context).load(DEFAULT_STUDENT_IMAGE).centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.studentImage);
         holder.studentDeleteButton.setOnClickListener(e -> SendDataToDelete(position));
+        holder.studentEditButton.setOnClickListener(e -> SendDataToEdit(position));
     }
 
+    public void SendDataToEdit(int position){
+        Intent intent = new Intent(this.context, AdmStudentEditActivity.class);
+        intent.putExtra("student_data",this.studentsList.get(position));
+        this.context.startActivity(intent);
+    }
     public void SendDataToDelete(int position){
         Intent intent = new Intent(this.context, AdmStudentDeleteActivity.class);
         intent.putExtra("student_data",this.studentsList.get(position));

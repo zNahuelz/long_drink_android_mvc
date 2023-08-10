@@ -2,7 +2,9 @@ package com.longdrink.androidapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 
 import com.bumptech.glide.Glide;
@@ -26,15 +28,21 @@ public class AdmTeacherDeleteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityAdmTeacherDeleteBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         SQProfesor teacherData = (SQProfesor) getIntent().getSerializableExtra("teacher_data");
+        fillData(teacherData);
+        binding.btnDeleteTeacher.setOnClickListener(e -> DeleteTeacher(teacherData));
+        binding.btnGoBackTeacher.setOnClickListener(e -> goBack());
+    }
+
+    @SuppressLint("SetTextI18n")
+    public void fillData(SQProfesor teacherData){
         binding.txtTeacherData.setText("ID PROFESOR: "+teacherData.getId_profesor()+"\n\nNOMBRE: "
                 +teacherData.getNombre()+"\n\nAPELLIDOS: "
                 +teacherData.getAp_paterno()+" "+teacherData.getAp_materno()+"\n\nE-MAIL: "+teacherData.getEmail()+
                 "\n\nDNI: "+teacherData.getDni());
-        setContentView(binding.getRoot());
+
         Glide.with(this).load(teacherData.getFoto()).into(binding.ivDeleteTeacher);
-        binding.btnDeleteTeacher.setOnClickListener(e -> DeleteTeacher(teacherData));
-        binding.btnGoBackTeacher.setOnClickListener(e -> goBack());
     }
 
     public void DeleteTeacher(SQProfesor teacherData){
@@ -47,16 +55,17 @@ public class AdmTeacherDeleteActivity extends AppCompatActivity {
                 if(response.isSuccessful()){
                     if(response.body() == true){
                         Snackbar.make(binding.getRoot(), "Profesor eliminado con exito!",Snackbar.LENGTH_LONG).show();
+                        goBackWaiting();
                     }
                     else{
                         Snackbar.make(binding.getRoot(), "El profesor seleccionado ya se encuentra deshabilitado!",Snackbar.LENGTH_SHORT).show();
+                        goBackWaiting();
                     }
                 }
                 else{
                     Snackbar.make(binding.getRoot(), "Ups! Tiempo de espera agotado para la conexión al servidor.",Snackbar.LENGTH_LONG).show();
                 }
             }
-
             @Override
             public void onFailure(Call<Boolean> call, Throwable t) {
                 Snackbar.make(binding.getRoot(), "Ups! Ha fallado la conexión con el servidor.",Snackbar.LENGTH_LONG).show();
@@ -65,4 +74,13 @@ public class AdmTeacherDeleteActivity extends AppCompatActivity {
         });
     }
     public void goBack(){ AdmTeacherDeleteActivity.this.finish(); }
+    private void goBackWaiting(){
+        Handler handler = new Handler(); //Esperar 2 segundos y volver atras.
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                goBack();
+            }
+        },2000);
+    }
 }

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,27 +28,30 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AdmCourseDeleteActivity extends AppCompatActivity {
     final String BASE_URL = "http://10.0.2.2:8080";
-
     ActivityAdmCourseDeleteBinding binding;
-    Context context;
+
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityAdmCourseDeleteBinding.inflate(getLayoutInflater());
-        SQCurso courseData = (SQCurso) getIntent().getSerializableExtra("course_data");
+        setContentView(binding.getRoot());
 
+        SQCurso courseData = (SQCurso) getIntent().getSerializableExtra("course_data");
+        fillData(courseData);
+        binding.btnDeleteCourse.setOnClickListener(e -> DeleteCourse(courseData));
+        binding.btnGoBackCourse.setOnClickListener(e -> goBack());
+    }
+    @SuppressLint("SetTextI18n")
+    public void fillData(SQCurso courseData){
         binding.txtCourseData.setText("ID CURSO: "+courseData.getId_curso()+
                 "\n\nNOMBRE: "+courseData.getNombre()
                 +"\n\nDESCRIPCIÓN: "+courseData.getDescripcion()+
                 "\n\nDURACIÓN: "+courseData.getDuracion()+" SEMANAS\n\n"+
                 "COSTO: "+courseData.getCosto()+" Soles\n\n"
         );
-        setContentView(binding.getRoot());
-        Glide.with(this).load(courseData.getFoto()).into(binding.ivDeleteCourse);
 
-        binding.btnDeleteCourse.setOnClickListener(e -> DeleteCourse(courseData));
-        binding.btnGoBackCourse.setOnClickListener(e -> goBack());
+        Glide.with(this).load(courseData.getFoto()).into(binding.ivDeleteCourse);
     }
 
     public void DeleteCourse(SQCurso courseData){
@@ -60,9 +64,11 @@ public class AdmCourseDeleteActivity extends AppCompatActivity {
                 if(response.isSuccessful()){
                     if(response.body() == true){
                         Snackbar.make(binding.getRoot(), "Curso eliminado con exito!",Snackbar.LENGTH_LONG).show();
+                        goBackWaiting();
                     }
                     else{
                         Snackbar.make(binding.getRoot(), "El curso seleccionado ya se encuentra deshabilitado!",Snackbar.LENGTH_LONG).show();
+                        goBackWaiting();
                     }
                 }
                 else{
@@ -77,5 +83,15 @@ public class AdmCourseDeleteActivity extends AppCompatActivity {
         });
     }
 
-    public void goBack(){ AdmCourseDeleteActivity.this.finish(); }
+    private void goBack(){ AdmCourseDeleteActivity.this.finish(); }
+
+    private void goBackWaiting(){
+        Handler handler = new Handler(); //Esperar 2 segundos y volver atras.
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                goBack();
+            }
+        },2000);
+    }
 }

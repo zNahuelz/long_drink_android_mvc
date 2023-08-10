@@ -29,12 +29,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class AdmCourseEditActivity extends AppCompatActivity {
     final String BASE_URL = "http://10.0.2.2:8080";
     ActivityAdmCourseEditBinding binding;
-
-
     List<String> freqName = new ArrayList<String>();
-
     List<String> turnName = new ArrayList<String>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,19 +38,37 @@ public class AdmCourseEditActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         SQCurso courseData = (SQCurso) getIntent().getSerializableExtra("course_data");
+        fillData(courseData); //Llenar datos de campos de texto.
+        fillSpinners(); //Llenar datos de los spinners.
 
+        //No hace nada. Ni muestra visualmente lo seleccionado.
+        binding.spEFrecuenciaCurso.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Log.e("algo",String.valueOf(id));
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                Log.e("Nada","No has seleccionado nada....");
+            }
+        });
+        binding.btnEGuardar.setOnClickListener(e -> UpdateCourse());
+        binding.btnEAtras.setOnClickListener(e -> goBack());
+    }
+
+    public void UpdateCourse(){
+        Toast.makeText(AdmCourseEditActivity.this, "WIP!", Toast.LENGTH_SHORT).show();
+    }
+    public void fillData(SQCurso courseData){
         binding.txtEIDCurso.setText("Usted esta modificando el curso: "+courseData.getId_curso());
         binding.txtENombreCurso.setText(courseData.getNombre());
         binding.txtEDescCurso.setText(courseData.getDescripcion());
         binding.txtEDuracionCurso.setText(String.valueOf(courseData.getDuracion()));
         binding.txtECostoCurso.setText(String.valueOf(courseData.getCosto()));
+        binding.swEActivoCurso.setChecked(courseData.getActivo() == 1);
+    }
 
-        if(courseData.getActivo() == 1){
-            binding.swEActivoCurso.setChecked(true);
-        }
-        else{
-            binding.swEActivoCurso.setChecked(false);
-        }
+    public void fillSpinners(){
         //Setear formato de fecha para turnos.
         Gson dateFormat = new GsonBuilder().setDateFormat("HH:mm:ss").create();
         //Retrofit general.
@@ -76,22 +90,6 @@ public class AdmCourseEditActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         adapter.notifyDataSetChanged();
         binding.spETurnoCurso.setAdapter(turnAdapter);
-
-        //binding.spEFrecuenciaCurso.setSelection(0);
-        //No hace nada. Ni muestra visualmente lo seleccionado.
-        binding.spEFrecuenciaCurso.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Log.e("algo",String.valueOf(id));
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                Log.e("Nada","No has seleccionado nada....");
-            }
-        });
-        binding.btnEAtras.setOnClickListener(e -> goBack());
-        //setContentView(binding.getRoot());
-        //Continua, gordo!
     }
 
     public void getFrecuencias(Retrofit retrofit){

@@ -17,6 +17,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".AdmTeacherEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AdmStudentEditActivity"
+            android:exported="false" />
+        <activity
             android:name=".AdmTeacherDeleteActivity"
             android:exported="false" />
         <activity
@@ -39,7 +45,7 @@
         <activity android:name=".RegisterActivity" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
