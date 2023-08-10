@@ -44,7 +44,7 @@
     <string name="MensajeEliminarCurso">¿Está seguro que desea eliminar el siguiente curso?</string>
     <string name="MensajeEliminarAlumno">¿Está seguro que desea eliminar el siguiente alumno?</string>
     <string name="MensajeEliminarProfesor">¿Está seguro que desea eliminar el siguiente profesor?</string>
-
+    <string name="Cancelar">Cancelar</string>
 
 
     <string name="wip">Trabajo en Progreso!</string>

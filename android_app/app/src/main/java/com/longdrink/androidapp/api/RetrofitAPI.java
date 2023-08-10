@@ -5,6 +5,7 @@ import com.longdrink.androidapp.api_model.SQCurso;
 import com.longdrink.androidapp.api_model.SQFrecuencia;
 import com.longdrink.androidapp.api_model.SQProfesor;
 import com.longdrink.androidapp.api_model.SQRegistro;
+import com.longdrink.androidapp.api_model.SQTurno;
 import com.longdrink.androidapp.api_model.SQUsuario;
 
 import java.util.List;
@@ -44,6 +45,9 @@ public interface RetrofitAPI {
 
     @GET("/frecuencia/activos")
     Call<List<SQFrecuencia>> listarFrecuenciasActivas();
+
+    @GET("/turno/activos")
+    Call<List<SQTurno>> listarTurnosActivos();
 
     //Individual. localhost:8080/curso/id?id=3
     @GET("/curso/id")

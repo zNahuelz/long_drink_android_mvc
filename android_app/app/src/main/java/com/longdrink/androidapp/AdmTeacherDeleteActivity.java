@@ -34,6 +34,7 @@ public class AdmTeacherDeleteActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         Glide.with(this).load(teacherData.getFoto()).into(binding.ivDeleteTeacher);
         binding.btnDeleteTeacher.setOnClickListener(e -> DeleteTeacher(teacherData));
+        binding.btnGoBackTeacher.setOnClickListener(e -> goBack());
     }
 
     public void DeleteTeacher(SQProfesor teacherData){
@@ -52,7 +53,7 @@ public class AdmTeacherDeleteActivity extends AppCompatActivity {
                     }
                 }
                 else{
-                    Snackbar.make(binding.getRoot(), "Ups! El servidor se niega a responder porque es una tetera.",Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(binding.getRoot(), "Ups! Tiempo de espera agotado para la conexión al servidor.",Snackbar.LENGTH_LONG).show();
                 }
             }
 
@@ -63,4 +64,5 @@ public class AdmTeacherDeleteActivity extends AppCompatActivity {
             }
         });
     }
+    public void goBack(){ AdmTeacherDeleteActivity.this.finish(); }
 }

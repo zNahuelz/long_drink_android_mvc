@@ -35,6 +35,7 @@ public class AdmStudentDeleteActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         Glide.with(this).load(DEFAULT_STUDENT_IMAGE).into(binding.ivDeleteStudent);
         binding.btnDeleteStudent.setOnClickListener(e -> DeleteStudent(studentData));
+        binding.btnGoBackStudent.setOnClickListener(e -> goBack());
     }
 
     public void DeleteStudent(SQAlumno studentData){
@@ -53,7 +54,7 @@ public class AdmStudentDeleteActivity extends AppCompatActivity {
                     }
                 }
                 else{
-                    Snackbar.make(binding.getRoot(), "Ups! El servidor se niega a responder porque es una tetera.",Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(binding.getRoot(), "Ups! Tiempo de espera agotado para la conexión al servidor.",Snackbar.LENGTH_LONG).show();
                 }
             }
 
@@ -64,4 +65,5 @@ public class AdmStudentDeleteActivity extends AppCompatActivity {
             }
         });
     }
+    public void goBack(){ AdmStudentDeleteActivity.this.finish(); }
 }

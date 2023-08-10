@@ -47,6 +47,7 @@ public class AdmCourseDeleteActivity extends AppCompatActivity {
         Glide.with(this).load(courseData.getFoto()).into(binding.ivDeleteCourse);
 
         binding.btnDeleteCourse.setOnClickListener(e -> DeleteCourse(courseData));
+        binding.btnGoBackCourse.setOnClickListener(e -> goBack());
     }
 
     public void DeleteCourse(SQCurso courseData){
@@ -65,7 +66,7 @@ public class AdmCourseDeleteActivity extends AppCompatActivity {
                     }
                 }
                 else{
-                    Toast.makeText(AdmCourseDeleteActivity.this, "Ups! El servidor se niega a responder porque es una tetera.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AdmCourseDeleteActivity.this, "Ups! Tiempo de espera agotado para la conexión al servidor.", Toast.LENGTH_SHORT).show();
                 }
             }
             @Override
@@ -75,4 +76,6 @@ public class AdmCourseDeleteActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void goBack(){ AdmCourseDeleteActivity.this.finish(); }
 }
