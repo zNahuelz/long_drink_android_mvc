@@ -1,4 +1,4 @@
-package com.longdrink.androidapp;
+package com.longdrink.androidapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 
 import com.bumptech.glide.Glide;
+import com.longdrink.androidapp.R;
 import com.longdrink.androidapp.api_model.SQCurso;
 import com.longdrink.androidapp.databinding.ActivityCourseDescriptionBinding;
 import com.longdrink.androidapp.databinding.ActivityMainBinding;

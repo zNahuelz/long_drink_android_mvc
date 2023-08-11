@@ -1,13 +1,13 @@
-package com.longdrink.androidapp;
+package com.longdrink.androidapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
 
+import com.longdrink.androidapp.R;
 import com.longdrink.androidapp.adapter.AdminFragmentAdapter;
 import com.longdrink.androidapp.databinding.ActivityAdminBinding;
-import com.longdrink.androidapp.databinding.ActivityMainBinding;
 
 public class AdminActivity extends AppCompatActivity {
 
