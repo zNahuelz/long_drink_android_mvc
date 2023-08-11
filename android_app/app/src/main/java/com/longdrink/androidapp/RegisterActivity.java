@@ -5,17 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.longdrink.androidapp.api.RetrofitAPI;
 import com.longdrink.androidapp.api_model.SQRegistro;
 import com.longdrink.androidapp.databinding.ActivityRegisterBinding;
-
-import org.w3c.dom.Text;
 
 import retrofit2.Call;
 import retrofit2.Callback;

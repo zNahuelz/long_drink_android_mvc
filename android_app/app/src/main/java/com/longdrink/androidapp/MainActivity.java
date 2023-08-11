@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
+import com.longdrink.androidapp.R;
 import com.longdrink.androidapp.adapter.StudentFragmentAdapter;
 import com.longdrink.androidapp.databinding.ActivityMainBinding;
 import com.longdrink.androidapp.fragments.CoursesFragment;

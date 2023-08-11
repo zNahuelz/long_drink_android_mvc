@@ -61,4 +61,11 @@
     <string name="datosDoc">Espacio reservado para los datos del docente: EMAIL, DNI, ESTADO</string>
     <string name="datosCur">Espacio reservado para los datos del curso: DURACIÓN, ACTIVO, COSTO, FRECUENCIA, TURNO</string>
     <string name="hello_blank_fragment">Fragmento en blanco!</string>
+
+    <!-- String de inscripcion -->
+    <string name="inscription_title">Ingrese los datos de su Inscripcion</string>
+    <string name="inscription_select_course">Seleccione un Curso</string>
+    <string name="inscription_select_time">Seleccione el horario</string>
+    <string name="inscription_select_frecuency">Seleccione la frecuencia</string>
+    <string name="inscription_button">Inscribirme</string>
 </resources>

@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.longdrink.androidapp.R;
 import com.longdrink.androidapp.adapter.AdminFragmentAdapter;
 import com.longdrink.androidapp.databinding.ActivityAdminBinding;
 

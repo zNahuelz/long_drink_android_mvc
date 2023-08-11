@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.fragment.app.FragmentManager;
 
 import com.bumptech.glide.Glide;
 import com.longdrink.androidapp.CourseDescriptionActivity;
