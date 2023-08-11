@@ -9,15 +9,11 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.google.gson.Gson;
 import com.longdrink.androidapp.api.RetrofitAPI;
 import com.longdrink.androidapp.api_model.SQAlumno;
-import com.longdrink.androidapp.api_model.SQCurso;
 import com.longdrink.androidapp.databinding.ActivityAdmStudentEditBinding;
-import com.longdrink.androidapp.utils.VTools;
 
 import org.apache.commons.validator.routines.EmailValidator;
 

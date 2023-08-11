@@ -1,5 +1,6 @@
 package com.longdrink.androidapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,10 +35,14 @@ public class AdminActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         switch(item.getItemId()){
             case R.id.admin_myAccount:
-                Toast.makeText(this, "WIP! Mi Cuenta.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(AdminActivity.this,MyAccountGeneralActivity.class);
+                //Tipo de cuenta... 1 Docente / 2 Admin. (Traer de Login -> AdminActivity -> MyAccount).
+                intent.putExtra("account_data",12); // ID Usuario. (Debe ser el objeto SQUsuario, mismo origen).
+                AdminActivity.this.startActivity(intent);
                 return true;
             case R.id.admin_logout:
                 Toast.makeText(this, "WIP! Cerrar Sesión", Toast.LENGTH_SHORT).show();
+                //android.os.Process.killProcess(android.os.Process.myPid()); //TODO : Lleva al login activity cuando todo este agrupado!
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

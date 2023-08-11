@@ -56,6 +56,14 @@ public class AlumnoController {
             return false;
         }
     }
+    //FRONT: Obtener alumno por ID.
+    @GetMapping("id")
+    public Alumno obtenerPorID(@RequestParam int id){
+        try{
+            return servAlum.obtenerAlumno(id);
+        }
+        catch(Exception ex){ return new Alumno(); }
+    }
 
     //FRONT: Obtener alumno por DNI.
     @GetMapping("dni")

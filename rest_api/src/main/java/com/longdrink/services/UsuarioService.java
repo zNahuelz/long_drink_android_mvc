@@ -70,7 +70,10 @@ public class UsuarioService {
     }
 
     public Usuario obtenerUsuario(int id){
-        return usuarioDAO.findByidusuario(id).get();
+        try{
+            return usuarioDAO.findByidusuario(id).get();
+        }
+        catch(Exception ex){ return new Usuario(); }
     }
 
     public Usuario obtenerNombreUsuario(String nombre_usuario){
