@@ -1,13 +1,14 @@
-package com.longdrink.androidapp.activities;
+package com.longdrink.androidapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.longdrink.androidapp.R;
 import com.longdrink.androidapp.databinding.ActivityInscriptionBinding;
 
-public class InscriptionActivity extends AppCompatActivity {
+public class InscriptionActivity extends AppCompatActivity implements View.OnClickListener{
 
     ActivityInscriptionBinding binding;
 
@@ -18,9 +19,14 @@ public class InscriptionActivity extends AppCompatActivity {
 
 
         binding = ActivityInscriptionBinding.inflate(getLayoutInflater());
-        binding.inscriptionSpinnerCourses.setAdapter();
+
 
 
         setContentView(binding.getRoot());
+    }
+
+    @Override
+    public void onClick(View v){
+
     }
 }

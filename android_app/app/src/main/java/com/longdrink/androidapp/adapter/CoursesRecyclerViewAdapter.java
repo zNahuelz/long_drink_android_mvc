@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.longdrink.androidapp.activities.CourseDescriptionActivity;
+import com.longdrink.androidapp.CourseDescriptionActivity;
 import com.longdrink.androidapp.R;
 import com.longdrink.androidapp.api_model.SQCurso;
 

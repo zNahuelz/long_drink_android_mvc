@@ -1,4 +1,4 @@
-package com.longdrink.androidapp.activities;
+package com.longdrink.androidapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
