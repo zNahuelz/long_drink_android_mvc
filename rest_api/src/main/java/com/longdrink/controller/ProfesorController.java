@@ -38,7 +38,7 @@ public class ProfesorController {
 
     //FRONT: Actualizar profesor.
     @PutMapping("editar")
-    public String editarProfesor(@RequestBody Profesor p){
+    public boolean editarProfesor(@RequestBody Profesor p){
         boolean respuesta = servPro.buscarPorID(p.getId_profesor());
         if(respuesta){
             Profesor pro = servPro.obtenerPorID(p.getId_profesor());
@@ -50,10 +50,10 @@ public class ProfesorController {
             if (p.getFoto() == null) p.setFoto(pro.getFoto());
             p.setActivo(pro.getActivo());
             servPro.actualizarProfesor(p);
-            return "Success";
+            return true;
         }
         else{
-            return "Failed";
+            return false;
         }
     }
 

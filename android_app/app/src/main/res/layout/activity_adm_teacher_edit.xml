@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AdmTeacherEditActivity">
+    <TextView
+        android:id="@+id/txt_EIDProfesor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reemp. ID. Profesor"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        />
+
+    <TextView
+        android:id="@+id/lblNombreProfesor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register_names"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        />
+
+    <EditText
+        android:id="@+id/txt_ENombreProfesor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Reemp. Nombre Alumno"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        />
+    <TextView
+        android:id="@+id/lblApePatP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register_last_father"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        />
+
+    <EditText
+        android:id="@+id/txt_EApePatProf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Reemp. Ape. Paterno"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        />
+    <TextView
+        android:id="@+id/lblApeMatP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register_last_mother"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        />
+
+    <EditText
+        android:id="@+id/txt_EApeMatProf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Reemp. Ape. Materno"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        />
+
+    <TextView
+        android:id="@+id/lblEmailP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/register_email"
+        />
+
+    <EditText
+        android:id="@+id/txt_EEmailProf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/lblDNIP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/register_dni"
+        />
+
+    <EditText
+        android:id="@+id/txt_EDNIProf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:ems="10"
+        android:inputType="number"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/btn_EProfGuardar"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:text="@string/GuardarCambios"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/dark_blue" />
+
+    <Button
+        android:id="@+id/btn_EProfCancelar"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="@color/light_red"
+        android:text="@string/Cancelar" />
+</LinearLayout>

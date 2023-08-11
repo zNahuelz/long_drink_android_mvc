@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10sp"
         android:layout_marginTop="10sp"
-        android:text="@string/datosAlum"
+        android:text="Espacio reservado para los datos del alumno: EMAIL, DNI, ESTADO"
         android:textSize="12sp"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@+id/admin_student_image"

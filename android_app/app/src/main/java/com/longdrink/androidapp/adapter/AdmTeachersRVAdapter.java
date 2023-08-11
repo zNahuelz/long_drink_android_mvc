@@ -1,6 +1,7 @@
 package com.longdrink.androidapp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.longdrink.androidapp.AdmStudentDeleteActivity;
+import com.longdrink.androidapp.AdmStudentEditActivity;
+import com.longdrink.androidapp.AdmTeacherDeleteActivity;
+import com.longdrink.androidapp.AdmTeacherEditActivity;
 import com.longdrink.androidapp.R;
 import com.longdrink.androidapp.api_model.SQProfesor;
 
@@ -47,6 +52,20 @@ public class AdmTeachersRVAdapter extends RecyclerView.Adapter<AdmTeachersRVAdap
         String image = "";
         if(getT.getFoto().equals("NULL")){ image = DEFAULT_TEACHER_IMAGE; } else{ image = getT.getFoto(); }
         Glide.with(context).load(image).centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.teacherImage);
+        holder.teacherDeleteButton.setOnClickListener(e -> SendDataToDelete(position));
+        holder.teacherEditButton.setOnClickListener(e -> SendDataToEdit(position));
+    }
+
+    public void SendDataToEdit(int position){
+        Intent intent = new Intent(this.context, AdmTeacherEditActivity.class);
+        intent.putExtra("teacher_data",this.teachersList.get(position));
+        this.context.startActivity(intent);
+    }
+
+    public void SendDataToDelete(int position){
+        Intent intent = new Intent(this.context, AdmTeacherDeleteActivity.class);
+        intent.putExtra("teacher_data",this.teachersList.get(position));
+        this.context.startActivity(intent);
     }
 
     @Override

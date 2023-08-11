@@ -19,6 +19,7 @@ public class AdminFragmentAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         switch(position){
+            case 0: return new AdminCoursesFragment();
             case 1: return new AdminStudentsFragment();
             case 2: return new AdminTeachersFragment();
             default: return new AdminCoursesFragment();

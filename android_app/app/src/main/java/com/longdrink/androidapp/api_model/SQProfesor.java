@@ -1,6 +1,8 @@
 package com.longdrink.androidapp.api_model;
 
-public class SQProfesor {
+import java.io.Serializable;
+
+public class SQProfesor implements Serializable {
     private int id_profesor;
     private String ap_materno;
     private String ap_paterno;

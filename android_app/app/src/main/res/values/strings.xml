@@ -29,6 +29,26 @@
     <string name="courses_inscription_button">Inscripción</string>
     <!-- Fin del listado de Cursos -->
 
+    <!-- Strings ADMINISTRATIVOS - Procesos CRUD -->
+    <string name="GuardarCambios">Guardar Cambios</string>
+    <string name="VisibleEstudiantes">Visible por Estudiantes</string>
+    <string name="lblNombreCurso">Nombre:</string>
+    <string name="lblDescCurso">Descripción:</string>
+    <string name="lblDuracionCurso">Duración:</string>
+    <string name="lblCostoCurso">Costo:</string>
+    <string name="lblTurnoCurso">Turno:</string>
+    <string name="lblFrecCurso">Frecuencia:</string>
+    <string name="EliminarCurso">Eliminar Curso</string>
+    <string name="EliminarAlumno">Eliminar Alumno</string>
+    <string name="EliminarProfesor">Eliminar Profesor</string>
+    <string name="MensajeEliminarCurso">¿Está seguro que desea eliminar el siguiente curso?</string>
+    <string name="MensajeEliminarAlumno">¿Está seguro que desea eliminar el siguiente alumno?</string>
+    <string name="MensajeEliminarProfesor">¿Está seguro que desea eliminar el siguiente profesor?</string>
+    <string name="Cancelar">Cancelar</string>
+    <string name="AlumnoHabilitado">Alumno Habilitado</string>
+    <string name="CambiarPassword">Cambiar Contraseña</string>
+
+
     <string name="wip">Trabajo en Progreso!</string>
     <string name="detalles">Detalles</string>
     <string name="inscripcion">Inscripción</string>

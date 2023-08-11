@@ -1,32 +1,21 @@
-package com.longdrink.model;
+package com.longdrink.androidapp.api_model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.*;
-
+import java.io.Serializable;
 import java.util.Date;
 
-@Entity
-@Table(name="turno")
-public class Turno {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class SQTurno implements Serializable {
     private int id_turno;
     private String nombre;
-    @JsonFormat(pattern="HH:mm:ss" ,timezone ="America/Lima")
     private Date hora_inicio;
-    @JsonFormat(pattern="HH:mm:ss",timezone ="America/Lima")
     private Date hora_final;
 
-    private int activo;
+    public SQTurno(){}
 
-    public Turno(){}
-
-    public Turno(int id_turno, String nombre, Date hora_inicio, Date hora_final, int activo) {
+    public SQTurno(int id_turno, String nombre, Date hora_inicio, Date hora_final) {
         this.id_turno = id_turno;
         this.nombre = nombre;
         this.hora_inicio = hora_inicio;
         this.hora_final = hora_final;
-        this.activo = activo;
     }
 
     public int getId_turno() {
@@ -59,13 +48,5 @@ public class Turno {
 
     public void setHora_final(Date hora_final) {
         this.hora_final = hora_final;
-    }
-
-    public int getActivo() {
-        return activo;
-    }
-
-    public void setActivo(int activo) {
-        this.activo = activo;
     }
 }
