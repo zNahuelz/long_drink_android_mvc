@@ -61,6 +61,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         public void onResponse(Call<SQUsuario> call, Response<SQUsuario> response) {
                             if (response.body().getContrasena().equals(pass) && response.body().getNombre_usuario().equals(usr)) {
                                 Toast.makeText(LoginActivity.this, "Sesión iniciada con exito!", Toast.LENGTH_SHORT).show();
+
                                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                 //TODO : Pasar ID de usuario (body) al MainActivity, para uso posterior.
                             } else {

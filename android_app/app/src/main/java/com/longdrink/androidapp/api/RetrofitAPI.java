@@ -10,6 +10,7 @@ import com.longdrink.androidapp.api_model.SQUsuario;
 import com.longdrink.androidapp.api_model.SQUsuarioProfesor;
 import com.longdrink.androidapp.api_model.Usuario;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
