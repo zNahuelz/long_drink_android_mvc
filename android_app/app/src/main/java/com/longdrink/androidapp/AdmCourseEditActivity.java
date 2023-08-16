@@ -26,7 +26,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class AdmCourseEditActivity extends AppCompatActivity {
+public class AdmCourseEditActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     final String BASE_URL = "http://10.0.2.2:8080";
     ActivityAdmCourseEditBinding binding;
     List<String> freqName = new ArrayList<String>();
@@ -42,16 +42,7 @@ public class AdmCourseEditActivity extends AppCompatActivity {
         fillSpinners(); //Llenar datos de los spinners.
 
         //No hace nada. Ni muestra visualmente lo seleccionado.
-        binding.spEFrecuenciaCurso.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Log.e("algo",String.valueOf(id));
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                Log.e("Nada","No has seleccionado nada....");
-            }
-        });
+        binding.spEFrecuenciaCurso.setOnItemSelectedListener(this);
         binding.btnEGuardar.setOnClickListener(e -> UpdateCourse());
         binding.btnEAtras.setOnClickListener(e -> goBack());
     }
@@ -79,17 +70,38 @@ public class AdmCourseEditActivity extends AppCompatActivity {
         //TODO : Hacer funcionar los spinner... o dropdown, o reemplazarlos por otro control....
         //TODO : Seran visualmente los textos blancos? .-_.-.
         //Adaptador para Spinner de Frecuencia.
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(AdmCourseEditActivity.this,android.R.layout.simple_spinner_dropdown_item,freqName);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,freqName);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         adapter.notifyDataSetChanged();
         binding.spEFrecuenciaCurso.setAdapter(adapter);
         //Fin llenado de datos de frecuencia.
 
         //Inicio llenado de datos para Turno.
-        ArrayAdapter<String> turnAdapter = new ArrayAdapter<String>(AdmCourseEditActivity.this,android.R.layout.simple_spinner_dropdown_item,turnName);
+        ArrayAdapter<String> turnAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,turnName);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         adapter.notifyDataSetChanged();
         binding.spETurnoCurso.setAdapter(turnAdapter);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        parent.getSelectedItem();
+        switch (parent.getId())
+        {
+            case R.id.sp_EFrecuenciaCurso:
+                Toast.makeText(this, parent.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.sp_ETurnoCurso:
+                Toast.makeText(this, parent.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+        Toast.makeText(this, "No has seleccionado nada!", Toast.LENGTH_SHORT).show();
     }
 
     public void getFrecuencias(Retrofit retrofit){
