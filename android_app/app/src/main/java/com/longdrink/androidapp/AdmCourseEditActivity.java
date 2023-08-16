@@ -35,7 +35,7 @@ public class AdmCourseEditActivity extends AppCompatActivity implements AdapterV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityAdmCourseEditBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+
 
         SQCurso courseData = (SQCurso) getIntent().getSerializableExtra("course_data");
         fillData(courseData); //Llenar datos de campos de texto.
@@ -45,6 +45,7 @@ public class AdmCourseEditActivity extends AppCompatActivity implements AdapterV
         binding.spEFrecuenciaCurso.setOnItemSelectedListener(this);
         binding.btnEGuardar.setOnClickListener(e -> UpdateCourse());
         binding.btnEAtras.setOnClickListener(e -> goBack());
+        setContentView(binding.getRoot());
     }
 
     public void UpdateCourse(){
@@ -70,17 +71,11 @@ public class AdmCourseEditActivity extends AppCompatActivity implements AdapterV
         //TODO : Hacer funcionar los spinner... o dropdown, o reemplazarlos por otro control....
         //TODO : Seran visualmente los textos blancos? .-_.-.
         //Adaptador para Spinner de Frecuencia.
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,freqName);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        adapter.notifyDataSetChanged();
-        binding.spEFrecuenciaCurso.setAdapter(adapter);
+
         //Fin llenado de datos de frecuencia.
 
         //Inicio llenado de datos para Turno.
-        ArrayAdapter<String> turnAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,turnName);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        adapter.notifyDataSetChanged();
-        binding.spETurnoCurso.setAdapter(turnAdapter);
+
     }
 
     @Override
@@ -117,7 +112,10 @@ public class AdmCourseEditActivity extends AppCompatActivity implements AdapterV
                         freqName.add(i.getNombre());
                         Log.e("FREQUENCY",i.getNombre());
                     }
-
+                    ArrayAdapter<String> adapter = new ArrayAdapter<>(AdmCourseEditActivity.this,android.R.layout.simple_list_item_1,freqName);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    adapter.notifyDataSetChanged();
+                    binding.spEFrecuenciaCurso.setAdapter(adapter);
                 }
                 else{
                     Toast.makeText(AdmCourseEditActivity.this, "Ups!!!", Toast.LENGTH_SHORT).show();
@@ -143,6 +141,10 @@ public class AdmCourseEditActivity extends AppCompatActivity implements AdapterV
                         turnName.add(i.getNombre());
                         Log.e("TURN",i.getNombre());
                     }
+                    ArrayAdapter<String> turnAdapter = new ArrayAdapter<>(AdmCourseEditActivity.this,android.R.layout.simple_list_item_1,turnName);
+                    turnAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    turnAdapter.notifyDataSetChanged();
+                    binding.spETurnoCurso.setAdapter(turnAdapter);
                 }
                 else{
                     Toast.makeText(AdmCourseEditActivity.this, "WIP", Toast.LENGTH_SHORT).show();
