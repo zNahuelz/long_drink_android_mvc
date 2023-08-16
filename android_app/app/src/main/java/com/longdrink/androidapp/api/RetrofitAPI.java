@@ -1,7 +1,9 @@
 package com.longdrink.androidapp.api;
 
+import com.longdrink.androidapp.api_model.FrontFrecuenciaTurno;
 import com.longdrink.androidapp.api_model.SQAlumno;
 import com.longdrink.androidapp.api_model.SQCurso;
+import com.longdrink.androidapp.api_model.SQEditCurso;
 import com.longdrink.androidapp.api_model.SQFrecuencia;
 import com.longdrink.androidapp.api_model.SQProfesor;
 import com.longdrink.androidapp.api_model.SQRegistro;
@@ -13,6 +15,7 @@ import com.longdrink.androidapp.api_model.Usuario;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
@@ -37,6 +40,10 @@ public interface RetrofitAPI {
     Call<SQCurso> obtenerCursoPorID(@Query("id") int id);
     @DELETE("/curso/eliminar/id")
     Call<Boolean> eliminarCursoPorID(@Query("id") int id);
+    @PUT("/curso/fEditar")
+    Call<Boolean> actualizarCursoFull(@Body SQEditCurso body);
+    @GET("/curso/turnofrecuencia")
+    Call<FrontFrecuenciaTurno> getFrecuenciaTurno(@Query("id") int id);
     //Fin CURSOS.
 
     //Inicio ALUMNOS.

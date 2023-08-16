@@ -1,22 +1,12 @@
-package com.longdrink.model;
+package com.longdrink.androidapp.api_model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.IdClass;
-import jakarta.persistence.Table;
-
-@Entity
-@Table(name = "curso_frecuencia")
-@IdClass(CursoFrecuencia.class)
-public class CursoFrecuencia {
-    @Id
+public class SQCursoFrecuencia {
     private int id_curso;
-    @Id
     private int id_frecuencia;
 
-    public CursoFrecuencia(){}
+    public SQCursoFrecuencia(){}
 
-    public CursoFrecuencia(int id_curso, int id_frecuencia) {
+    public SQCursoFrecuencia(int id_curso, int id_frecuencia) {
         this.id_curso = id_curso;
         this.id_frecuencia = id_frecuencia;
     }
