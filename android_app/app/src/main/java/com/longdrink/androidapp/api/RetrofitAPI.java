@@ -3,6 +3,7 @@ package com.longdrink.androidapp.api;
 import com.longdrink.androidapp.api_model.SQAlumno;
 import com.longdrink.androidapp.api_model.SQCurso;
 import com.longdrink.androidapp.api_model.SQFrecuencia;
+import com.longdrink.androidapp.api_model.SQInscripcion;
 import com.longdrink.androidapp.api_model.SQProfesor;
 import com.longdrink.androidapp.api_model.SQRegistro;
 import com.longdrink.androidapp.api_model.SQTurno;
@@ -87,4 +88,8 @@ public interface RetrofitAPI {
     @PUT("/usuario/editar")
     Call<Boolean> cambiarContrasena(@Body Usuario user);
     //Fin de USUARIOS.
+
+    //INSCRIPCION USUARIOS
+    @POST("/inscripcion")
+    Call<Boolean> guardarInscripcion(@Body SQInscripcion inscripcion);
 }
