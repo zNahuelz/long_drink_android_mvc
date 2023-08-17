@@ -2,6 +2,7 @@ package com.longdrink.androidapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 
@@ -28,6 +29,7 @@ public class CourseDescriptionActivity extends AppCompatActivity {
         binding.courseDescriptionName.setText(cursoSeleccionado.getNombre());
         binding.courseDescriptionPrice.setText("Precio:    S/." + cursoSeleccionado.getCosto());
         binding.courseDescriptionDescription.setText("Descripción: " + cursoSeleccionado.getDescripcion());
+        binding.courseDescriptionBack.setOnClickListener(a -> onBackPressed());
         Glide.with(this)
                 .load(cursoSeleccionado.getFoto())
                 .into(binding.courseDescriptionImage);
@@ -43,5 +45,10 @@ public class CourseDescriptionActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
+    }
+
+    public void mostrarInscripcion(){
+        Intent intent = new Intent(CourseDescriptionActivity.this, InscriptionActivity.class);
+        startActivity(intent);
     }
 }

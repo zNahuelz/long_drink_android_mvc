@@ -1,7 +1,12 @@
 package com.longdrink.dao;
+import java.util.Optional;
 
-import com.longdrink.model.CursoFrecuencia;
 import org.springframework.data.repository.CrudRepository;
 
-public interface ICursoFrecuenciaDAO extends CrudRepository<CursoFrecuencia, Integer> {
+import com.longdrink.model.CursoFrecuencia;
+
+
+public interface ICursoFrecuenciaDAO extends CrudRepository<CursoFrecuencia, Integer>{
+  Optional<CursoFrecuencia> findById_curso(int id_curso);
+ 
 }
