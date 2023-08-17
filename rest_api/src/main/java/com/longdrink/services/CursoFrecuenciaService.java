@@ -1,25 +1,32 @@
-package com.longdrink.services;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.longdrink.dao.ICursoFrecuenciaDAO;
+import com.longdrink.model.Curso;
 import com.longdrink.model.CursoFrecuencia;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CursoFrecuenciaService {
-  
-  @Autowired
-  ICursoFrecuenciaDAO usrFrecDAO;
+    @Autowired
+    private ICursoFrecuenciaDAO cursFrecuenciaDAO;
 
-  public boolean buscarPorIDCurso(int id_curso){
-    return usrFrecDAO.findById_curso(id_curso).isPresent();
-  }
+    @Autowired
+    private EntityManager em;
 
-  public CursoFrecuencia obtenerPorIdCurso(int id_curso){
-    try{
-      return usrFrecDAO.findById_curso(id_curso).get();
+    //Actualizar CursoFrecuencia - 1:1 (Un curso - Una frecuencia.
+    public int actualizarCF(CursoFrecuencia cf){
+        Query query = em.createQuery("UPDATE CursoFrecuencia c SET c.id_frecuencia = "+cf.getId_frecuencia()+" WHERE c.id_curso = "+cf.getId_curso());
+        return query.executeUpdate();
     }
-    catch(Exception ex){
-      return new CursoFrecuencia();
+
+    public CursoFrecuencia buscarFrecuencia(int id_curso){
+        try{
+            Query query = em.createQuery("SELECT f FROM CursoFrecuencia f WHERE f.id_curso = "+id_curso);
+            return (CursoFrecuencia) query.getSingleResult();
+        }
+        catch(Exception ex){
+            return new CursoFrecuencia();
+        }
     }
-  }
 }

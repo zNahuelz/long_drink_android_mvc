@@ -1,5 +1,6 @@
 package com.longdrink.dao;
 
+
 import org.springframework.data.repository.CrudRepository;
 
 import com.longdrink.model.CursoTurno;
