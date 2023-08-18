@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name = "inscripcion")
 @IdClass(Inscripcion.class)
@@ -24,10 +26,13 @@ public class Inscripcion {
     @Column(name="id_curso")
     private int idcurso;
     @Column(name="fecha_inicio_curso")
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date fechainiciocurso;
     @Column(name="fecha_final_curso")
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date fechafinalcurso;
     @Column(name="fecha_inscripcion")
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date fechainscripcion;
     private int terminado;
     private int activo;

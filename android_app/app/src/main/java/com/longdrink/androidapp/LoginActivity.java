@@ -20,7 +20,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     ActivityLoginBinding binding;
-    public final String URL_LOGIN = "http://10.0.2.2:8080/sq/";
+    public final String URL_LOGIN = "http://10.0.2.2:8080";
     /*Button registro;
     Button iniciar_sesion;
     EditText usuario;
@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
+        binding = ActivityLoginBinding.inflate(getLayoutInflater());
         /*registro = (Button)findViewById(R.id.login_register_button);
         iniciar_sesion = (Button)findViewById(R.id.login_button);
         usuario = (EditText)findViewById(R.id.username);
@@ -61,8 +61,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         public void onResponse(Call<SQUsuario> call, Response<SQUsuario> response) {
                             if (response.body().getContrasena().equals(pass) && response.body().getNombre_usuario().equals(usr)) {
                                 Toast.makeText(LoginActivity.this, "Sesión iniciada con exito!", Toast.LENGTH_SHORT).show();
-
-                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                intent.putExtra("id_usuario", response.body().getId_usuario());
+                                startActivity(intent);
                                 //TODO : Pasar ID de usuario (body) al MainActivity, para uso posterior.
                             } else {
                                 Toast.makeText(LoginActivity.this, "Usuario o contraseña incorrectos!", Toast.LENGTH_SHORT).show();

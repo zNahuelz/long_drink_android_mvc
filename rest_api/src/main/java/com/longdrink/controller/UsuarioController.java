@@ -92,13 +92,13 @@ public class UsuarioController {
     }
 
     //FRONT: Obtener ID de alumno segun id_usuario (UsuarioAlumno)
-    @GetMapping("usr_alum/id")
+    @GetMapping("usr_alum/id_usuario")
     public UsuarioAlumno obtener_IDAlum(@RequestParam int id_usr){
         return servUsrAlum.obtenerPorIDUsuario(id_usr);
     }
 
     //FRONT: Obtener ID de profesor segun id_usuario (UsuarioProfesor)
-    @GetMapping("usr_prof/id")
+    @GetMapping("usr_prof/id_usuario")
     public UsuarioProfesor obtener_IDProf(@RequestParam int id_usr){
         return servUsrProf.obtenerPorIDUsuario(id_usr);
     }

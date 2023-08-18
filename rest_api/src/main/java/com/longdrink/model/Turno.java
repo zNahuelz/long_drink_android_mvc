@@ -12,9 +12,9 @@ public class Turno {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_turno;
     private String nombre;
-    @JsonFormat(pattern="HH:mm:ss" ,timezone ="America/Lima")
+    // @JsonFormat(pattern="HH:mm:ss" ,timezone ="America/Lima")
     private Date hora_inicio;
-    @JsonFormat(pattern="HH:mm:ss",timezone ="America/Lima")
+    // @JsonFormat(pattern="HH:mm:ss",timezone ="America/Lima")
     private Date hora_final;
 
     private int activo;

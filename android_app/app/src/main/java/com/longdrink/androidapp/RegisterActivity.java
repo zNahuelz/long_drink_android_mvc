@@ -28,6 +28,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = ActivityRegisterBinding.inflate(getLayoutInflater());
         /*login = (ImageView) findViewById(R.id.register_back);
         registrarse = (Button) findViewById(R.id.register_button);
         nom = (TextView) findViewById(R.id.register_name);
@@ -40,7 +41,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         registrarse.setOnClickListener(this::onClick);*/
 
         binding.registerButton.setOnClickListener(this::onClick);
-
+        binding.registerBack.setOnClickListener(this::onClick);
         setContentView(binding.getRoot());
     }
 

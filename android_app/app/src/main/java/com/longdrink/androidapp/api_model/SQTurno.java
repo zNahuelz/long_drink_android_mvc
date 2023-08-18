@@ -9,13 +9,16 @@ public class SQTurno implements Serializable {
     private Date hora_inicio;
     private Date hora_final;
 
+    private int activo;
+
     public SQTurno(){}
 
-    public SQTurno(int id_turno, String nombre, Date hora_inicio, Date hora_final) {
+    public SQTurno(int id_turno, String nombre, Date hora_inicio, Date hora_final, int activo) {
         this.id_turno = id_turno;
         this.nombre = nombre;
         this.hora_inicio = hora_inicio;
         this.hora_final = hora_final;
+        this.activo = activo;
     }
 
     public int getId_turno() {
@@ -48,5 +51,13 @@ public class SQTurno implements Serializable {
 
     public void setHora_final(Date hora_final) {
         this.hora_final = hora_final;
+    }
+
+    public int getActivo() {
+        return activo;
+    }
+
+    public void setActivo(int activo) {
+        this.activo = activo;
     }
 }

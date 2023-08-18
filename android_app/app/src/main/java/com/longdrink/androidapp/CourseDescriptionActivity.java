@@ -8,6 +8,7 @@ import android.view.Menu;
 
 import com.bumptech.glide.Glide;
 import com.longdrink.androidapp.R;
+import com.longdrink.androidapp.api_model.SQAlumno;
 import com.longdrink.androidapp.api_model.SQCurso;
 import com.longdrink.androidapp.databinding.ActivityCourseDescriptionBinding;
 import com.longdrink.androidapp.databinding.ActivityMainBinding;
@@ -16,6 +17,7 @@ public class CourseDescriptionActivity extends AppCompatActivity {
 
     ActivityCourseDescriptionBinding binding;
 
+    SQAlumno alumno;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,9 +32,11 @@ public class CourseDescriptionActivity extends AppCompatActivity {
         binding.courseDescriptionPrice.setText("Precio:    S/." + cursoSeleccionado.getCosto());
         binding.courseDescriptionDescription.setText("Descripción: " + cursoSeleccionado.getDescripcion());
         binding.courseDescriptionBack.setOnClickListener(a -> onBackPressed());
+        binding.courseDescriptionInscription.setOnClickListener(v -> mostrarInscripcion());
         Glide.with(this)
                 .load(cursoSeleccionado.getFoto())
                 .into(binding.courseDescriptionImage);
+        alumno = (SQAlumno) getIntent().getSerializableExtra("alumno");
         setContentView(binding.getRoot());
     }
 
@@ -49,6 +53,7 @@ public class CourseDescriptionActivity extends AppCompatActivity {
 
     public void mostrarInscripcion(){
         Intent intent = new Intent(CourseDescriptionActivity.this, InscriptionActivity.class);
+        intent.putExtra("id_alumno", alumno.getId_alumno());
         startActivity(intent);
     }
 }
