@@ -3,6 +3,7 @@ package com.longdrink.services;
 import com.longdrink.dao.IInscripcionDAO;
 import com.longdrink.model.Inscripcion;
 
+import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,9 @@ import java.util.Optional;
 public class InscripcionService {
     @Autowired
     private IInscripcionDAO inscripcionDAO;
+
+    @Autowired
+    private EntityManager em;
 
     public List<Inscripcion> listarInscripcion(){
         return (List<Inscripcion>) inscripcionDAO.findAll();
