@@ -167,7 +167,7 @@ public class InscriptionActivity extends AppCompatActivity {
     private void inscripcionAlumno(){
         Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         RetrofitAPI retrofitAPI = retrofit.create(RetrofitAPI.class);
-        Call<Boolean> call = retrofitAPI.guardarInscripcion();
+        //Call<Boolean> call = retrofitAPI.guardarInscripcion();
     }
 
     /*@Override

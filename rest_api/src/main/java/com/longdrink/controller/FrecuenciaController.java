@@ -10,7 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/frecuencia")
 public class FrecuenciaController {
-    //TODO : Testear en Postman...!
+    
     @Autowired
     private FrecuenciaService servFrec;
 

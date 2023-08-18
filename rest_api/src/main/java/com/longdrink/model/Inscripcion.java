@@ -1,5 +1,6 @@
 package com.longdrink.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -24,10 +25,13 @@ public class Inscripcion {
     @Column(name="id_curso")
     private int idcurso;
     @Column(name="fecha_inicio_curso")
+    @JsonFormat(pattern="yyyy-MM-dd",timezone ="America/Lima")
     private Date fechainiciocurso;
     @Column(name="fecha_final_curso")
+    @JsonFormat(pattern="yyyy-MM-dd",timezone ="America/Lima")
     private Date fechafinalcurso;
     @Column(name="fecha_inscripcion")
+    @JsonFormat(pattern="yyyy-MM-dd",timezone ="America/Lima")
     private Date fechainscripcion;
     private int terminado;
     private int activo;

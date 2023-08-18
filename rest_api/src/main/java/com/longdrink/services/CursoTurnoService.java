@@ -17,13 +17,13 @@ public class CursoTurnoService {
 
     //Actualizar CursoTurno - 1:1 (Un curso - Un turno)
     public int actualizarCT(CursoTurno ct){
-        Query query = em.createQuery("UPDATE CursoTurno c SET c.id_turno = "+ct.getId_turno()+" WHERE c.id_curso ="+ct.getId_curso());
+        Query query = em.createQuery("UPDATE CursoTurno c SET c.idTurno = "+ct.getId_turno()+" WHERE c.idCurso ="+ct.getId_curso());
         return query.executeUpdate();
     }
 
     public CursoTurno buscarTurno(int id_curso){
         try{
-            Query query = em.createQuery("SELECT t from CursoTurno t where t.id_curso = "+id_curso);
+            Query query = em.createQuery("SELECT t from CursoTurno t where t.idCurso = "+id_curso);
             return (CursoTurno) query.getSingleResult();
         }
         catch(Exception ex){

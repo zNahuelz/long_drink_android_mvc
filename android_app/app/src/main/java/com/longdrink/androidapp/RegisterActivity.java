@@ -28,6 +28,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = ActivityRegisterBinding.inflate(getLayoutInflater());
         /*login = (ImageView) findViewById(R.id.register_back);
         registrarse = (Button) findViewById(R.id.register_button);
         nom = (TextView) findViewById(R.id.register_name);
@@ -51,7 +52,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                 break;
             case R.id.register_button:
-                //Toast.makeText(this, "Clickaste registrar!", Toast.LENGTH_SHORT).show();
                 String nombre = binding.registerName.getText().toString();
                 String apePa = binding.registerLastFather.getText().toString();
                 String apeMa = binding.registerLastMother.getText().toString();

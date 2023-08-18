@@ -4,8 +4,6 @@ import com.longdrink.model.*;
 import com.longdrink.services.CursoFrecuenciaService;
 import com.longdrink.services.CursoService;
 import com.longdrink.services.CursoTurnoService;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/curso")
 public class CursoController {
-    //TODO : Testear en Postman....!
+
     @Autowired
     private CursoFrecuenciaService servCF;
     @Autowired
@@ -41,7 +39,7 @@ public class CursoController {
         else{ return false; }
     }
 
-    //FRONT: Actualizar curso.
+    //FRONT: Actualizar curso (Simple)
     @PutMapping("editar")
     public String editarCurso(@RequestBody Curso c){
         boolean respuesta = servCurs.buscarPorID(c.getId_curso());
@@ -60,14 +58,13 @@ public class CursoController {
         else{  return "Failed"; }
     }
 
+    //FRONT: Actualizar Curso, CursoTurno y CursoFrecuencia.
     @PutMapping("fEditar")
     @Transactional
     public boolean editarCursoF(@RequestBody SQEditCurso c){
-        //TODO : REVISAR.....
         boolean respuesta = servCurs.buscarPorID(c.getId_curso());
         if(respuesta){
             Curso curs = servCurs.obtenerCurso(c.getId_curso());
-            //Curso actualizar = curs;
             if(c.getNombre() != null) curs.setNombre(c.getNombre());
             if(c.getDescripcion() != null) curs.setDescripcion(c.getDescripcion());
             if(c.getCosto() >= 1) curs.setCosto(c.getCosto());

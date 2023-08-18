@@ -40,10 +40,12 @@ public class AdmTeacherEditActivity extends AppCompatActivity {
     }
 
     private void UpdateTeacher(SQProfesor teacherData){
+        int active = 0;
+        if(binding.swEActivoProf.isChecked()){ active = 1; }
         SQProfesor p = new SQProfesor(teacherData.getId_profesor(),binding.txtEApeMatProf.getText().toString(),
                 binding.txtEApePatProf.getText().toString(),binding.txtEDNIProf.getText().toString(),
                 binding.txtEEmailProf.getText().toString(),teacherData.getFoto(),
-                binding.txtENombreProfesor.getText().toString(),teacherData.getActivo());
+                binding.txtENombreProfesor.getText().toString(),active);
         SQProfesor cleanTeacher = processData(p);
         boolean validateData = validateData(cleanTeacher);
         if (validateData){
@@ -71,6 +73,7 @@ public class AdmTeacherEditActivity extends AppCompatActivity {
         binding.txtEApeMatProf.setText(teacherData.getAp_materno());
         binding.txtEEmailProf.setText(teacherData.getEmail());
         binding.txtEDNIProf.setText(teacherData.getDni());
+        binding.swEActivoProf.setChecked(teacherData.getActivo() == 1);
     }
 
     private SQProfesor processData(SQProfesor p){

@@ -34,6 +34,7 @@ public class SeguridadController {
                 retorno.setNombre_usuario(cli.getNombre_usuario());
                 retorno.setContrasena(cli.getContrasena());
                 retorno.setId_usuario(busqueda.getId_usuario());
+                retorno.setPermisos(busqueda.getPermisos());
             }
             else{
                 retorno.setContrasena("blank");

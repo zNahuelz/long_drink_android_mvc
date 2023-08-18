@@ -34,8 +34,8 @@ public class InscripcionController {
     //FRONT: Guardar inscripcion
     @PostMapping("nuevo")
     public boolean guardarInscripcion(@RequestBody Inscripcion i){
-        Inscripcion ins = servIns.guardarInscripcion(i);
-        if(ins != null){
+        int ins = servIns.guardarIns(i); 
+        if(ins >0){
             return true;
         }
         else { return false; }
@@ -60,7 +60,7 @@ public class InscripcionController {
     }
 
     //FRONT: Marcar inscripcion como curso terminado.
-    @PutMapping //TODO : Check --- DeleteMapping??
+    @DeleteMapping("eliminar")
     public boolean terminarInscripcion(@RequestParam int id_alum){
         return servIns.terminarInscripcionIDAlum(id_alum);
     }
@@ -70,7 +70,5 @@ public class InscripcionController {
     public Inscripcion obtenerPorIDAlum(int id_alum){
         return servIns.obtenerPorIDAlum(id_alum);
     }
-
-
 
 }

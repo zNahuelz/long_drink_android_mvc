@@ -3,8 +3,8 @@ package com.longdrink.androidapp.api_model;
 public class SQUsuario {
     private String contrasena;
     private String nombre_usuario;
-
     private int id_usuario;
+    private int permisos;
 
     public SQUsuario(){}
 
@@ -41,5 +41,13 @@ public class SQUsuario {
 
     public void setId_usuario(int id_usuario) {
         this.id_usuario = id_usuario;
+    }
+
+    public int getPermisos() {
+        return permisos;
+    }
+
+    public void setPermisos(int permisos) {
+        this.permisos = permisos;
     }
 }

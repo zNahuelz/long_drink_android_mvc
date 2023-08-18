@@ -46,6 +46,7 @@
     <string name="MensajeEliminarProfesor">¿Está seguro que desea eliminar el siguiente profesor?</string>
     <string name="Cancelar">Cancelar</string>
     <string name="AlumnoHabilitado">Alumno Habilitado</string>
+    <string name="DocenteHabilitado">Docente Habilitado</string>
     <string name="CambiarPassword">Cambiar Contraseña</string>
 
 

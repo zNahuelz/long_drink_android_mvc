@@ -5,8 +5,6 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "usuario")
 public class Usuario {
-    //TODO : EL TODO MAS ENORME... ASEGURARSE QUE DAO, SERVICIO Y CONTROLADOR USUARIO
-    //FUNCIONEN CORRECTAMENTE, DEBIDO A NOMBRES DE CAMPOS ID.
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_usuario")

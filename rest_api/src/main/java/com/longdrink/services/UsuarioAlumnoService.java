@@ -1,7 +1,6 @@
 package com.longdrink.services;
 
 import com.longdrink.dao.IUsuarioAlumnoDAO;
-import com.longdrink.model.Usuario;
 import com.longdrink.model.UsuarioAlumno;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

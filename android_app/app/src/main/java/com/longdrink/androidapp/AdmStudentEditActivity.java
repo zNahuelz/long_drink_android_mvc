@@ -39,10 +39,12 @@ public class AdmStudentEditActivity extends AppCompatActivity {
     }
 
     private void UpdateStudent(SQAlumno studentData){
+        int active = 0;
+        if(binding.swEActivoAlum.isChecked()){ active = 1; }
         SQAlumno s = new SQAlumno(studentData.getId_alumno(),binding.txtEApeMatAlum.getText().toString(),
                 binding.txtEApePatAlum.getText().toString(),binding.txtEDNIAlum.getText().toString(),
                 binding.txtEEmailAlum.getText().toString(),binding.txtENombreAlumno.getText().toString(),
-                studentData.getActivo());
+                active);
         SQAlumno cleanStudent = processData(s);
         boolean validateData = validateData(cleanStudent);
         if(validateData){
@@ -91,7 +93,7 @@ public class AdmStudentEditActivity extends AppCompatActivity {
         binding.txtEApeMatAlum.setText(studentData.getAp_materno());
         binding.txtEEmailAlum.setText(studentData.getEmail());
         binding.txtEDNIAlum.setText(studentData.getDni());
-        //binding.swEActivoAlum.setChecked(studentData.getActivo() == 1);
+        binding.swEActivoAlum.setChecked(studentData.getActivo() == 1);
     }
 
     private void SendStudent(SQAlumno load){

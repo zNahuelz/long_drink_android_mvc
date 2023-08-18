@@ -47,7 +47,7 @@ public class AlumnoController {
             if(a.getNombre() == null) a.setNombre(alum.getNombre());
             if(a.getDni() == null) a.setDni(alum.getDni());
             if(a.getEmail() == null) a.setEmail(alum.getEmail());
-            a.setActivo(1);
+            //a.setActivo(1);
             servAlum.actualizarAlumno(a);
             return true;
 
