@@ -1,3 +1,5 @@
+package com.longdrink.services;
+
 import com.longdrink.dao.ICursoFrecuenciaDAO;
 import com.longdrink.model.Curso;
 import com.longdrink.model.CursoFrecuencia;

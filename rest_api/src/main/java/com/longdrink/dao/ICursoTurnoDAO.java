@@ -9,5 +9,5 @@ import java.util.Optional;
 
 
 public interface ICursoTurnoDAO extends CrudRepository<CursoTurno, Integer>{
-  Optional<CursoTurno> findById_curso(int id_curso);
+  Optional<CursoTurno> findByidCurso(int id_curso);
 }

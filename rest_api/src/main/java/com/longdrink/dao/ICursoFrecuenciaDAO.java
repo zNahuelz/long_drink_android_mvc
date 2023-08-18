@@ -7,6 +7,6 @@ import com.longdrink.model.CursoFrecuencia;
 
 
 public interface ICursoFrecuenciaDAO extends CrudRepository<CursoFrecuencia, Integer>{
-  Optional<CursoFrecuencia> findById_curso(int id_curso);
+  Optional<CursoFrecuencia> findByidCurso(int id_curso);
  
 }
