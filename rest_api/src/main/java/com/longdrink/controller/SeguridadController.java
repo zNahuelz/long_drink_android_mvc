@@ -2,14 +2,23 @@ package com.longdrink.controller;
 
 import com.longdrink.model.*;
 import com.longdrink.services.AlumnoService;
+import com.longdrink.services.EmailService;
+import com.longdrink.services.ProfesorService;
+import com.longdrink.services.UsuarioAlumnoService;
+import com.longdrink.services.UsuarioProfesorService;
 import com.longdrink.services.UsuarioService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
+import java.util.List;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -20,6 +29,15 @@ public class SeguridadController {
 
     @Autowired
     private AlumnoService alumServ;
+    @Autowired
+    private UsuarioAlumnoService usrAlumServ;
+
+    @Autowired
+    private EmailService emailService;
+    @Autowired
+    private ProfesorService profServ;
+    @Autowired
+    private UsuarioProfesorService usrProfServ;
 
     @PersistenceContext
     private EntityManager em;
@@ -49,7 +67,7 @@ public class SeguridadController {
 *  */
     @PostMapping("registermain")
     @Transactional
-    public SQRegistro registro_main(@RequestBody SQRegistro cli){
+    public SQRegistro registroMain(@RequestBody SQRegistro cli){
         SQRegistro retorno = new SQRegistro("blank","blank","blank","blank","blank","blank",3);
         boolean checkDNI = alumServ.buscarPorDNI(cli.getDni());
         boolean checkEmail = alumServ.buscarPorEmail(cli.getEmail());
@@ -78,5 +96,34 @@ public class SeguridadController {
 
         return retorno;
     }
+    //FRONT: Recuperar contraseña. -->> Siempre devolvera true, para no darle pistas a los hackers sobre existencia o no de cuentas.
+    @GetMapping("recuperar_cuenta")
+    public boolean recuperarCuenta(@RequestParam String dni){
+        boolean retorno = false;
+        int tipo = 0;
+        Alumno a = alumServ.obtenerAlumDNI(dni);
+        Profesor p = profServ.obtenerPorDNI(dni);
+        Usuario busqueda = new Usuario();
+        if(a.getId_alumno() != 0){
+            UsuarioAlumno usrA = usrAlumServ.obtenerPorIDAlumno(a.getId_alumno());
+            busqueda = usrServ.obtenerUsuario(usrA.getId_usuario());
+            tipo = 0;
+        }
+        if(p.getId_profesor() != 0){
+            UsuarioProfesor usrP = usrProfServ.obtenerPorIDProfesor(p.getId_profesor());
+            busqueda = usrServ.obtenerUsuario(usrP.getId_usuario());
+            tipo = 1;
+        }
+        if(busqueda != null && tipo == 0){
+            emailService.SendRecoverPasswordEmail(busqueda,a.getEmail());
+            retorno = true;
+        }
+        else if(busqueda != null && tipo ==1){
+            emailService.SendRecoverPasswordEmail(busqueda, p.getEmail());
+            retorno = true;
+        }
+        return retorno;
+    }
+    
 
 }

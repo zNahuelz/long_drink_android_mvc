@@ -104,9 +104,11 @@ public class AdmStudentEditActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Boolean> call, Response<Boolean> response) {
                 if(response.body() == true){
+                    HideKeyboard();
                     Snackbar.make(binding.getRoot(), "Datos del estudiante actualizados con exito!",Snackbar.LENGTH_LONG).show();
                 }
                 else{
+                    HideKeyboard();
                     Snackbar.make(binding.getRoot(), "Error! Imposible actualizar los datos del estudiante. Intente nuevamente.",Snackbar.LENGTH_LONG).show();
                 }
             }

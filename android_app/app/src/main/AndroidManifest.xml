@@ -17,14 +17,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".TeacherActivity"
-            android:exported="true" >
-
+            android:name=".PasswordRecovery"
+            android:exported="true">
         </activity>
         <activity
+            android:name=".TeacherActivity"
+            android:exported="true"></activity>
+        <activity
             android:name=".InscriptionActivity"
-            android:exported="true" >
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".MyAccountGeneralActivity"
             android:exported="false" />
@@ -51,10 +52,10 @@
             android:exported="false" />
         <activity
             android:name=".AdminActivity"
+            android:exported="true"></activity>
+        <activity
+            android:name=".LoginActivity"
             android:exported="true">
-
-        </activity>
-        <activity android:name=".LoginActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -64,7 +65,7 @@
         <activity android:name=".RegisterActivity" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>

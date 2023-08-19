@@ -109,6 +109,7 @@ public class AdmCourseEditActivity extends AppCompatActivity implements AdapterV
             },2000);
         }
         else{
+            HideKeyboard();
             Snackbar.make(binding.getRoot(), "Error! Debe llenar todos los campos con el formato correcto.",Snackbar.LENGTH_LONG).show();
         }
     }

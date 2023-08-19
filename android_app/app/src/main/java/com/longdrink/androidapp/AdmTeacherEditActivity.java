@@ -105,14 +105,17 @@ public class AdmTeacherEditActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Boolean> call, Response<Boolean> response) {
                 if(response.body() == true){
+                    HideKeyboard();
                     Snackbar.make(binding.getRoot(), "Datos del profesor actualizados con exito!",Snackbar.LENGTH_LONG).show();
                 }
                 else{
+                    HideKeyboard();
                     Snackbar.make(binding.getRoot(), "Error! Imposible actualizar los datos del profesor. Intente nuevamente.",Snackbar.LENGTH_LONG).show();
                 }
             }
             @Override
             public void onFailure(Call<Boolean> call, Throwable t) {
+                HideKeyboard();
                 Snackbar.make(binding.getRoot(), "Error! Ha fallado la conexión con el servidor.",Snackbar.LENGTH_LONG).show();
                 Log.e("[ADMIN.EDIT.TEACHER] onFailure : ",t.getLocalizedMessage().toString());
             }

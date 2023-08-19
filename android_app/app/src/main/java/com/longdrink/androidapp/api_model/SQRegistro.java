@@ -76,4 +76,7 @@ public class SQRegistro {
     public void setPermisos(int permisos) {
         this.permisos = permisos;
     }
+    public String generarUsername(){
+        return this.nombre.trim().toUpperCase().substring(0,1) + this.appaterno.trim().toUpperCase().substring(0,1) + this.apmaterno.trim().toUpperCase().substring(0,1)+this.dni;
+    }
 }

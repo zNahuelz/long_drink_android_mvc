@@ -2,12 +2,15 @@ package com.longdrink.androidapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.longdrink.androidapp.api.RetrofitAPI;
 import com.longdrink.androidapp.api_model.SQUsuario;
 import com.longdrink.androidapp.databinding.ActivityLoginBinding;
@@ -29,6 +32,7 @@ public class LoginActivity extends AppCompatActivity  {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         binding.loginButton.setOnClickListener(e -> Login());
         binding.loginRegisterButton.setOnClickListener(e -> Register());
+        binding.loginForgotClick.setOnClickListener(e -> LostPassword());
         setContentView(binding.getRoot());
     }
 
@@ -36,7 +40,8 @@ public class LoginActivity extends AppCompatActivity  {
         String usr = binding.username.getText().toString();
         String pass = binding.password.getText().toString();
         if(usr.length() == 0 || pass.length() == 0){
-            Toast.makeText(LoginActivity.this, "ADVERTENCIA: Debe llenar ambos campos!", Toast.LENGTH_LONG).show();
+            HideKeyboard();
+            Snackbar.make(binding.getRoot(), "ADVERTENCIA: Debe llenar ambos campos!",Snackbar.LENGTH_LONG).show();
         }
         else {
             sendLogin(usr,pass);
@@ -52,7 +57,8 @@ public class LoginActivity extends AppCompatActivity  {
             @Override
             public void onResponse(Call<SQUsuario> call, Response<SQUsuario> response) {
                 if (response.body().getContrasena().equals(pass) && response.body().getNombre_usuario().equals(usr)) {
-                    Toast.makeText(LoginActivity.this, "Sesión iniciada con exito!", Toast.LENGTH_SHORT).show();
+                    //TODO : Listo para conexión con otros modulos.
+                    Snackbar.make(binding.getRoot(), "Sesión iniciada con exito!",Snackbar.LENGTH_SHORT).show();
                     //startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     switch(response.body().getPermisos()){
                         case 0:
@@ -70,17 +76,30 @@ public class LoginActivity extends AppCompatActivity  {
                     }
                     //TODO : Pasar ID de usuario (body) al MainActivity, para uso posterior.
                 } else {
-                    Toast.makeText(LoginActivity.this, "Usuario o contraseña incorrectos!", Toast.LENGTH_SHORT).show();
+                    HideKeyboard();
+                    Snackbar.make(binding.getRoot(), "Usuario o contraseña incorrectos!",Snackbar.LENGTH_SHORT).show();
                 }
             }
             @Override
             public void onFailure(Call<SQUsuario> call, Throwable t) {
-                Toast.makeText(LoginActivity.this, "Error! Falló la comunicación con el servidor.", Toast.LENGTH_SHORT).show();
+                HideKeyboard();
+                Snackbar.make(binding.getRoot(), "Error! Falló la comunicación con el servidor.",Snackbar.LENGTH_SHORT).show();
                 Log.e("LOGIN: ",t.getLocalizedMessage());
             }
         });
     }
     private void Register(){
         startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+    }
+
+    private void LostPassword(){
+        startActivity(new Intent(LoginActivity.this, PasswordRecovery.class));
+    }
+    private void HideKeyboard(){
+        View view = LoginActivity.this.getCurrentFocus();
+        if(view!=null){
+            InputMethodManager manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            manager.hideSoftInputFromWindow(view.getWindowToken(),0);
+        }
     }
 }

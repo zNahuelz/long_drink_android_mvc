@@ -19,4 +19,11 @@ public class UsuarioAlumnoService {
         }
         catch(Exception ex){ return new UsuarioAlumno(); }
     }
+
+    public UsuarioAlumno obtenerPorIDAlumno(int id_alumno){
+        try{
+            return usrAlumDAO.findByidAlumno(id_alumno).get();
+        }
+        catch(Exception ex){ return new UsuarioAlumno(); }
+    }
 }
