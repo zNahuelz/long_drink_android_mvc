@@ -5,7 +5,6 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-import com.longdrink.model.Alumno;
 import com.longdrink.model.SQRegistro;
 import com.longdrink.model.Usuario;
 

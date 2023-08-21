@@ -28,9 +28,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MyAccountGeneralActivity extends AppCompatActivity {
-    /* TODO : Debe ser actualizado al momento de unir el modulo de login con el administrativo.
-    *   el modulo Admin debe recibir id u objeto del usuario logeado para poder realizar las operaciones.
-    *  Este activity puede actualizar tanto contraseña como email de administradores y docentes... */
+    /*  Este activity puede actualizar contraseña e email de docentes, y unicamente contraseña de administradores... */
     SQUsuarioProfesor userTeacherData;
     SQProfesor teacherData;
     Usuario userData;
@@ -43,7 +41,8 @@ public class MyAccountGeneralActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMyAccountGeneralBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        Integer accountID = (Integer) getIntent().getSerializableExtra("account_data");
+        int accountID = getIntent().getIntExtra("account_data",99);
+        Log.e("accID",String.valueOf(accountID));
         getUserData(accountID);
         binding.btnMyAccCancelar.setOnClickListener(e -> goBack());
         binding.btnMyAccGuardar.setOnClickListener(e -> ChangePassword());
@@ -130,14 +129,14 @@ public class MyAccountGeneralActivity extends AppCompatActivity {
             public void onResponse(Call<Boolean> call, Response<Boolean> response) {
                 if(response.isSuccessful() && response.body() == true){
                     HideKeyboard();
-                    Snackbar.make(binding.getRoot(), "Felicidades! Ha cambiado las credenciales de su cuenta. Cerrando sesión en 10 segundos...",Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(binding.getRoot(), "Felicidades! Ha cambiado las credenciales de su cuenta. Cerrando sesión en 5 segundos...",Snackbar.LENGTH_LONG).show();
                     Handler handler = new Handler(); //Esperar 2 segundos y volver atras.
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            android.os.Process.killProcess(android.os.Process.myPid()); //TODO : Lleva al main activity cuando todo este agrupado!
+                            finishAffinity();
                         }
-                    },10000);
+                    },5000);
                 }
                 else{
                     HideKeyboard();
@@ -161,7 +160,7 @@ public class MyAccountGeneralActivity extends AppCompatActivity {
             public void onResponse(Call<Boolean> call, Response<Boolean> response) {
                 if(response.isSuccessful() && response.body() == true){
                     HideKeyboard();
-                    Snackbar.make(binding.getRoot(), "E-Mail cambiado con exito! Cerrando sesión en 10 segundos...",Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(binding.getRoot(), "E-Mail cambiado con exito! Cerrando sesión en 5 segundos...",Snackbar.LENGTH_SHORT).show();
                 }
                 else{
                     HideKeyboard();
@@ -188,9 +187,11 @@ public class MyAccountGeneralActivity extends AppCompatActivity {
             if(teacherData != null){
                 teacherData.setEmail(email);
                 sendChangeTeacherEmail(teacherData);
+                userData.setContrasena(P1);
+                sendChangePassword(userData);
             }
             else{
-                userData.setContrasena(P1);
+                userData.setContrasena(P1);     //Si algo no funciona con el cambio de credenciales, revisar aqui.
                 sendChangePassword(userData);
             }
         }

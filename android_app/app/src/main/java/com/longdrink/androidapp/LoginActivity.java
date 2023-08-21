@@ -57,24 +57,28 @@ public class LoginActivity extends AppCompatActivity  {
             @Override
             public void onResponse(Call<SQUsuario> call, Response<SQUsuario> response) {
                 if (response.body().getContrasena().equals(pass) && response.body().getNombre_usuario().equals(usr)) {
-                    //TODO : Listo para conexión con otros modulos.
+                    //TODO : Listo para conexión con modulo de alumnos.
                     Snackbar.make(binding.getRoot(), "Sesión iniciada con exito!",Snackbar.LENGTH_SHORT).show();
-                    //startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     switch(response.body().getPermisos()){
                         case 0:
-                            Toast.makeText(LoginActivity.this, "Ir MainActivity (ALUMNO)", Toast.LENGTH_SHORT).show();
+                            Intent a = new Intent(LoginActivity.this,MainActivity.class);
+                            //TODO : Colocar los extras que requieras!
+                            startActivity(a);
                             break;
                         case 1:
-                            Toast.makeText(LoginActivity.this, "Teacher...", Toast.LENGTH_SHORT).show();
+                            Intent e = new Intent(LoginActivity.this,TeacherActivity.class);
+                            e.putExtra("account_id",response.body().getId_usuario());
+                            startActivity(e);
                             break;
                         case 2:
-                            Toast.makeText(LoginActivity.this, "ADMIN.", Toast.LENGTH_SHORT).show();
+                            Intent i = new Intent(LoginActivity.this,AdminActivity.class);
+                            i.putExtra("account_id",response.body().getId_usuario());
+                            startActivity(i);
                             break;
                         default:
                             Toast.makeText(LoginActivity.this, "Ups! Su cuenta no tiene permisos. Comunicarse con administración.", Toast.LENGTH_SHORT).show();
                             break;
                     }
-                    //TODO : Pasar ID de usuario (body) al MainActivity, para uso posterior.
                 } else {
                     HideKeyboard();
                     Snackbar.make(binding.getRoot(), "Usuario o contraseña incorrectos!",Snackbar.LENGTH_SHORT).show();

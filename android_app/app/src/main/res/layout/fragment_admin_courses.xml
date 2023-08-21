@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".fragments.AdminCoursesFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/admin_recycler_courses"
         android:layout_width="match_parent"
