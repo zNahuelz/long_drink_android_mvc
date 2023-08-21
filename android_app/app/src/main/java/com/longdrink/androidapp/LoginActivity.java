@@ -2,11 +2,15 @@ package com.longdrink.androidapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.longdrink.androidapp.api.RetrofitAPI;
 import com.longdrink.androidapp.api_model.SQUsuario;
 import com.longdrink.androidapp.databinding.ActivityLoginBinding;
@@ -17,70 +21,89 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity  {
 
     ActivityLoginBinding binding;
-    public final String URL_LOGIN = "http://10.0.2.2:8080";
-    /*Button registro;
-    Button iniciar_sesion;
-    EditText usuario;
-    EditText password;*/
+    public final String URL_LOGIN = "http://10.0.2.2:8080/sq/";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
-        /*registro = (Button)findViewById(R.id.login_register_button);
-        iniciar_sesion = (Button)findViewById(R.id.login_button);
-        usuario = (EditText)findViewById(R.id.username);
-        password = (EditText) findViewById(R.id.password);
-        registro.setOnClickListener(this::onClick);
-        iniciar_sesion.setOnClickListener(this::onClick);*/
-        binding.loginButton.setOnClickListener(this::onClick);
-        binding.loginRegisterButton.setOnClickListener(this::onClick);
-
+        binding.loginButton.setOnClickListener(e -> Login());
+        binding.loginRegisterButton.setOnClickListener(e -> Register());
+        binding.loginForgotClick.setOnClickListener(e -> LostPassword());
         setContentView(binding.getRoot());
     }
 
-    @Override
-    public void onClick(View v) {
-        switch(v.getId()){
-            case R.id.login_button:
-                String usr = binding.username.getText().toString();
-                String pass = binding.password.getText().toString();
-                if(usr.length() == 0 || pass.length() == 0){
-                    Toast.makeText(LoginActivity.this, "ADVERTENCIA: Debe llenar ambos campos!", Toast.LENGTH_LONG).show();
-                }
-                else {
-                    Retrofit retrofit = new Retrofit.Builder().baseUrl(URL_LOGIN).addConverterFactory(GsonConverterFactory.create()).build();
-                    RetrofitAPI retroAPI = retrofit.create(RetrofitAPI.class);
-                    SQUsuario load = new SQUsuario(usr, pass);
-                    Call<SQUsuario> call = retroAPI.iniciarSesion(load);
-                    call.enqueue(new Callback<SQUsuario>() {
-                        @Override
-                        public void onResponse(Call<SQUsuario> call, Response<SQUsuario> response) {
-                            if (response.body().getContrasena().equals(pass) && response.body().getNombre_usuario().equals(usr)) {
-                                Toast.makeText(LoginActivity.this, "Sesión iniciada con exito!", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                intent.putExtra("id_usuario", response.body().getId_usuario());
-                                startActivity(intent);
-                                //TODO : Pasar ID de usuario (body) al MainActivity, para uso posterior.
-                            } else {
-                                Toast.makeText(LoginActivity.this, "Usuario o contraseña incorrectos!", Toast.LENGTH_SHORT).show();
-                            }
-                        }
+    private void Login(){
+        String usr = binding.username.getText().toString();
+        String pass = binding.password.getText().toString();
+        if(usr.length() == 0 || pass.length() == 0){
+            HideKeyboard();
+            Snackbar.make(binding.getRoot(), "ADVERTENCIA: Debe llenar ambos campos!",Snackbar.LENGTH_LONG).show();
+        }
+        else {
+            sendLogin(usr,pass);
+        }
+    }
 
-                        @Override
-                        public void onFailure(Call<SQUsuario> call, Throwable t) {
-                            Toast.makeText(LoginActivity.this, "Error! Falló la comunicación con el servidor.", Toast.LENGTH_SHORT).show();
-                            t.printStackTrace();
-                        }
-                    });
+    private void sendLogin(String usr, String pass){
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(URL_LOGIN).addConverterFactory(GsonConverterFactory.create()).build();
+        RetrofitAPI retroAPI = retrofit.create(RetrofitAPI.class);
+        SQUsuario load = new SQUsuario(usr, pass);
+        Call<SQUsuario> call = retroAPI.iniciarSesion(load);
+        call.enqueue(new Callback<SQUsuario>() {
+            @Override
+            public void onResponse(Call<SQUsuario> call, Response<SQUsuario> response) {
+                if (response.body().getContrasena().equals(pass) && response.body().getNombre_usuario().equals(usr)) {
+                    //TODO : Listo para conexión con modulo de alumnos.
+                    Snackbar.make(binding.getRoot(), "Sesión iniciada con exito!",Snackbar.LENGTH_SHORT).show();
+                    switch(response.body().getPermisos()){
+                        case 0:
+                            Intent a = new Intent(LoginActivity.this,MainActivity.class);
+                            //TODO : Colocar los extras que requieras!
+                            startActivity(a);
+                            break;
+                        case 1:
+                            Intent e = new Intent(LoginActivity.this,TeacherActivity.class);
+                            e.putExtra("account_id",response.body().getId_usuario());
+                            startActivity(e);
+                            break;
+                        case 2:
+                            Intent i = new Intent(LoginActivity.this,AdminActivity.class);
+                            i.putExtra("account_id",response.body().getId_usuario());
+                            startActivity(i);
+                            break;
+                        default:
+                            Toast.makeText(LoginActivity.this, "Ups! Su cuenta no tiene permisos. Comunicarse con administración.", Toast.LENGTH_SHORT).show();
+                            break;
+                    }
+                } else {
+                    HideKeyboard();
+                    Snackbar.make(binding.getRoot(), "Usuario o contraseña incorrectos!",Snackbar.LENGTH_SHORT).show();
                 }
-                break;
-            case R.id.login_register_button:
-                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
-                break;
+            }
+            @Override
+            public void onFailure(Call<SQUsuario> call, Throwable t) {
+                HideKeyboard();
+                Snackbar.make(binding.getRoot(), "Error! Falló la comunicación con el servidor.",Snackbar.LENGTH_SHORT).show();
+                Log.e("LOGIN: ",t.getLocalizedMessage());
+            }
+        });
+    }
+    private void Register(){
+        startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+    }
+
+    private void LostPassword(){
+        startActivity(new Intent(LoginActivity.this, PasswordRecovery.class));
+    }
+    private void HideKeyboard(){
+        View view = LoginActivity.this.getCurrentFocus();
+        if(view!=null){
+            InputMethodManager manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            manager.hideSoftInputFromWindow(view.getWindowToken(),0);
         }
     }
 }

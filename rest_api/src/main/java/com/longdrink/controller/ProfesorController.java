@@ -10,7 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/profesor")
 public class ProfesorController {
-    //TODO : Testear en Postman....!
+
     @Autowired
     private ProfesorService servPro;
 
@@ -48,7 +48,7 @@ public class ProfesorController {
             if(p.getDni() == null) p.setDni(pro.getDni());
             if(p.getEmail() == null) p.setEmail(pro.getEmail());
             if (p.getFoto() == null) p.setFoto(pro.getFoto());
-            p.setActivo(pro.getActivo());
+            p.setActivo(p.getActivo());
             servPro.actualizarProfesor(p);
             return true;
         }

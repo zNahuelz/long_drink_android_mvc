@@ -3,9 +3,12 @@ package com.longdrink.androidapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.snackbar.Snackbar;
@@ -54,15 +57,18 @@ public class AdmTeacherDeleteActivity extends AppCompatActivity {
             public void onResponse(Call<Boolean> call, Response<Boolean> response) {
                 if(response.isSuccessful()){
                     if(response.body() == true){
+                        HideKeyboard();
                         Snackbar.make(binding.getRoot(), "Profesor eliminado con exito!",Snackbar.LENGTH_LONG).show();
                         goBackWaiting();
                     }
                     else{
+                        HideKeyboard();
                         Snackbar.make(binding.getRoot(), "El profesor seleccionado ya se encuentra deshabilitado!",Snackbar.LENGTH_SHORT).show();
                         goBackWaiting();
                     }
                 }
                 else{
+                    HideKeyboard();
                     Snackbar.make(binding.getRoot(), "Ups! Tiempo de espera agotado para la conexión al servidor.",Snackbar.LENGTH_LONG).show();
                 }
             }
@@ -82,5 +88,12 @@ public class AdmTeacherDeleteActivity extends AppCompatActivity {
                 goBack();
             }
         },2000);
+    }
+    private void HideKeyboard(){
+        View view = AdmTeacherDeleteActivity.this.getCurrentFocus();
+        if(view!=null){
+            InputMethodManager manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            manager.hideSoftInputFromWindow(view.getWindowToken(),0);
+        }
     }
 }

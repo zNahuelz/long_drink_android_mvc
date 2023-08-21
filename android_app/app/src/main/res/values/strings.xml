@@ -46,9 +46,14 @@
     <string name="MensajeEliminarProfesor">¿Está seguro que desea eliminar el siguiente profesor?</string>
     <string name="Cancelar">Cancelar</string>
     <string name="AlumnoHabilitado">Alumno Habilitado</string>
+    <string name="DocenteHabilitado">Docente Habilitado</string>
     <string name="CambiarPassword">Cambiar Contraseña</string>
+    <!-- FIN Strings ADMINISTRATIVOS - Procesos CRUD -->
 
-
+    <!-- Strings RECUPERAR CONTRASEÑA - INICIO -->
+    <string name="RecuperarCredenciales">Recuperar Credenciales</string>
+    <string name="TextoRecuperarCredenciales">Olvidaste tu Nombre de Usuario o Contraseña. \n\nDebes proporcionar tu DNI para realizar la solicitud de recuperación de credenciales. Una vez procesados tus datos enviaremos la información requerida para que vuelvas a utilizar nuestros servicios a tu e-mail registrado.\nEn el caso de no tener acceso a tu e-mail deberás comunicarte con administración a través de los siguientes medios: \n\nE-Mail: administracion@logndrink.pe \nCelular: 994245306</string>
+    <!-- Strings RECUPERAR CONTRASEÑA - FIN -->
     <string name="wip">Trabajo en Progreso!</string>
     <string name="detalles">Detalles</string>
     <string name="inscripcion">Inscripción</string>

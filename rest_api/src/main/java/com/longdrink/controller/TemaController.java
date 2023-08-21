@@ -32,7 +32,6 @@ public class TemaController {
 	public List<Tema> listarTemasActivos(){ return servTem.listarTemasActivos();}
 	
 	//FRONT: Guardar Tema.
-	//TODO : Nombre del tema demasiado corto, 20?
 	@PostMapping("nuevo")
 	public boolean guardarTema(@RequestBody Tema t) {
 		Tema tem = servTem.guardarTema(t);

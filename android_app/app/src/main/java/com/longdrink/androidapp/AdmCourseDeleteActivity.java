@@ -72,12 +72,12 @@ public class AdmCourseDeleteActivity extends AppCompatActivity {
                     }
                 }
                 else{
-                    Toast.makeText(AdmCourseDeleteActivity.this, "Ups! Tiempo de espera agotado para la conexión al servidor.", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(binding.getRoot(), "Ups! Tiempo de espera agotado para la conexión al servidor.",Snackbar.LENGTH_SHORT).show();
                 }
             }
             @Override
             public void onFailure(Call<Boolean> call, Throwable t) {
-                Toast.makeText(AdmCourseDeleteActivity.this, "Ups! Ha fallado la conexión con el servidor.", Toast.LENGTH_SHORT).show();
+                Snackbar.make(binding.getRoot(), "Ups! Tiempo de espera agotado para la conexión al servidor.",Snackbar.LENGTH_SHORT).show();
                 Log.e("[ADMIN.DELETE.COURSE] onFailure : ",t.getLocalizedMessage().toString());
             }
         });

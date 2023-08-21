@@ -36,7 +36,7 @@ public class InscripcionService {
     public List<Inscripcion> listarPorTerminado(int t){
         return inscripcionDAO.findAllByterminado(t);
     }
-
+    //En desuso. Safe delete mas adelante.
     public Inscripcion guardarInscripcion(Inscripcion i){
         boolean lleno = i.isFull();
         if(lleno){

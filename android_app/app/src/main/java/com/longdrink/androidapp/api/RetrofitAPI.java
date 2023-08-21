@@ -29,12 +29,15 @@ import retrofit2.http.PUT;
 import retrofit2.http.Query;
 
 public interface RetrofitAPI {
-    //Inicio de LOGIN y REGISTRO
+    //Inicio de SEGURIDAD
     @POST("/sq/login")
     Call<SQUsuario> iniciarSesion(@Body SQUsuario body);
     @POST("/sq/registermain")
     Call<SQRegistro> registrarMain(@Body SQRegistro body);
-    //Fin de LOGIN y REGISTRO.
+
+    @GET("/sq/recuperar_cuenta")
+    Call<Boolean> recuperarCuenta(@Query("dni") String dni);
+    //Fin de SEGURIDAD.
 
     //Comienzo de sección CURSOS.
     @GET("/curso")

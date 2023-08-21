@@ -10,7 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/turno")
 public class TurnoController {
-    //TODO : Testear en Postman....!
+
     @Autowired
     private TurnoService servTurn;
     //FRONT: Listar TODOS los turnos.

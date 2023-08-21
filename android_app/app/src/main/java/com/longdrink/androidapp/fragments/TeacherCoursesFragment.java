@@ -43,8 +43,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class TeacherCoursesFragment extends Fragment {
     final String BASE_URL = "http://10.0.2.2:8080";
-    //TODO : Pasar ID del profesor al getCourses para que retorne solo los cursos del profesor.
-    //TODO: Hacer cambio en API.
+    //: Pasar ID del profesor al getCourses para que retorne solo los cursos del profesor.
+    //: Hacer cambio en API.
     List<String> freqName = new ArrayList<String>();
     List<String> turnName = new ArrayList<String>();
 
@@ -53,12 +53,12 @@ public class TeacherCoursesFragment extends Fragment {
     RecyclerView recyclerView;
     FragmentTeacherCoursesBinding binding;
     TCoursesRVAdapter recyclerViewAdapter;
-    // TODO: Rename parameter arguments, choose names that match
+
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
+
     private String mParam1;
     private String mParam2;
 
@@ -74,7 +74,7 @@ public class TeacherCoursesFragment extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment TeacherCoursesFragment.
      */
-    // TODO: Rename and change types and number of parameters
+
     public static TeacherCoursesFragment newInstance(String param1, String param2) {
         TeacherCoursesFragment fragment = new TeacherCoursesFragment();
         Bundle args = new Bundle();

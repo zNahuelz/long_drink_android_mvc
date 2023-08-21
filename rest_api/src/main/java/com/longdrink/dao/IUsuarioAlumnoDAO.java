@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface IUsuarioAlumnoDAO extends CrudRepository<UsuarioAlumno,Integer> {
     Optional<UsuarioAlumno> findByidUsuario(int idUsuario);
+    Optional<UsuarioAlumno> findByidAlumno(int idAlumno);
 }

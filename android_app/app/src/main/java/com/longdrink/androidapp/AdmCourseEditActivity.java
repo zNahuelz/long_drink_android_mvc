@@ -109,6 +109,7 @@ public class AdmCourseEditActivity extends AppCompatActivity implements AdapterV
             },2000);
         }
         else{
+            HideKeyboard();
             Snackbar.make(binding.getRoot(), "Error! Debe llenar todos los campos con el formato correcto.",Snackbar.LENGTH_LONG).show();
         }
     }
@@ -137,11 +138,9 @@ public class AdmCourseEditActivity extends AppCompatActivity implements AdapterV
         {
             case R.id.sp_EFrecuenciaCurso:
                 selectedFreq = parent.getSelectedItem().toString();
-                Toast.makeText(this, selectedFreq, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.sp_ETurnoCurso:
                 selectedTurn = parent.getSelectedItem().toString();
-                Toast.makeText(this, selectedTurn, Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;

@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.longdrink.model.Usuario;
 import com.longdrink.services.UsuarioService;
-import com.longdrink.model.UsuarioAlumno;
 
 @RestController
 @RequestMapping("/usuario")
@@ -55,7 +54,6 @@ public class UsuarioController {
     }
 
     //FRONT: Actualizar usuario.
-    //Nota: No debe actualizar campo activo, para eso esta el eliminar.
     @PutMapping("editar")
     public boolean editarAlumno(@RequestBody Usuario a){
         boolean respuesta = servUsu.buscarPorID(a.getId_usuario());

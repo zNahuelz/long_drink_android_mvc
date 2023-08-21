@@ -28,9 +28,10 @@ public class FrecuenciaService {
         }
         return retorno;
     }
-    //TODO : BUG; Al ingresar valor distinto a 0 o 1 el servidor peta.
+
     public Frecuencia guardarFrecuencia(Frecuencia f){
         f.setId_frecuencia(0);
+        if(f.getActivo() != 0 || f.getActivo() != 1){ f.setActivo(0); }
         boolean vacio = f.isEmpty();
         if (!vacio){
             return frecuenciaDAO.save(f);

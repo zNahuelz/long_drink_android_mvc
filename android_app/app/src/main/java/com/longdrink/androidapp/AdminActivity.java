@@ -2,6 +2,7 @@ package com.longdrink.androidapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -15,6 +16,7 @@ import com.longdrink.androidapp.databinding.ActivityAdminBinding;
 public class AdminActivity extends AppCompatActivity {
     ActivityAdminBinding binding;
     AdminFragmentAdapter adminFragmentAdapter;
+    int id_cuenta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,8 @@ public class AdminActivity extends AppCompatActivity {
         binding.admViewPager.setAdapter(adminFragmentAdapter);
         binding.admMenuTabs.setupWithViewPager(binding.admViewPager);
         setContentView(binding.getRoot());
+        id_cuenta = getIntent().getIntExtra("account_id",0);
+        Log.e("id_cuenta",String.valueOf(id_cuenta));
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
@@ -37,13 +41,11 @@ public class AdminActivity extends AppCompatActivity {
         switch(item.getItemId()){
             case R.id.admin_myAccount:
                 Intent intent = new Intent(AdminActivity.this,MyAccountGeneralActivity.class);
-                //Tipo de cuenta... 1 Docente / 2 Admin. (Traer de Login -> AdminActivity -> MyAccount).
-                intent.putExtra("account_data",12); // ID Usuario. (Debe ser el objeto SQUsuario, mismo origen).
+                intent.putExtra("account_data",AdminActivity.this.id_cuenta);
                 AdminActivity.this.startActivity(intent);
                 return true;
             case R.id.admin_logout:
-                Toast.makeText(this, "WIP! Cerrar Sesión", Toast.LENGTH_SHORT).show();
-                //android.os.Process.killProcess(android.os.Process.myPid()); //TODO : Lleva al login activity cuando todo este agrupado!
+                android.os.Process.killProcess(android.os.Process.myPid());
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
