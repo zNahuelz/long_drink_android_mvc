@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
-        id_usuarioSerizable = (int)getIntent().getSerializableExtra("id_usuario");
+        id_usuarioSerizable = getIntent().getIntExtra("id_usuario",0);
         obtenerAlumnoUsuario(id_usuarioSerizable);
 
         setContentView(binding.getRoot());
