@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:textSize="18sp"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
@@ -39,6 +39,18 @@
         android:layout_marginTop="20dp"
         android:textColor="@color/black"
         android:text="Reemplazar, datos del curso..." />
+
+    <TextView
+        android:id="@+id/lbl_courseMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/light_red"
+        android:textAlignment="textStart"
+        android:text="@string/AdvertenciaEliminar" />
 
     <Button
         android:id="@+id/btnDeleteCourse"
