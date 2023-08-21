@@ -3,13 +3,149 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.MyCoursesFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/fragment_my_courses"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Mis Cursos" />
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_description"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="20sp"
+            app:layout_constraintVertical_bias="0">
+
+            <ImageView
+                android:id="@+id/my_course_image"
+                android:layout_width="200sp"
+                android:layout_height="200sp"
+                app:layout_constraintTop_toTopOf="@+id/constraint_description"
+                app:layout_constraintBottom_toBottomOf="@+id/constraint_description"
+                app:layout_constraintEnd_toEndOf="@+id/constraint_description"
+                app:layout_constraintStart_toStartOf="@+id/constraint_description"
+                tools:layout_editor_absoluteX="20dp"
+                tools:layout_editor_absoluteY="20dp"
+                app:layout_constraintVertical_bias="0"
+                tools:src="@tools:sample/avatars[0]" />
+
+            <TextView
+                android:id="@+id/my_course_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/my_course_image"
+                app:layout_constraintBottom_toBottomOf="@+id/constraint_description"
+                app:layout_constraintEnd_toEndOf="@id/constraint_description"
+                app:layout_constraintStart_toStartOf="@id/constraint_description"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintVertical_bias="0"
+                android:layout_marginTop="10sp"
+                android:text="Nombre del Curso"/>
+
+            <TextView
+                android:id="@+id/my_course_frecuency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/my_course_name"
+                app:layout_constraintBottom_toBottomOf="@+id/constraint_description"
+                app:layout_constraintEnd_toEndOf="@id/constraint_description"
+                app:layout_constraintStart_toStartOf="@id/constraint_description"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintVertical_bias="0"
+                android:layout_marginTop="10sp"
+                android:text="Frecuencia"/>
+
+            <TextView
+                android:id="@+id/my_course_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/my_course_name"
+                app:layout_constraintBottom_toBottomOf="@+id/constraint_description"
+                app:layout_constraintEnd_toEndOf="@id/constraint_description"
+                app:layout_constraintStart_toStartOf="@id/my_course_frecuency"
+                app:layout_constraintHorizontal_bias=".6"
+                app:layout_constraintVertical_bias="0"
+                android:layout_marginTop="10sp"
+                android:text="Horario"/>
+
+            <TextView
+                android:id="@+id/my_course_teacher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/my_course_frecuency"
+                app:layout_constraintBottom_toBottomOf="@+id/constraint_description"
+                app:layout_constraintEnd_toEndOf="@id/constraint_description"
+                app:layout_constraintStart_toStartOf="@id/constraint_description"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintVertical_bias="0"
+                android:layout_marginTop="10sp"
+                android:text="Profesor"/>
+
+            <TextView
+                android:id="@+id/my_course_description"
+                android:layout_width="190sp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/my_course_teacher"
+                app:layout_constraintBottom_toBottomOf="@+id/constraint_description"
+                app:layout_constraintEnd_toEndOf="@id/constraint_description"
+                app:layout_constraintStart_toStartOf="@id/my_course_frecuency"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintVertical_bias="0"
+                android:layout_marginTop="10sp"
+                android:text="Descripcion"/>
+
+            <Button
+                android:id="@+id/my_course_retire"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="0sp"
+                android:text="Retirarse"
+                android:textSize="10sp"
+                app:layout_constraintTop_toBottomOf="@+id/my_course_description"
+                app:layout_constraintBottom_toBottomOf="@+id/constraint_description"
+                app:layout_constraintEnd_toEndOf="@id/constraint_description"
+                app:layout_constraintStart_toStartOf="@id/constraint_description"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintVertical_bias="0"
+                android:layout_marginTop="10sp"
+                android:backgroundTint="@color/light_red"
+                android:textColor="@color/white"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/my_course_classes_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/constraint_description"
+            app:layout_constraintBottom_toTopOf="@id/my_course_recycler_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintVertical_bias="0"
+            android:layout_marginVertical="8sp"
+            android:text="Temario del Curso"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/my_course_recycler_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/constraint_description"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintVertical_bias="0"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:spanCount="2"
+            tools:itemCount="5"
+            tools:listitem="@layout/list_item_courses"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

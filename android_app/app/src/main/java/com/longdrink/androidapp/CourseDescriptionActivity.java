@@ -27,11 +27,14 @@ public class CourseDescriptionActivity extends AppCompatActivity {
         binding = ActivityCourseDescriptionBinding.inflate(getLayoutInflater());
 
         setSupportActionBar(binding.courseDescriptionToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        binding.courseDescriptionToolbar.setNavigationIcon(R.drawable.baseline_arrow_back_24);
+        binding.courseDescriptionToolbar.setNavigationOnClickListener(v -> finish());
 
         binding.courseDescriptionName.setText(cursoSeleccionado.getNombre());
         binding.courseDescriptionPrice.setText("Precio:    S/." + cursoSeleccionado.getCosto());
         binding.courseDescriptionDescription.setText("Descripción: " + cursoSeleccionado.getDescripcion());
-        binding.courseDescriptionBack.setOnClickListener(a -> onBackPressed());
         binding.courseDescriptionInscription.setOnClickListener(v -> mostrarInscripcion());
         Glide.with(this)
                 .load(cursoSeleccionado.getFoto())

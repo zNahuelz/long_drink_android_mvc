@@ -49,7 +49,7 @@ public class Inscripcion {
         this.activo = activo;
     }
 
-    public boolean isEmpty(){
+    public boolean isFull(){
         return this.idalumno != 0 && this.idcurso != 0 && this.fechainiciocurso != null &&
                 this.fechafinalcurso != null && this.fechainscripcion != null &&
                 this.terminado == 0 || this.terminado == 1 && this.activo == 0 || this.activo == 1;

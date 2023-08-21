@@ -13,6 +13,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.longdrink.androidapp.R;
 import com.longdrink.androidapp.api.RetrofitAPI;
 import com.longdrink.androidapp.api_model.FrontFrecuenciaTurno;
@@ -24,6 +26,7 @@ import com.longdrink.androidapp.api_model.SQInscripcion;
 import com.longdrink.androidapp.api_model.SQTurno;
 import com.longdrink.androidapp.databinding.ActivityInscriptionBinding;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -53,7 +56,7 @@ public class InscriptionActivity extends AppCompatActivity {
     List<SQFrecuencia> listadoFrecuencias;
     List<String> listadoFrecuenciasNombres = new ArrayList<>();
 
-    int     id_alumno;
+    int id_alumno;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,18 +83,20 @@ public class InscriptionActivity extends AppCompatActivity {
             }
         });
 
-        binding.inscriptionButton.setOnClickListener(click -> inscripcion());
+        binding.inscriptionButton.setOnClickListener(click -> {
+            try {
+                inscripcion();
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
         setContentView(binding.getRoot());
     }
 
-
-    public ArrayAdapter limpiarSpinners(){
-        List<String> arrayvacio = new ArrayList<>();
-        arrayvacio.clear();
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1, arrayvacio);
-        return adapter;
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
     public void obtenerCursos(){
@@ -215,7 +220,6 @@ public class InscriptionActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.inscriptionSpinnerFrecuency.setAdapter(null);
         binding.inscriptionSpinnerFrecuency.setAdapter(adapter);
-
     }
 
     private void agregarTurnosAdapter(){
@@ -227,25 +231,22 @@ public class InscriptionActivity extends AppCompatActivity {
     }
 
 
-    public void inscripcion(){
+    public void inscripcion() throws ParseException {
         SQCurso cursoSeleccionado = listadoCursos.get(binding.inscriptionSpinnerCourses.getSelectedItemPosition());
         int id_curso = cursoSeleccionado.getId_curso();
-        SQFrecuencia frecuenciaSeleccionada = listadoFrecuencias.get(binding.inscriptionSpinnerFrecuency.getSelectedItemPosition());
-        SQTurno turnoSeleccionado = listadoTurnos.get(binding.inscriptionSpinnerTime.getSelectedItemPosition());
+        String frecuenciaSeleccionada = listadoFrecuenciasNombres.get(binding.inscriptionSpinnerFrecuency.getSelectedItemPosition());
+        String turnoSeleccionado = listadoTurnosNombres.get(binding.inscriptionSpinnerTime.getSelectedItemPosition());
         //Todo lo relacionado a las fechas
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-        Date fechaInscripcion = new Date(System.currentTimeMillis());
-        Date fechaInicioClases = fechaInscripcion;
-        Calendar calendario = Calendar.getInstance();
-        calendario.setTime(fechaInicioClases);
-        calendario.add(Calendar.MONTH, cursoSeleccionado.getDuracion());
-        Date fechaFinal = calendario.getTime();
+        String fechaInscripcion = formato.format(Calendar.getInstance().getTime());
+        String fechaInicioClases = fechaInscripcion;
+        String fechaFinal = fechaInscripcion;
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
         alertDialog
                 .setMessage("La inscripción será con estos datos: \n-Curso: "
-                + cursoSeleccionado.getNombre() + "\n-Frecuencia: " + frecuenciaSeleccionada.getNombre() +
-                "\n-Turno: " + turnoSeleccionado.getNombre())
+                + cursoSeleccionado.getNombre() + "\n-Frecuencia: " + frecuenciaSeleccionada +
+                "\n-Turno: " + turnoSeleccionado)
                 .setNegativeButton("No", (dialog, which) -> {})
                 .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                     @Override
@@ -264,8 +265,8 @@ public class InscriptionActivity extends AppCompatActivity {
         call.enqueue(new Callback<Boolean>() {
             @Override
             public void onResponse(Call<Boolean> call, Response<Boolean> response) {
-                if (response.body().equals(true)){
-                    Toast.makeText(InscriptionActivity.this, "Inscripcion realizada con éxito", Toast.LENGTH_SHORT).show();
+                if (response.body() != null){
+                    finish();
                 }
                 else{
                     Toast.makeText(InscriptionActivity.this, "Error al ingresar los datos", Toast.LENGTH_SHORT).show();

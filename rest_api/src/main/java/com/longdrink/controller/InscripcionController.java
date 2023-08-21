@@ -5,6 +5,9 @@ import com.longdrink.services.InscripcionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,7 +36,14 @@ public class InscripcionController {
 
     //FRONT: Guardar inscripcion
     @PostMapping("nuevo")
-    public boolean guardarInscripcion(@RequestBody Inscripcion i){
+    public boolean guardarInscripcion(@RequestBody Inscripcion i) throws ParseException{
+        // SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        // Date fecha_inicio = formato.parse(i.getFecha_inicio_curso().toString());
+        // Date fecha_final = formato.parse(i.getFecha_final_curso().toString());
+        // Date fecha_inscripcion = formato.parse(i.getFecha_inscripcion().toString());
+        // i.setFecha_final_curso(fecha_final);
+        // i.setFecha_inicio_curso(fecha_inicio);
+        // i.setFecha_inscripcion(fecha_inscripcion);
         Inscripcion ins = servIns.guardarInscripcion(i);
         if(ins != null){
             return true;

@@ -38,8 +38,8 @@ public class InscripcionService {
     }
 
     public Inscripcion guardarInscripcion(Inscripcion i){
-        boolean vacio = i.isEmpty();
-        if(!vacio){
+        boolean lleno = i.isFull();
+        if(lleno){
             return inscripcionDAO.save(i);
         }
         return null;
