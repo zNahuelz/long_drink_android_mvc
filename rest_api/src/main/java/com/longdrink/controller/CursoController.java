@@ -98,5 +98,13 @@ public class CursoController {
     public boolean eliminarCursoID(@RequestParam int id){ return servCurs.eliminarCursoID(id);}
 
 
+    @GetMapping("cursofrecuencia/listar/id_curso")
+    public List<CursoFrecuencia> listaFrecuencias(@RequestParam int id_curso){
+        return servCF.findAllCursoFrecuencia(id_curso);
+    }
 
+    @GetMapping("cursoturno/listar/id_curso")
+    public List<CursoTurno> listaTurnos(@RequestParam int id_curso){
+        return servCT.findAllCursoTurno(id_curso);
+    }
 }

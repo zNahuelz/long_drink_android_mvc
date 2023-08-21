@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import com.longdrink.androidapp.R;
 import com.longdrink.androidapp.adapter.CoursesRecyclerViewAdapter;
 import com.longdrink.androidapp.api.RetrofitAPI;
+import com.longdrink.androidapp.api_model.SQAlumno;
 import com.longdrink.androidapp.api_model.SQCurso;
 import com.longdrink.androidapp.databinding.FragmentCoursesBinding;
 
@@ -99,10 +100,11 @@ public class CoursesFragment extends Fragment {
         Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        getCursos(retrofit);
+        SQAlumno alumno = (SQAlumno) getArguments().getSerializable("alumno");
+        getCursos(retrofit, alumno);
     }
 
-    public void getCursos(Retrofit retrofit){
+    public void getCursos(Retrofit retrofit, SQAlumno alumno){
         //Obteniendo la clase api
         RetrofitAPI retrofitAPI = retrofit.create(RetrofitAPI.class);
         //Obteniendo los cursos
@@ -112,7 +114,7 @@ public class CoursesFragment extends Fragment {
             public void onResponse(Call<List<SQCurso>> call, Response<List<SQCurso>> response) {
                 if(response.isSuccessful()){
                     //Instanciando el adaptador
-                    recyclerViewAdapter = new CoursesRecyclerViewAdapter(response.body(), getContext());
+                    recyclerViewAdapter = new CoursesRecyclerViewAdapter(response.body(), getContext(), alumno);
                     //Creando al Manager para que el recyclerView se muestre de manera vertical
                     RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
                     //Agregando el adaptador, el manager y el decorador a recyclerView

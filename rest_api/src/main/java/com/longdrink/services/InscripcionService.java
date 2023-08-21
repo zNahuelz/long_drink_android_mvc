@@ -2,12 +2,13 @@ package com.longdrink.services;
 
 import com.longdrink.dao.IInscripcionDAO;
 import com.longdrink.model.Inscripcion;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
-import jakarta.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -37,15 +38,15 @@ public class InscripcionService {
     }
     //En desuso. Safe delete mas adelante.
     public Inscripcion guardarInscripcion(Inscripcion i){
-        boolean vacio = i.isEmpty();
-        if(vacio){
+        boolean lleno = i.isFull();
+        if(lleno){
             return inscripcionDAO.save(i);
         }
         return null;
     }
     @Transactional
     public int guardarIns(Inscripcion i){
-        Query query = em.createQuery("INSERT INTO Inscripcion(idalumno,idcurso,fechainiciocurso,fechafinalcurso,fechainscripcion,terminado,activo) values(:ida,:idc,:fic,:ffc,:fiic,:t,:a)");
+        Query query = em.createQuery("INSERT INTO Inscripcion(id_alumno,id_curso,fecha_inicio_curso,fecha_final_curso,fecha_inscripcion,terminado,activo) values(:ida,:idc,:fic,:ffc,:fiic,:t,:a)");
         query.setParameter("ida",i.getId_alumno());
         query.setParameter("idc",i.getId_curso());
         query.setParameter("fic",i.getFecha_inicio_curso());

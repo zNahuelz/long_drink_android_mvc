@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.longdrink.androidapp.CourseDescriptionActivity;
 import com.longdrink.androidapp.R;
+import com.longdrink.androidapp.api_model.SQAlumno;
 import com.longdrink.androidapp.api_model.SQCurso;
 
 import java.util.List;
@@ -25,11 +26,13 @@ public class CoursesRecyclerViewAdapter extends RecyclerView.Adapter<CoursesRecy
     List<SQCurso> listadoCursos;
     //Contexto en que se encuentra el adaptador
     Context context;
+    SQAlumno alumno;
 
 
-    public CoursesRecyclerViewAdapter(List<SQCurso> listadoCursos, Context context) {
+    public CoursesRecyclerViewAdapter(List<SQCurso> listadoCursos, Context context, SQAlumno alumno) {
         this.listadoCursos = listadoCursos;
         this.context = context;
+        this.alumno = alumno;
     }
 
     @NonNull
@@ -78,6 +81,7 @@ public class CoursesRecyclerViewAdapter extends RecyclerView.Adapter<CoursesRecy
         Intent intent = new Intent(this.context, CourseDescriptionActivity.class);
         //Envia el curso a la actividad por medio del putExtra
         intent.putExtra("curso",this.listadoCursos.get(position));
+        intent.putExtra("alumno", this.alumno);
         this.context.startActivity(intent);
     }
 }

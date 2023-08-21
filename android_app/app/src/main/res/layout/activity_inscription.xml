@@ -110,6 +110,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/inscription_spinner_frecuency"
         android:layout_marginTop="55sp"
-        android:text="@string/inscription_button"/>
+        android:text="@string/inscription_button"
+        android:backgroundTint="@color/dark_blue"
+        android:textColor="@color/light_red"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

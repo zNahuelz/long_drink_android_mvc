@@ -31,6 +31,16 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityRegisterBinding.inflate(getLayoutInflater());
+        /*login = (ImageView) findViewById(R.id.register_back);
+        registrarse = (Button) findViewById(R.id.register_button);
+        nom = (TextView) findViewById(R.id.register_name);
+        apepa = (TextView) findViewById(R.id.register_last_father);
+        apema = (TextView) findViewById(R.id.register_last_mother);
+        dni = (TextView) findViewById(R.id.register_dni);
+        email = (TextView) findViewById(R.id.register_email);
+        pass1 = (TextView) findViewById(R.id.register_password);
+        pass2 = (TextView) findViewById(R.id.register_password_repeat);
+        registrarse.setOnClickListener(this::onClick);*/
 
         binding.registerButton.setOnClickListener(e -> Register());
         binding.registerBack.setOnClickListener(e -> goBack());

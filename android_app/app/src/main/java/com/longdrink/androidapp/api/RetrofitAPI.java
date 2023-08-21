@@ -2,7 +2,10 @@ package com.longdrink.androidapp.api;
 
 import com.longdrink.androidapp.api_model.FrontFrecuenciaTurno;
 import com.longdrink.androidapp.api_model.SQAlumno;
+import com.longdrink.androidapp.api_model.SQAlumnoUsuario;
 import com.longdrink.androidapp.api_model.SQCurso;
+import com.longdrink.androidapp.api_model.SQCursoFrecuencia;
+import com.longdrink.androidapp.api_model.SQCursoTurno;
 import com.longdrink.androidapp.api_model.SQEditCurso;
 import com.longdrink.androidapp.api_model.SQFrecuencia;
 import com.longdrink.androidapp.api_model.SQInscripcion;
@@ -49,6 +52,11 @@ public interface RetrofitAPI {
     Call<Boolean> actualizarCursoFull(@Body SQEditCurso body);
     @GET("/curso/turnofrecuencia")
     Call<FrontFrecuenciaTurno> getFrecuenciaTurno(@Query("id") int id);
+
+    @GET("/curso/cursofrecuencia/listar/id_curso")
+    Call<List<SQCursoFrecuencia>> getCursoFrecuenciaAll(@Query("id_curso") int id_curso);
+    @GET("/curso/cursoturno/listar/id_curso")
+    Call<List<SQCursoTurno>> getCursoTurnoAll(@Query("id_curso") int id_curso);
     //Fin CURSOS.
 
     //Inicio ALUMNOS.
@@ -62,6 +70,9 @@ public interface RetrofitAPI {
     Call<Boolean> eliminarAlumnoPorID(@Query("id") int id);
     @PUT("/alumno/editar")
     Call<Boolean> actualizarAlumno(@Body SQAlumno a);
+
+    @GET("/usuario/usr_alum/id_usuario")
+    Call<SQAlumnoUsuario> getUsuarioAlumno(@Query("id_usr") int id);
     //Fin ALUMNOS
 
 
@@ -86,6 +97,8 @@ public interface RetrofitAPI {
     //Fin FRECUENCIAS
 
     //Inicio de TURNOS
+    @GET("/turno")
+    Call<List<SQTurno>> listarTurnos();
     @GET("/turno/activos")
     Call<List<SQTurno>> listarTurnosActivos();
     //Fin de TURNOS
@@ -100,6 +113,6 @@ public interface RetrofitAPI {
     //Fin de USUARIOS.
 
     //INSCRIPCION USUARIOS
-    @POST("/inscripcion")
+    @POST("/inscripcion/nuevo")
     Call<Boolean> guardarInscripcion(@Body SQInscripcion inscripcion);
 }

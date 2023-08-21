@@ -3,19 +3,19 @@ package com.longdrink.androidapp.api_model;
 import java.util.Date;
 
 public class SQInscripcion {
-    private int idalumno;
-    private int idcurso;
-    private Date fechainiciocurso;
-    private Date fechafinalcurso;
-    private Date fechainscripcion;
+    private int id_alumno;
+    private int id_curso;
+    private String fechainiciocurso;
+    private String fechafinalcurso;
+    private String fechainscripcion;
     private int terminado;
     private int activo;
 
     public SQInscripcion(){}
 
-    public SQInscripcion(int idalumno, int idcurso, Date fechainiciocurso, Date fechafinalcurso, Date fechainscripcion, int terminado, int activo) {
-        this.idalumno = idalumno;
-        this.idcurso = idcurso;
+    public SQInscripcion(int idalumno, int idcurso, String fechainiciocurso, String fechafinalcurso, String fechainscripcion, int terminado, int activo) {
+        this.id_alumno = idalumno;
+        this.id_curso = idcurso;
         this.fechainiciocurso = fechainiciocurso;
         this.fechafinalcurso = fechafinalcurso;
         this.fechainscripcion = fechainscripcion;
@@ -24,42 +24,42 @@ public class SQInscripcion {
     }
 
     public int getIdalumno() {
-        return idalumno;
+        return id_alumno;
     }
 
     public void setIdalumno(int idalumno) {
-        this.idalumno = idalumno;
+        this.id_alumno = idalumno;
     }
 
     public int getIdcurso() {
-        return idcurso;
+        return id_curso;
     }
 
     public void setIdcurso(int idcurso) {
-        this.idcurso = idcurso;
+        this.id_curso = idcurso;
     }
 
-    public Date getFechainiciocurso() {
+    public String getFechainiciocurso() {
         return fechainiciocurso;
     }
 
-    public void setFechainiciocurso(Date fechainiciocurso) {
+    public void setFechainiciocurso(String fechainiciocurso) {
         this.fechainiciocurso = fechainiciocurso;
     }
 
-    public Date getFechafinalcurso() {
+    public String getFechafinalcurso() {
         return fechafinalcurso;
     }
 
-    public void setFechafinalcurso(Date fechafinalcurso) {
+    public void setFechafinalcurso(String fechafinalcurso) {
         this.fechafinalcurso = fechafinalcurso;
     }
 
-    public Date getFechainscripcion() {
+    public String getFechainscripcion() {
         return fechainscripcion;
     }
 
-    public void setFechainscripcion(Date fechainscripcion) {
+    public void setFechainscripcion(String fechainscripcion) {
         this.fechainscripcion = fechainscripcion;
     }
 

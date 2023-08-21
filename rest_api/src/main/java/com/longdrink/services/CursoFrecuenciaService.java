@@ -1,16 +1,21 @@
 package com.longdrink.services;
 
+import com.longdrink.model.Curso;
 import com.longdrink.dao.ICursoFrecuenciaDAO;
 import com.longdrink.model.CursoFrecuencia;
+import com.longdrink.model.CursoTurno;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class CursoFrecuenciaService {
-    @Autowired
-    private ICursoFrecuenciaDAO cursFrecuenciaDAO;
 
     @Autowired
     private EntityManager em;
@@ -29,5 +34,13 @@ public class CursoFrecuenciaService {
         catch(Exception ex){
             return new CursoFrecuencia();
         }
+    }
+
+    @SuppressWarnings("unchecked")
+    @Transactional(readOnly = true)
+    public List<CursoFrecuencia> findAllCursoFrecuencia(int id_curso){
+        Query query = em.createQuery("SELECT cf from CursoFrecuencia cf where cf.id_curso = " + id_curso);
+
+        return  (List<CursoFrecuencia>)query.getResultList();
     }
 }
