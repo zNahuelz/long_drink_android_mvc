@@ -1,6 +1,7 @@
 package com.longdrink.androidapp;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -55,6 +57,7 @@ public class AdmCourseEditActivity extends AppCompatActivity implements AdapterV
         binding.btnEGuardar.setOnClickListener(e -> UpdateCourse(courseData));
         binding.btnEAtras.setOnClickListener(e -> goBack());
         setContentView(binding.getRoot());
+        showAlert();
     }
     private SQCurso processData(SQCurso c){
         try{
@@ -243,5 +246,12 @@ public class AdmCourseEditActivity extends AppCompatActivity implements AdapterV
             InputMethodManager manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             manager.hideSoftInputFromWindow(view.getWindowToken(),0);
         }
+    }
+
+    private void showAlert(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("La solicitud se procesará de inmediato y sera visible a los usuarios. Se requiere un cierre de sesión para visualizar los cambios en su dashboard.");
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

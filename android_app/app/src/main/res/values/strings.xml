@@ -48,6 +48,9 @@
     <string name="AlumnoHabilitado">Alumno Habilitado</string>
     <string name="DocenteHabilitado">Docente Habilitado</string>
     <string name="CambiarPassword">Cambiar Contraseña</string>
+    <string name="AdvertenciaEliminar">La solicitud será procesada inmediatamente, y el curso dejará de ser visible a estudiantes. Es necesario un cierre de sesión en su cuenta para visualizar los cambios en su dashboard.</string>
+    <string name="AdvertenciaEliminarDocente">La solicitud será procesada inmediatamente, y el docente sera eliminado. Es necesario un cierre de sesión en su cuenta para visualizar los cambios en su dashboard.</string>
+    <string name="AdvertenciaEliminarAlumno">La solicitud será procesada inmediatamente, y el alumno sera eliminado. Es necesario un cierre de sesión en su cuenta para visualizar los cambios en su dashboard.</string>
     <!-- FIN Strings ADMINISTRATIVOS - Procesos CRUD -->
 
     <!-- Strings RECUPERAR CONTRASEÑA - INICIO -->

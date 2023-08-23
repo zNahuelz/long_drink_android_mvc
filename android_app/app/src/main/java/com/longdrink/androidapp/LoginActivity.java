@@ -64,6 +64,7 @@ public class LoginActivity extends AppCompatActivity  {
                     switch(response.body().getPermisos()){
                         case 0:
                             Intent a = new Intent(LoginActivity.this,MainActivity.class);
+                            a.putExtra("id_usuario",response.body().getId_usuario());
                             //TODO : Colocar los extras que requieras!
                             a.putExtra("account_id",response.body().getId_usuario());
                             startActivity(a);

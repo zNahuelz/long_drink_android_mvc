@@ -1,5 +1,6 @@
 package com.longdrink.androidapp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -37,6 +38,7 @@ public class AdmTeacherEditActivity extends AppCompatActivity {
         fillData(teacherData);
         binding.btnEProfCancelar.setOnClickListener(e -> goBack());
         binding.btnEProfGuardar.setOnClickListener(e -> UpdateTeacher(teacherData));
+        showAlert();
     }
 
     private void UpdateTeacher(SQProfesor teacherData){
@@ -130,5 +132,11 @@ public class AdmTeacherEditActivity extends AppCompatActivity {
             InputMethodManager manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             manager.hideSoftInputFromWindow(view.getWindowToken(),0);
         }
+    }
+    private void showAlert(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("La solicitud se procesará de inmediato y sera visible a los usuarios. Se requiere un cierre de sesión para visualizar los cambios en su dashboard.");
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }
