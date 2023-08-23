@@ -10,10 +10,12 @@ public class SQInscripcion {
     private String fechainscripcion;
     private int terminado;
     private int activo;
+    private int id_frecuencia;
+    private int id_turno;
 
     public SQInscripcion(){}
 
-    public SQInscripcion(int idalumno, int idcurso, String fechainiciocurso, String fechafinalcurso, String fechainscripcion, int terminado, int activo) {
+    public SQInscripcion(int idalumno, int idcurso, String fechainiciocurso, String fechafinalcurso, String fechainscripcion, int terminado, int activo, int idfrecuencia, int idturno) {
         this.id_alumno = idalumno;
         this.id_curso = idcurso;
         this.fechainiciocurso = fechainiciocurso;
@@ -21,6 +23,8 @@ public class SQInscripcion {
         this.fechainscripcion = fechainscripcion;
         this.terminado = terminado;
         this.activo = activo;
+        this.id_frecuencia = idfrecuencia;
+        this.id_turno = idturno;
     }
 
     public int getIdalumno() {
@@ -77,5 +81,21 @@ public class SQInscripcion {
 
     public void setActivo(int activo) {
         this.activo = activo;
+    }
+
+    public int getId_frecuencia() {
+        return id_frecuencia;
+    }
+
+    public void setId_frecuencia(int id_frecuencia) {
+        this.id_frecuencia = id_frecuencia;
+    }
+
+    public int getId_turno() {
+        return id_turno;
+    }
+
+    public void setId_turno(int id_turno) {
+        this.id_turno = id_turno;
     }
 }

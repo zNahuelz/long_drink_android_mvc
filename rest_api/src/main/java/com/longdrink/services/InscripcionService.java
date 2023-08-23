@@ -28,9 +28,13 @@ public class InscripcionService {
     public List<Inscripcion> listarActivos(int activo){
         return inscripcionDAO.findAllByactivo(activo);
     }
-
+    
+    @SuppressWarnings("unchecked")
+    @Transactional(readOnly = true)
     public List<Inscripcion> listarPorIDAlum(int id_alum){
-        return inscripcionDAO.findAllByidalumno(id_alum);
+        Query query = em.createQuery("SELECT i FROM Inscripcion i WHERE idalumno = :ida and activo = 1");
+        query.setParameter("ida", id_alum);
+        return (List<Inscripcion>) query.getResultList();
     }
 
     public List<Inscripcion> listarPorTerminado(int t){
@@ -46,7 +50,7 @@ public class InscripcionService {
     }
     @Transactional
     public int guardarIns(Inscripcion i){
-        Query query = em.createQuery("INSERT INTO Inscripcion(id_alumno,id_curso,fecha_inicio_curso,fecha_final_curso,fecha_inscripcion,terminado,activo) values(:ida,:idc,:fic,:ffc,:fiic,:t,:a)");
+        Query query = em.createQuery("INSERT INTO Inscripcion(id_alumno,id_curso,fechainiciocurso,fechafinalcurso,fechainscripcioncurso,terminado,activo, id_frecuencia, id_turno) values(:ida,:idc,:fic,:ffc,:fiic,:t,:a,:idf,:idt)");
         query.setParameter("ida",i.getId_alumno());
         query.setParameter("idc",i.getId_curso());
         query.setParameter("fic",i.getFecha_inicio_curso());
@@ -54,6 +58,8 @@ public class InscripcionService {
         query.setParameter("fiic", i.getFecha_inscripcion());
         query.setParameter("t", i.getTerminado());
         query.setParameter("a",i.getActivo());
+        query.setParameter("idf", i.getId_frecuencia());
+        query.setParameter("idt", i.getId_turno());
         return query.executeUpdate();
     }
 

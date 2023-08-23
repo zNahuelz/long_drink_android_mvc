@@ -78,6 +78,7 @@ public class UsuarioController {
     @GetMapping("id_usuario")
     public Usuario obtenerPorId(@RequestParam int id_usuario){
         try{
+
             return servUsu.obtenerUsuario(id_usuario);
         }
         catch(Exception ex){ return new Usuario(); }

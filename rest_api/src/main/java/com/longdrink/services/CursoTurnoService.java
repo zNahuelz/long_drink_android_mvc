@@ -34,6 +34,6 @@ public class CursoTurnoService {
     @SuppressWarnings("unchecked")
     @Transactional(readOnly = true)
     public List<CursoTurno> findAllCursoTurno(int id_curso){
-        return (List<CursoTurno>)em.createQuery("SELECT ct from CursoTurno ct where ct.id_curso = " + id_curso).getResultList();
+        return (List<CursoTurno>)em.createQuery("SELECT ct from CursoTurno ct where ct.idCurso = " + id_curso).getResultList();
     }
 }
