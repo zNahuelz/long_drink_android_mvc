@@ -78,8 +78,7 @@ public class UsuarioController {
     @GetMapping("id_usuario")
     public Usuario obtenerPorId(@RequestParam int id_usuario){
         try{
-            System.out.println("***************************");
-            System.out.println("IDUSUARIO: " + id_usuario);
+
             return servUsu.obtenerUsuario(id_usuario);
         }
         catch(Exception ex){ return new Usuario(); }
