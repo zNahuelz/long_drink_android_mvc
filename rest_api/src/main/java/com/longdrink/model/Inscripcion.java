@@ -37,17 +37,25 @@ public class Inscripcion {
     private Date fechainscripcion;
     private int terminado;
     private int activo;
+    @Id
+    @Column(name="id_frecuencia")
+    private int idfrecuencia;
+    @Id
+    @Column(name="id_turno")
+    private int idturno;
 
     public Inscripcion(){}
 
-    public Inscripcion(int id_alumno, int id_curso, Date fecha_inicio_curso, Date fecha_final_curso, Date fecha_inscripcion, int terminado, int activo) {
-        this.idalumno = id_alumno;
-        this.idcurso = id_curso;
-        this.fechainiciocurso = fecha_inicio_curso;
-        this.fechafinalcurso = fecha_final_curso;
-        this.fechainscripcion = fecha_inscripcion;
+    public Inscripcion(int idalumno, int idcurso, Date fechainiciocurso, Date fechafinalcurso, Date fechainscripcion, int terminado, int activo, int idfrecuencia, int idturno) {
+        this.idalumno = idalumno;
+        this.idcurso = idcurso;
+        this.fechainiciocurso = fechainiciocurso;
+        this.fechafinalcurso = fechafinalcurso;
+        this.fechainscripcion = fechainscripcion;
         this.terminado = terminado;
         this.activo = activo;
+        this.idfrecuencia = idfrecuencia;
+        this.idturno = idturno;
     }
 
     public boolean isFull(){
@@ -109,5 +117,21 @@ public class Inscripcion {
 
     public void setActivo(int activo) {
         this.activo = activo;
+    }
+
+    public void setId_frecuencia(int idfrecuencia) {
+        this.idfrecuencia = idfrecuencia;
+    }
+
+    public int getId_frecuencia() {
+        return idfrecuencia;
+    }
+
+    public void setId_turno(int idturno) {
+        this.idturno = idturno;
+    }
+
+    public int getId_turno() {
+        return idturno;
     }
 }

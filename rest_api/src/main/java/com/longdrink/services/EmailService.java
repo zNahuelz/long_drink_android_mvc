@@ -11,7 +11,7 @@ import com.longdrink.model.Usuario;
 
 @Service
 public class EmailService {
-    @Autowired
+    @Autowired(required=true)
     private JavaMailSender mailSender;
 
     public void SendRegisterEmail(String to,SQRegistro sqr){

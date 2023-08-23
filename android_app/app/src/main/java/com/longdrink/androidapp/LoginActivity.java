@@ -30,6 +30,8 @@ public class LoginActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
+        binding.username.setText("");
+        binding.password.setText("");
         binding.loginButton.setOnClickListener(e -> Login());
         binding.loginRegisterButton.setOnClickListener(e -> Register());
         binding.loginForgotClick.setOnClickListener(e -> LostPassword());
@@ -63,6 +65,7 @@ public class LoginActivity extends AppCompatActivity  {
                         case 0:
                             Intent a = new Intent(LoginActivity.this,MainActivity.class);
                             //TODO : Colocar los extras que requieras!
+                            a.putExtra("account_id",response.body().getId_usuario());
                             startActivity(a);
                             break;
                         case 1:

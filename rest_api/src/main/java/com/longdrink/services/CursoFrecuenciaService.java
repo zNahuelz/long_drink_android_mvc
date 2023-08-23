@@ -39,7 +39,7 @@ public class CursoFrecuenciaService {
     @SuppressWarnings("unchecked")
     @Transactional(readOnly = true)
     public List<CursoFrecuencia> findAllCursoFrecuencia(int id_curso){
-        Query query = em.createQuery("SELECT cf from CursoFrecuencia cf where cf.id_curso = " + id_curso);
+        Query query = em.createQuery("SELECT cf from CursoFrecuencia cf where cf.idCurso = " + id_curso);
 
         return  (List<CursoFrecuencia>)query.getResultList();
     }

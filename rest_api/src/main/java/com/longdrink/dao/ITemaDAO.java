@@ -11,5 +11,5 @@ public interface ITemaDAO extends CrudRepository<Tema, Integer>{
 	Optional<List<Tema>> findByactivo(int activo);
 	
 	Optional<Tema> findBynombre(String nombre);
-    
+  
 }

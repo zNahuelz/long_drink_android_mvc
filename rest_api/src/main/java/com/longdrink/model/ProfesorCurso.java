@@ -1,44 +1,49 @@
 package com.longdrink.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
 import jakarta.persistence.Table;
 
 import java.util.Date;
 
 @Entity
 @Table(name = "profesor_curso")
+@IdClass(ProfesorCurso.class)
 public class ProfesorCurso {
     @Id
-    private int id_profesor;
+    @Column(name="id_profesor")
+    private int idprofesor;
     @Id
-    private int id_curso;
+    @Column(name="id_curso")
+    private int idcurso;
     private Date fecha_inicio_curso;
     private Date fecha_final_curso;
 
     public ProfesorCurso(){}
 
-    public ProfesorCurso(int id_profesor, int id_curso, Date fecha_inicio_curso, Date fecha_final_curso) {
-        this.id_profesor = id_profesor;
-        this.id_curso = id_curso;
+    public ProfesorCurso(int idprofesor, int idcurso, Date fecha_inicio_curso, Date fecha_final_curso) {
+        this.idprofesor = idprofesor;
+        this.idcurso = idcurso;
         this.fecha_inicio_curso = fecha_inicio_curso;
         this.fecha_final_curso = fecha_final_curso;
     }
 
-    public int getId_profesor() {
-        return id_profesor;
+    public int getIdprofesor() {
+        return idprofesor;
     }
 
-    public void setId_profesor(int id_profesor) {
-        this.id_profesor = id_profesor;
+    public void setIdprofesor(int idprofesor) {
+        this.idprofesor = idprofesor;
     }
 
-    public int getId_curso() {
-        return id_curso;
+    public int getIdcurso() {
+        return idcurso;
     }
 
-    public void setId_curso(int id_curso) {
-        this.id_curso = id_curso;
+    public void setIdcurso(int idcurso) {
+        this.idcurso = idcurso;
     }
 
     public Date getFecha_inicio_curso() {

@@ -21,8 +21,8 @@ public class Usuario {
         return id_usuario;
     }
 
-    public void setId_usuario(int id_usuario) {
-        this.id_usuario = id_usuario;
+    public void setId_usuario(int idusuario) {
+        this.id_usuario = idusuario;
     }
 
     public String getContrasena() {
@@ -37,8 +37,8 @@ public class Usuario {
         return nombre_usuario;
     }
 
-    public void setNombre_usuario(String nombre_usuario) {
-        this.nombre_usuario = nombre_usuario;
+    public void setNombre_usuario(String nombreusuario) {
+        this.nombre_usuario = nombreusuario;
     }
 
     public int getPermisos() {

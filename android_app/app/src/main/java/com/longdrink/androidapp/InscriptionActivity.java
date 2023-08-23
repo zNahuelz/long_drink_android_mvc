@@ -50,10 +50,12 @@ public class InscriptionActivity extends AppCompatActivity {
     List<String> listadoCursosNombres = new ArrayList<>();
     /** VARIABLES HORARIOS*/
     List<SQTurno> listadoTurnos;
+    List<SQTurno> listadoTurnosFiltrados = new ArrayList<>();
     List<String> listadoTurnosNombres = new ArrayList<>();
 
     /** VARIABLES FRECUENCIAS */
     List<SQFrecuencia> listadoFrecuencias;
+    List<SQFrecuencia> listadoFrecuenciasFiltradas = new ArrayList<>();
     List<String> listadoFrecuenciasNombres = new ArrayList<>();
 
     int id_alumno;
@@ -150,6 +152,7 @@ public class InscriptionActivity extends AppCompatActivity {
                 listadoFrecuencias.forEach(elemento -> {
                     listadoCursoFrecuencia.forEach(e -> {
                         if (elemento.getId_frecuencia() == e.getId_frecuencia()){
+                            listadoFrecuenciasFiltradas.add(elemento);
                             listadoFrecuenciasNombres.add(elemento.getNombre());
                         }
                     });
@@ -194,6 +197,7 @@ public class InscriptionActivity extends AppCompatActivity {
                 listadoTurnos.forEach(elemento -> {
                     listadoCursoTurno.forEach(e -> {
                         if (elemento.getId_turno() == e.getId_turno()){
+                            listadoTurnosFiltrados.add(elemento);
                             listadoTurnosNombres.add(elemento.getNombre());
                         }
                     });
@@ -234,8 +238,8 @@ public class InscriptionActivity extends AppCompatActivity {
     public void inscripcion() throws ParseException {
         SQCurso cursoSeleccionado = listadoCursos.get(binding.inscriptionSpinnerCourses.getSelectedItemPosition());
         int id_curso = cursoSeleccionado.getId_curso();
-        String frecuenciaSeleccionada = listadoFrecuenciasNombres.get(binding.inscriptionSpinnerFrecuency.getSelectedItemPosition());
-        String turnoSeleccionado = listadoTurnosNombres.get(binding.inscriptionSpinnerTime.getSelectedItemPosition());
+        SQFrecuencia frecuenciaSeleccionada = listadoFrecuenciasFiltradas.get(binding.inscriptionSpinnerFrecuency.getSelectedItemPosition());
+        SQTurno turnoSeleccionado = listadoTurnosFiltrados.get(binding.inscriptionSpinnerTime.getSelectedItemPosition());
         //Todo lo relacionado a las fechas
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         String fechaInscripcion = formato.format(Calendar.getInstance().getTime());
@@ -245,13 +249,14 @@ public class InscriptionActivity extends AppCompatActivity {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
         alertDialog
                 .setMessage("La inscripción será con estos datos: \n-Curso: "
-                + cursoSeleccionado.getNombre() + "\n-Frecuencia: " + frecuenciaSeleccionada +
-                "\n-Turno: " + turnoSeleccionado)
+                + cursoSeleccionado.getNombre() + "\n-Frecuencia: " + frecuenciaSeleccionada.getNombre() +
+                "\n-Turno: " + turnoSeleccionado.getNombre())
                 .setNegativeButton("No", (dialog, which) -> {})
                 .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        SQInscripcion inscripcion = new SQInscripcion(id_alumno, id_curso, fechaInicioClases, fechaFinal, fechaInscripcion, 0, 1);
+                        SQInscripcion inscripcion = new SQInscripcion(id_alumno, id_curso, fechaInicioClases, fechaFinal, fechaInscripcion,
+                                0, 1, frecuenciaSeleccionada.getId_frecuencia(), turnoSeleccionado.getId_turno());
                         enviarDatos(inscripcion);
                     }
                 }).show();

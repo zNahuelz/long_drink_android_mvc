@@ -5,12 +5,15 @@ import com.longdrink.androidapp.api_model.SQAlumno;
 import com.longdrink.androidapp.api_model.SQAlumnoUsuario;
 import com.longdrink.androidapp.api_model.SQCurso;
 import com.longdrink.androidapp.api_model.SQCursoFrecuencia;
+import com.longdrink.androidapp.api_model.SQCursoTema;
 import com.longdrink.androidapp.api_model.SQCursoTurno;
 import com.longdrink.androidapp.api_model.SQEditCurso;
 import com.longdrink.androidapp.api_model.SQFrecuencia;
 import com.longdrink.androidapp.api_model.SQInscripcion;
 import com.longdrink.androidapp.api_model.SQProfesor;
+import com.longdrink.androidapp.api_model.SQProfesorCurso;
 import com.longdrink.androidapp.api_model.SQRegistro;
+import com.longdrink.androidapp.api_model.SQTema;
 import com.longdrink.androidapp.api_model.SQTurno;
 import com.longdrink.androidapp.api_model.SQUsuario;
 import com.longdrink.androidapp.api_model.SQUsuarioProfesor;
@@ -94,6 +97,8 @@ public interface RetrofitAPI {
     Call<List<SQFrecuencia>> listarFrecuencias();
     @GET("/frecuencia/activos")
     Call<List<SQFrecuencia>> listarFrecuenciasActivas();
+    @GET("/frecuencia/id")
+    Call<SQFrecuencia> obtenerFrecuenciaPorId(@Query("id")int id);
     //Fin FRECUENCIAS
 
     //Inicio de TURNOS
@@ -101,6 +106,8 @@ public interface RetrofitAPI {
     Call<List<SQTurno>> listarTurnos();
     @GET("/turno/activos")
     Call<List<SQTurno>> listarTurnosActivos();
+    @GET("/turno/id")
+    Call<SQTurno> obtenerTurnoPorId(@Query("id") int id);
     //Fin de TURNOS
 
     //Inicio de USUARIOS
@@ -115,4 +122,20 @@ public interface RetrofitAPI {
     //INSCRIPCION USUARIOS
     @POST("/inscripcion/nuevo")
     Call<Boolean> guardarInscripcion(@Body SQInscripcion inscripcion);
+
+    @GET("/inscripcion/id_alum")
+    Call<List<SQInscripcion>> obtenerInscripcion(@Query("id_alum") int id_alum);
+    //FIN INSCRIPCION
+
+    //CURSO_PROFESOR
+    @GET("/curso/profesorcurso/id_curso")
+    Call<SQProfesorCurso> obtenerProfesorCurso(@Query("id_curso") int id_curso);
+
+    //CURSO_TEMA
+    @GET("/curso/cursotema/listar/id_curso")
+    Call<List<SQCursoTema>> obtenerCursoTema(@Query("id_curso") int id_curso);
+
+    //TEMA
+    @GET("/tema")
+    Call<List<SQTema>> listarTodosTemas();
 }

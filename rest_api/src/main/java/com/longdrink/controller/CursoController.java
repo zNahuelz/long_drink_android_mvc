@@ -3,7 +3,10 @@ package com.longdrink.controller;
 import com.longdrink.model.*;
 import com.longdrink.services.CursoFrecuenciaService;
 import com.longdrink.services.CursoService;
+import com.longdrink.services.CursoTemaService;
 import com.longdrink.services.CursoTurnoService;
+import com.longdrink.services.ProfesorCursoService;
+
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +23,10 @@ public class CursoController {
     private CursoTurnoService servCT;
     @Autowired
     private CursoService servCurs;
+    @Autowired
+    private ProfesorCursoService servProfCur;
+    @Autowired
+    private CursoTemaService servCurTem;
 
     //FRONT: Listar TODOS los cursos.
     @GetMapping
@@ -106,5 +113,15 @@ public class CursoController {
     @GetMapping("cursoturno/listar/id_curso")
     public List<CursoTurno> listaTurnos(@RequestParam int id_curso){
         return servCT.findAllCursoTurno(id_curso);
+    }
+
+    @GetMapping("profesorcurso/id_curso")
+    public ProfesorCurso obtenerProfesorCurso(@RequestParam int id_curso){
+        return servProfCur.obtenerProfesorCurso(id_curso);
+    }
+
+    @GetMapping("cursotema/listar/id_curso")
+    public List<CursoTema> obtenerCursoTema(@RequestParam int id_curso){
+        return servCurTem.getALlCursoTemasByID(id_curso);
     }
 }
