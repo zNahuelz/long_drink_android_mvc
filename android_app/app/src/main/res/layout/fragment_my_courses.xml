@@ -10,113 +10,120 @@
     <!-- TODO: Update blank fragment layout -->
 
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraint_description"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="50sp"
-            app:layout_constraintVertical_bias="0">
+            android:layout_margin="20sp"
+            app:cardCornerRadius="20sp">
 
-            <ImageView
-                android:id="@+id/my_course_image"
-                android:layout_width="200sp"
-                android:layout_height="200sp"
-                app:layout_constraintTop_toTopOf="@+id/constraint_description"
-                app:layout_constraintBottom_toBottomOf="@+id/constraint_description"
-                app:layout_constraintEnd_toEndOf="@+id/constraint_description"
-                app:layout_constraintStart_toStartOf="@+id/constraint_description"
-                tools:layout_editor_absoluteX="20dp"
-                tools:layout_editor_absoluteY="20dp"
-                app:layout_constraintVertical_bias="0"
-                tools:src="@tools:sample/avatars[0]" />
-
-            <TextView
-                android:id="@+id/my_course_name"
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint_description"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/my_course_image"
-                app:layout_constraintBottom_toBottomOf="@+id/constraint_description"
-                app:layout_constraintEnd_toEndOf="@id/constraint_description"
-                app:layout_constraintStart_toStartOf="@id/constraint_description"
-                app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintVertical_bias="0"
-                android:layout_marginTop="10sp"
-                android:text="Nombre del Curso"/>
+                android:padding="30sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0">
 
-            <TextView
-                android:id="@+id/my_course_frecuency"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/my_course_name"
-                app:layout_constraintBottom_toBottomOf="@+id/constraint_description"
-                app:layout_constraintEnd_toEndOf="@id/constraint_description"
-                app:layout_constraintStart_toStartOf="@id/constraint_description"
-                app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintVertical_bias="0"
-                android:layout_marginTop="10sp"
-                android:text="Frecuencia"/>
+                <ImageView
+                    android:id="@+id/my_course_image"
+                    android:layout_width="200sp"
+                    android:layout_height="200sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/constraint_description"
+                    app:layout_constraintEnd_toEndOf="@+id/constraint_description"
+                    app:layout_constraintStart_toStartOf="@+id/constraint_description"
+                    app:layout_constraintTop_toTopOf="@+id/constraint_description"
+                    app:layout_constraintVertical_bias="0"
+                    tools:layout_editor_absoluteX="20dp"
+                    tools:layout_editor_absoluteY="20dp"
+                    tools:src="@tools:sample/avatars[0]" />
 
-            <TextView
-                android:id="@+id/my_course_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/my_course_name"
-                app:layout_constraintBottom_toBottomOf="@+id/constraint_description"
-                app:layout_constraintEnd_toEndOf="@id/constraint_description"
-                app:layout_constraintStart_toStartOf="@id/my_course_frecuency"
-                app:layout_constraintHorizontal_bias=".6"
-                app:layout_constraintVertical_bias="0"
-                android:layout_marginTop="10sp"
-                android:text="Horario"/>
+                <TextView
+                    android:id="@+id/my_course_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18sp"
+                    android:text="Nombre del Curso"
+                    app:layout_constraintBottom_toBottomOf="@+id/constraint_description"
+                    app:layout_constraintEnd_toEndOf="@id/constraint_description"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="@id/constraint_description"
+                    app:layout_constraintTop_toBottomOf="@+id/my_course_image"
+                    app:layout_constraintVertical_bias="0" />
 
-            <TextView
-                android:id="@+id/my_course_teacher"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/my_course_frecuency"
-                app:layout_constraintBottom_toBottomOf="@+id/constraint_description"
-                app:layout_constraintEnd_toEndOf="@id/constraint_description"
-                app:layout_constraintStart_toStartOf="@id/constraint_description"
-                app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintVertical_bias="0"
-                android:layout_marginTop="10sp"
-                android:text="Profesor"/>
+                <TextView
+                    android:id="@+id/my_course_frecuency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18sp"
+                    android:text="Frecuencia"
+                    app:layout_constraintBottom_toBottomOf="@+id/constraint_description"
+                    app:layout_constraintEnd_toEndOf="@id/constraint_description"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="@id/constraint_description"
+                    app:layout_constraintTop_toBottomOf="@+id/my_course_name"
+                    app:layout_constraintVertical_bias="0" />
 
-            <TextView
-                android:id="@+id/my_course_description"
-                android:layout_width="190sp"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/my_course_teacher"
-                app:layout_constraintBottom_toBottomOf="@+id/constraint_description"
-                app:layout_constraintEnd_toEndOf="@id/constraint_description"
-                app:layout_constraintStart_toStartOf="@id/my_course_frecuency"
-                app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintVertical_bias="0"
-                android:layout_marginTop="10sp"
-                android:text="Descripcion"/>
+                <TextView
+                    android:id="@+id/my_course_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18sp"
+                    android:text="Horario"
+                    app:layout_constraintBottom_toBottomOf="@+id/constraint_description"
+                    app:layout_constraintEnd_toEndOf="@id/constraint_description"
+                    app:layout_constraintHorizontal_bias=".9"
+                    app:layout_constraintStart_toStartOf="@id/my_course_frecuency"
+                    app:layout_constraintTop_toBottomOf="@+id/my_course_name"
+                    app:layout_constraintVertical_bias="0" />
 
-            <Button
-                android:id="@+id/my_course_retire"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="0sp"
-                android:text="Retirarse"
-                android:textSize="10sp"
-                app:layout_constraintTop_toBottomOf="@+id/my_course_description"
-                app:layout_constraintBottom_toBottomOf="@+id/constraint_description"
-                app:layout_constraintEnd_toEndOf="@id/constraint_description"
-                app:layout_constraintStart_toStartOf="@id/constraint_description"
-                app:layout_constraintHorizontal_bias="1"
-                app:layout_constraintVertical_bias="0"
-                android:layout_marginTop="10sp"
-                android:backgroundTint="@color/light_red"
-                android:textColor="@color/white"/>
+                <TextView
+                    android:id="@+id/my_course_teacher"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18sp"
+                    android:text="Profesor"
+                    app:layout_constraintBottom_toBottomOf="@+id/constraint_description"
+                    app:layout_constraintEnd_toEndOf="@id/constraint_description"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="@id/constraint_description"
+                    app:layout_constraintTop_toBottomOf="@+id/my_course_frecuency"
+                    app:layout_constraintVertical_bias="0" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/my_course_description"
+                    android:layout_width="230sp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18sp"
+                    android:text="Descripcion"
+                    app:layout_constraintBottom_toBottomOf="@+id/constraint_description"
+                    app:layout_constraintEnd_toEndOf="@id/constraint_description"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="@id/my_course_frecuency"
+                    app:layout_constraintTop_toBottomOf="@+id/my_course_teacher"
+                    app:layout_constraintVertical_bias="0" />
+
+                <Button
+                    android:id="@+id/my_course_retire"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18sp"
+                    android:backgroundTint="@color/light_red"
+                    android:padding="0sp"
+                    android:text="Retirarse"
+                    android:textColor="@color/white"
+                    android:textSize="10sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/constraint_description"
+                    app:layout_constraintEnd_toEndOf="@id/constraint_description"
+                    app:layout_constraintHorizontal_bias="1"
+                    app:layout_constraintStart_toStartOf="@id/constraint_description"
+                    app:layout_constraintTop_toBottomOf="@+id/my_course_description"
+                    app:layout_constraintVertical_bias="0" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:layout_width="match_parent"

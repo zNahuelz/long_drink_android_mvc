@@ -225,13 +225,18 @@ public class MyCoursesFragment extends Fragment {
         call.enqueue(new Callback<Boolean>() {
             @Override
             public void onResponse(Call<Boolean> call, Response<Boolean> response) {
-                AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
-                alertDialog.setMessage("Usted se ha retirado del curso de Manera Satisfactoria")
-                        .setNeutralButton("OK", (a, v) -> {
-                            Intent intent = new Intent(getContext(), MainActivity.class);
-                            intent.putExtra("account_id", id_user);
-                            startActivity(intent);
-                        }).show();
+                if (response.body() == true){
+                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
+                    alertDialog.setMessage("Usted se ha retirado del curso de Manera Satisfactoria")
+                            .setNeutralButton("OK", (a, v) -> {
+                                Intent intent = new Intent(getContext(), MainActivity.class);
+                                intent.putExtra("account_id", id_user);
+                                startActivity(intent);
+                            }).show();
+                }
+                else{
+                    Log.e("RETIRARCURSO_ONRESPONSE", "ERROR AL RETIRO");
+                }
             }
 
             @Override

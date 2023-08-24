@@ -78,7 +78,7 @@ public class InscripcionService {
                 // System.out.println("FRECUENCIA: " + i.getTerminado());
                 // i.setTerminado(1);
                 // System.out.println("FRECUENCIA: " + i.getTerminado());
-                Query query = em.createQuery("UPDATE Inscripcion i SET i.terminado = "+1+" AND i.activo = "+0+" WHERE i.idalumno = " + i.getId_alumno());
+                Query query = em.createQuery("UPDATE Inscripcion i SET i.terminado = "+1+",  i.activo = "+0+" WHERE i.idalumno = " + i.getId_alumno());
                 query.executeUpdate();
                 return true;
             // }

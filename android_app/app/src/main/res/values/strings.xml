@@ -76,4 +76,7 @@
     <string name="inscription_select_time">Seleccione el horario</string>
     <string name="inscription_select_frecuency">Seleccione la frecuencia</string>
     <string name="inscription_button">Inscribirme</string>
+    <!-- FIN inscripcion -->
+    <!-- String MI CUENTA -->
+    <string name="my_account_fullname_text">Nombre Completo</string>
 </resources>

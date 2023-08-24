@@ -1,5 +1,6 @@
 package com.longdrink.androidapp.fragments;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.longdrink.androidapp.PasswordRecovery;
 import com.longdrink.androidapp.R;
 import com.longdrink.androidapp.api.RetrofitAPI;
 import com.longdrink.androidapp.api_model.SQAlumno;
@@ -108,6 +110,7 @@ public class MyAccountFragment extends Fragment {
         binding.myAccountUsername.setBackgroundColor(Color.TRANSPARENT);
         binding.myAccountPassword.setBackgroundColor(Color.TRANSPARENT);
 
+        binding.myAccountChangePassword.setOnClickListener(v -> recuperacionContrasena());
 
         obtenerUsuario(id_user);
         return binding.getRoot();
@@ -134,5 +137,10 @@ public class MyAccountFragment extends Fragment {
                 Log.e("OBTENER_USUARIO_ONFAILURE", t.getMessage());
             }
         });
+    }
+
+    public void recuperacionContrasena(){
+        Intent intent = new Intent(getContext(), PasswordRecovery.class);
+        startActivity(intent);
     }
 }

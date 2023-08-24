@@ -11,7 +11,7 @@
         android:id="@+id/constraint_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Mi Cuenta">
+        >
 
         <TextView
             android:id="@+id/my_account_fullname_text"
@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:labelFor="@+id/my_account_fullname"
-            android:text="Nombre Completo"
+            android:text=""
             app:layout_constraintBottom_toTopOf="@+id/my_account_fullname"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.182"
@@ -126,27 +126,17 @@
 
         <Button
             android:id="@+id/my_account_change_password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cambiar"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.911"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.663" />
-
-        <Button
-            android:id="@+id/my_account_change_all"
             android:layout_width="150sp"
             android:layout_height="wrap_content"
-            android:text="Cambiar Credenciales"
+            android:text="Cambiar Contraseña"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.457"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.913" />
+            app:layout_constraintVertical_bias="0.913"
+            android:textColor="@color/light_red"
+            android:backgroundTint="@color/dark_blue"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

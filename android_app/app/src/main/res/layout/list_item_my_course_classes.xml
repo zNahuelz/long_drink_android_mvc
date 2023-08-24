@@ -17,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
         android:text="Nombre del Tema"
-        android:textSize="18sp"/>
+        android:textSize="12sp"/>
 
     <Button
         android:id="@+id/class_button"
@@ -29,5 +29,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1"
         android:text="Descargar"
-        android:textSize="10sp"/>
+        android:textSize="10sp"
+        android:textColor="@color/light_red"
+        android:backgroundTint="@color/dark_blue"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
