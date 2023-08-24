@@ -13,6 +13,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import com.longdrink.androidapp.api_model.SQAlumno;
 import com.longdrink.androidapp.api_model.SQCurso;
 import com.longdrink.androidapp.api_model.SQFrecuencia;
+import com.longdrink.androidapp.api_model.SQInscripcion;
 import com.longdrink.androidapp.api_model.SQTema;
 import com.longdrink.androidapp.api_model.SQTurno;
 import com.longdrink.androidapp.fragments.CoursesFragment;
@@ -32,10 +33,11 @@ public class StudentFragmentAdapter extends FragmentPagerAdapter {
     private ArrayList<String> nombresTemas;
     private ArrayList<String> guias;
     private int id_user;
+    private SQInscripcion inscripcion;
 
     public StudentFragmentAdapter(@NonNull FragmentManager fm, SQAlumno alumno ,SQCurso curso,
                                   SQFrecuencia frecuencia, SQTurno turno, ArrayList<String> temas, ArrayList<String> guias,
-                                  int id_user) {
+                                  int id_user, SQInscripcion inscripcion) {
 
         super(fm);
         this.alumno = alumno;
@@ -45,6 +47,7 @@ public class StudentFragmentAdapter extends FragmentPagerAdapter {
         this.nombresTemas = temas;
         this.guias = guias;
         this.id_user = id_user;
+        this.inscripcion = inscripcion;
     }
 
     @NonNull
@@ -56,6 +59,7 @@ public class StudentFragmentAdapter extends FragmentPagerAdapter {
         {
             case 0:
                 bundle.putSerializable("alumno", alumno);
+                bundle.putInt("id_user", id_user);
                 CoursesFragment cF = new CoursesFragment();
                 cF.setArguments(bundle);
                 return cF;
@@ -69,6 +73,8 @@ public class StudentFragmentAdapter extends FragmentPagerAdapter {
                     bundle.putSerializable("turno", turno);
                     bundle.putStringArrayList("temas", nombresTemas);
                     bundle.putStringArrayList("guias", guias);
+                    bundle.putSerializable("inscripcion", inscripcion);
+                    bundle.putInt("id_user", id_user);
                     MyCoursesFragment mCF = new MyCoursesFragment();
                     mCF.setArguments(bundle);
                     return mCF;

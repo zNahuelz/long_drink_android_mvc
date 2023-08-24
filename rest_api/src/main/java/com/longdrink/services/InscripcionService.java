@@ -32,7 +32,7 @@ public class InscripcionService {
     @SuppressWarnings("unchecked")
     @Transactional(readOnly = true)
     public List<Inscripcion> listarPorIDAlum(int id_alum){
-        Query query = em.createQuery("SELECT i FROM Inscripcion i WHERE idalumno = :ida and activo = 1");
+        Query query = em.createQuery("SELECT i FROM Inscripcion i WHERE idalumno = :ida and activo = 1 and terminado = 0");
         query.setParameter("ida", id_alum);
         return (List<Inscripcion>) query.getResultList();
     }
@@ -67,19 +67,27 @@ public class InscripcionService {
         return inscripcionDAO.save(i);
     }
 
+    @Transactional
     public boolean terminarInscripcionIDAlum(int id_alum){
         try{
-            Inscripcion i = inscripcionDAO.findAllByidalumno(id_alum).get(id_alum); //TODO : Check....
-            if(i.getTerminado() != 1){
-                i.setTerminado(1);
-                inscripcionDAO.save(i);
+            Inscripcion i = inscripcionDAO.findByidalumno(id_alum); //TODO : Check....
+            System.out.println("***************************");;
+            System.out.println("FRECUENCIA: " + i.getTerminado());
+            int terminado = i.getTerminado();
+            // if(terminado == 0){
+                // System.out.println("FRECUENCIA: " + i.getTerminado());
+                // i.setTerminado(1);
+                // System.out.println("FRECUENCIA: " + i.getTerminado());
+                Query query = em.createQuery("UPDATE Inscripcion i SET i.terminado = "+1+" AND i.activo = "+0+" WHERE i.idalumno = " + i.getId_alumno());
+                query.executeUpdate();
                 return true;
-            }
+            // }
         }
         catch(Exception ex){
+            System.out.println(ex.getMessage());
             return false;
         }
-        return false;
+
     }
 
     public Optional<Inscripcion> buscarPorIDAlum(int id_alum){

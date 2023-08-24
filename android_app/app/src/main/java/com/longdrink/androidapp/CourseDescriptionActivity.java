@@ -20,6 +20,7 @@ import com.longdrink.androidapp.databinding.ActivityCourseDescriptionBinding;
 import com.longdrink.androidapp.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -32,8 +33,6 @@ public class CourseDescriptionActivity extends AppCompatActivity {
 
     String BASE_URL = "http://10.0.2.2:8080";
     ActivityCourseDescriptionBinding binding;
-
-    List<SQInscripcion> inscripciones = new ArrayList<>();
 
     SQAlumno alumno;
     @Override
@@ -95,18 +94,10 @@ public class CourseDescriptionActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<SQInscripcion>> call, Response<List<SQInscripcion>> response) {
                 if (response.body().size() > 0){
-                    for (SQInscripcion ins : response.body()){
-                        if (ins.getActivo() == 1){
-                            inscripciones.add(ins);
-                            break;
-                        }
-                    }
-                    if (inscripciones.size() > 0){
-                        AlertDialog.Builder alertDialog = new AlertDialog.Builder(CourseDescriptionActivity.this);
-                        alertDialog.setMessage("Usted ya se ha inscrito en un curso, termínelo o retírese del curso para\n" +
-                                        "poder inscribirse a otro")
-                                .setNeutralButton("OK", (v, a) -> {}).show();
-                    }
+                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(CourseDescriptionActivity.this);
+                    alertDialog.setMessage("Usted ya se ha inscrito en un curso, termínelo o retírese del curso para\n" +
+                                    "poder inscribirse a otro")
+                            .setNeutralButton("OK", (v, a) -> {}).show();
                 }
                 else{
                     Log.e("OBTENERINSCRIPCINO_ONRESPONSE", "NO HAY INSCRIPCION");
@@ -121,4 +112,6 @@ public class CourseDescriptionActivity extends AppCompatActivity {
         });
 
     }
+
+
 }

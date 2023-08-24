@@ -1,7 +1,10 @@
 package com.longdrink.androidapp.fragments;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.longdrink.androidapp.InscriptionActivity;
 import com.longdrink.androidapp.MainActivity;
 import com.longdrink.androidapp.R;
 import com.longdrink.androidapp.adapter.CoursesRecyclerViewAdapter;
@@ -23,12 +27,17 @@ import com.longdrink.androidapp.api_model.SQAlumno;
 import com.longdrink.androidapp.api_model.SQCurso;
 import com.longdrink.androidapp.api_model.SQCursoFrecuencia;
 import com.longdrink.androidapp.api_model.SQFrecuencia;
+import com.longdrink.androidapp.api_model.SQInscripcion;
 import com.longdrink.androidapp.api_model.SQProfesor;
 import com.longdrink.androidapp.api_model.SQProfesorCurso;
 import com.longdrink.androidapp.api_model.SQTurno;
 import com.longdrink.androidapp.databinding.FragmentMyCoursesBinding;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -45,6 +54,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MyCoursesFragment extends Fragment {
 
     private String BASE_URL = "http://10.0.2.2:8080";
+    int id_user;
 
     MyCourseRVAdapter recyclerViewAdapter;
 
@@ -100,6 +110,8 @@ public class MyCoursesFragment extends Fragment {
         SQTurno turno = (SQTurno) getArguments().getSerializable("turno");
         ArrayList<String> nombresTemas = getArguments().getStringArrayList("temas");
         ArrayList<String> guias = getArguments().getStringArrayList("guias");
+        SQInscripcion inscripcion = (SQInscripcion) getArguments().getSerializable("inscripcion");
+        id_user = getArguments().getInt("id_user");
         binding = FragmentMyCoursesBinding.inflate(inflater, container, false);
 
         Glide.with(this)
@@ -110,11 +122,16 @@ public class MyCoursesFragment extends Fragment {
         binding.myCourseFrecuency.setText(frecuencia.getNombre());
         binding.myCourseTime.setText(turno.getNombre());
         obtenerCursoProfesor(curso);
+        binding.myCourseRetire.setOnClickListener(v -> {
+            try {
+                confirmarRetiro(inscripcion);
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
         recyclerViewAdapter = new MyCourseRVAdapter(nombresTemas, guias, getContext());
-        //Creando al Manager para que el recyclerView se muestre de manera vertical
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        //Agregando el adaptador, el manager y el decorador a recyclerView
         binding.myCourseRecyclerView.setAdapter(recyclerViewAdapter);
         binding.myCourseRecyclerView.setLayoutManager(layoutManager);
         binding.myCourseRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
@@ -131,7 +148,7 @@ public class MyCoursesFragment extends Fragment {
             public void onResponse(Call<SQProfesorCurso> call, Response<SQProfesorCurso> response) {
                 SQProfesorCurso profcur = response.body();
 
-                obtenerProfesro(profcur.getId_profesor());
+                obtenerProfesor(profcur.getId_profesor());
             }
 
             @Override
@@ -141,7 +158,7 @@ public class MyCoursesFragment extends Fragment {
         });
     }
 
-    public void obtenerProfesro(int id_profesor){
+    public void obtenerProfesor(int id_profesor){
         Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         RetrofitAPI retrofitAPI = retrofit.create(RetrofitAPI.class);
         Call<SQProfesor> call = retrofitAPI.obtenerProfesorPorID(id_profesor);
@@ -159,5 +176,68 @@ public class MyCoursesFragment extends Fragment {
         });
     }
 
+    public void confirmarRetiro(SQInscripcion inscripcion) throws ParseException {
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar calendario = Calendar.getInstance();
+        Date fechaActual = calendario.getTime();
+        Date fechaInicioClases = formato.parse(inscripcion.getFechainiciocurso());
 
+        String fechaActualFormateada = formato.format(fechaActual);
+        String fechaInicioClasesFormateada = formato.format(fechaInicioClases);
+
+        int mesFechaActual = Integer.parseInt(fechaActualFormateada.substring(5, 7));
+        int diaFechaActual = Integer.parseInt(fechaActualFormateada.substring(8, 10));
+
+        int mesFechaInicio = Integer.parseInt(fechaInicioClasesFormateada.substring(5, 7));
+        int diaFechaInicio = Integer.parseInt(fechaInicioClasesFormateada.substring(8, 10));
+
+        int diferencia = diaFechaInicio - diaFechaActual;
+
+        if (mesFechaActual > mesFechaInicio ){
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
+            alertDialog.setMessage("Usted ya está a menos de 7 días de iniciar sus clases o " +
+                            "ya inició sus clases, por lo que no puede retirarse.")
+                    .setNeutralButton("OK", (a, v) -> {
+                    }).show();
+        }
+        else if (mesFechaActual == mesFechaInicio){
+            if (diferencia < 0 || diferencia < 7){
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
+                alertDialog.setMessage("Usted ya está a menos de 7 días de iniciar sus clases o " +
+                                "ya inició sus clases, por lo que no puede retirarse.")
+                        .setNeutralButton("OK", (a, v) -> {
+                        }).show();
+            }
+            else{
+                retirarCurso(inscripcion);
+            }
+        }
+        else{
+            retirarCurso(inscripcion);
+
+        }
+    }
+
+    public void retirarCurso(SQInscripcion inscripcion){
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
+        RetrofitAPI retrofitAPI = retrofit.create(RetrofitAPI.class);
+        Call<Boolean> call = retrofitAPI.terminarInscripcion(inscripcion.getIdalumno());
+        call.enqueue(new Callback<Boolean>() {
+            @Override
+            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
+                alertDialog.setMessage("Usted se ha retirado del curso de Manera Satisfactoria")
+                        .setNeutralButton("OK", (a, v) -> {
+                            Intent intent = new Intent(getContext(), MainActivity.class);
+                            intent.putExtra("account_id", id_user);
+                            startActivity(intent);
+                        }).show();
+            }
+
+            @Override
+            public void onFailure(Call<Boolean> call, Throwable t) {
+                Log.e("retirarCurso", "NO HUBO CONEXION CON EL SERVIDOR");
+            }
+        });
+    }
 }

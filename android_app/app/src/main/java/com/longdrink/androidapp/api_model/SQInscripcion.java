@@ -1,8 +1,9 @@
 package com.longdrink.androidapp.api_model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class SQInscripcion {
+public class SQInscripcion implements Serializable {
     private int id_alumno;
     private int id_curso;
     private String fechainiciocurso;

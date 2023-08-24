@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
     SQFrecuencia frecuencia;
     SQTurno turno;
 
+    SQInscripcion inscripcionActiva;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,7 +136,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<SQInscripcion>> call, Response<List<SQInscripcion>> response) {
                 if (response.body().size() > 0){
-                    SQInscripcion inscripcionActiva = null;
                     for (SQInscripcion ins : response.body()){
                         if (ins.getActivo() == 1){
                             inscripcionActiva = ins;
@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
                     //Agregando el toolbar al activity
                     setSupportActionBar(binding.mainToolbar);
                     //Instanciando el adaptador
-                    studentFragmentAdapter = new StudentFragmentAdapter(getSupportFragmentManager(), alumno, null, null, null, null, null, 0);
+                    studentFragmentAdapter = new StudentFragmentAdapter(getSupportFragmentManager(), alumno, null, null, null, null, null, 0, null);
                     //Seteando el adaptador al viewpager
                     binding.viewPager.setAdapter(studentFragmentAdapter);
                     //Seteando el viewpager al tablayout
@@ -284,7 +284,7 @@ public class MainActivity extends AppCompatActivity {
                     setSupportActionBar(binding.mainToolbar);
                     //Instanciando el adaptador
                     studentFragmentAdapter = new StudentFragmentAdapter(getSupportFragmentManager(), alumno, curso, frecuencia,
-                            turno, listadoNombresTemasFiltrados, listadoGuias, id_usuarioSerizable);
+                            turno, listadoNombresTemasFiltrados, listadoGuias, id_usuarioSerizable, inscripcionActiva);
                     //Seteando el adaptador al viewpager
                     binding.viewPager.setAdapter(studentFragmentAdapter);
                     //Seteando el viewpager al tablayout

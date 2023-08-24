@@ -122,9 +122,10 @@ public interface RetrofitAPI {
     //INSCRIPCION USUARIOS
     @POST("/inscripcion/nuevo")
     Call<Boolean> guardarInscripcion(@Body SQInscripcion inscripcion);
-
     @GET("/inscripcion/id_alum")
     Call<List<SQInscripcion>> obtenerInscripcion(@Query("id_alum") int id_alum);
+    @DELETE("/inscripcion/eliminar")
+    Call<Boolean> terminarInscripcion(@Query("id_alum") int id_alum);
     //FIN INSCRIPCION
 
     //CURSO_PROFESOR

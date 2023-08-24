@@ -148,6 +148,7 @@ public class InscriptionActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<SQFrecuencia>> call, Response<List<SQFrecuencia>> response) {
                 listadoFrecuenciasNombres.clear();
+                listadoFrecuenciasFiltradas.clear();
                 listadoFrecuencias = response.body();
                 listadoFrecuencias.forEach(elemento -> {
                     listadoCursoFrecuencia.forEach(e -> {
@@ -193,6 +194,7 @@ public class InscriptionActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<SQTurno>> call, Response<List<SQTurno>> response) {
                 listadoTurnosNombres.clear();
+                listadoTurnosFiltrados.clear();
                 listadoTurnos = response.body();
                 listadoTurnos.forEach(elemento -> {
                     listadoCursoTurno.forEach(e -> {
@@ -243,8 +245,14 @@ public class InscriptionActivity extends AppCompatActivity {
         //Todo lo relacionado a las fechas
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         String fechaInscripcion = formato.format(Calendar.getInstance().getTime());
-        String fechaInicioClases = fechaInscripcion;
-        String fechaFinal = fechaInscripcion;
+
+        Calendar calendarioInicioClases = Calendar.getInstance();
+        calendarioInicioClases.add(Calendar.DATE, 14);
+        String fechaInicioClases = formato.format(calendarioInicioClases.getTime());
+
+        Calendar calendario = Calendar.getInstance();
+        calendario.add(Calendar.MONTH, cursoSeleccionado.getDuracion());
+        String fechaFinal = formato.format(calendario.getTime());
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
         alertDialog
